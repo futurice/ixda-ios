@@ -1,0 +1,6 @@
+framework module Pods_interaction16 {
+  umbrella header "Pods-interaction16-umbrella.h"
+
+  export *
+  module * { export * }
+}
