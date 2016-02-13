@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38A370B528300F2D05DFBDBE /* Pods_interaction16.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6745A4BFB31EFC7BBCD0CB8 /* Pods_interaction16.framework */; };
+		6F668DA21C6F33CE00475BCA /* UIColor+IDXA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */; };
 		6F87D41C1C6F25430039A29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41B1C6F25430039A29B /* main.m */; };
 		6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41E1C6F25430039A29B /* AppDelegate.m */; };
 		6F87D4221C6F25430039A29B /* IDXAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D4211C6F25430039A29B /* IDXAMenuViewController.m */; };
@@ -17,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.release.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.release.xcconfig"; sourceTree = "<group>"; };
+		6F668DA01C6F33CE00475BCA /* UIColor+IDXA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IDXA.h"; path = "Helpers/UIColor+IDXA.h"; sourceTree = "<group>"; };
+		6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IDXA.m"; path = "Helpers/UIColor+IDXA.m"; sourceTree = "<group>"; };
 		6F87D4171C6F25430039A29B /* interaction16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interaction16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F87D41B1C6F25430039A29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F87D41D1C6F25430039A29B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -50,6 +53,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6F668D9F1C6F339F00475BCA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6F668DA01C6F33CE00475BCA /* UIColor+IDXA.h */,
+				6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		6F87D40E1C6F25430039A29B = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +83,7 @@
 		6F87D4191C6F25430039A29B /* interaction16 */ = {
 			isa = PBXGroup;
 			children = (
+				6F668D9F1C6F339F00475BCA /* Helpers */,
 				6F87D41D1C6F25430039A29B /* AppDelegate.h */,
 				6F87D41E1C6F25430039A29B /* AppDelegate.m */,
 				6F87D4201C6F25430039A29B /* IDXAMenuViewController.h */,
@@ -223,6 +236,7 @@
 				6F87D4221C6F25430039A29B /* IDXAMenuViewController.m in Sources */,
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
+				6F668DA21C6F33CE00475BCA /* UIColor+IDXA.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
