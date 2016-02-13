@@ -9,6 +9,8 @@
 #import "IDXAMenuViewController.h"
 #import "IDXAMenuView.h"
 
+#import "IDXAWhatElseIsOnViewController.h"
+
 #import "UIColor+IDXA.h"
 
 #import <Masonry/Masonry.h>
@@ -55,12 +57,13 @@
     [sponsoringView addSubview:sponsoringImageView];
     [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(sponsoringView).offset(62);
-        make.centerY.equalTo(sponsoringView).offset(-5);
+        make.bottom.equalTo(sponsoringView).offset(-35);
     }];
     
     
     UIImage *backgroundImage = [UIImage imageNamed:@"backgroundSlice"];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+    backgroundImageView.userInteractionEnabled = YES;
     [self.view addSubview:backgroundImageView];
     [backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(logoView.mas_bottom);
@@ -74,7 +77,20 @@
         make.edges.equalTo(backgroundImageView);
     }];
     
+    @weakify(self)
+    [menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
 
+    }];
+    
+    [menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IDXAWhatElseIsOnViewController *vc = [[IDXAWhatElseIsOnViewController alloc] init];
+        [self presentViewController:vc animated:YES completion:nil];
+    }];
+    
+
+    
     return self;
 }
 
@@ -89,6 +105,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
 }
+
+#pragma mark - Appearance
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

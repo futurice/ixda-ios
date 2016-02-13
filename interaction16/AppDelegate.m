@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "IDXAMenuViewController.h"
 
+#import "UIColor+IDXA.h"
+
 @interface AppDelegate ()
 
 @end

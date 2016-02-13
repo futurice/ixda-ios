@@ -16,7 +16,8 @@
 		6F668DC01C6F423E00475BCA /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBC1C6F423E00475BCA /* CircularStd-Bold.otf */; };
 		6F668DC11C6F423E00475BCA /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBD1C6F423E00475BCA /* CircularStd-Book.otf */; };
 		6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */; };
-		6F668DC91C6F51A800475BCA /* WhatElseIsOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DC81C6F51A800475BCA /* WhatElseIsOnViewController.m */; };
+		6F668DC91C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DC81C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m */; };
+		6F668DCC1C6F556900475BCA /* IDXAWhatElseIsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DCB1C6F556900475BCA /* IDXAWhatElseIsOnView.m */; };
 		6F87D41C1C6F25430039A29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41B1C6F25430039A29B /* main.m */; };
 		6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41E1C6F25430039A29B /* AppDelegate.m */; };
 		6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4261C6F25430039A29B /* Assets.xcassets */; };
@@ -40,8 +41,10 @@
 		6F668DBC1C6F423E00475BCA /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.otf"; path = "Fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		6F668DBD1C6F423E00475BCA /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Book.otf"; path = "Fonts/CircularStd-Book.otf"; sourceTree = "<group>"; };
 		6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Medium.otf"; path = "Fonts/CircularStd-Medium.otf"; sourceTree = "<group>"; };
-		6F668DC71C6F51A800475BCA /* WhatElseIsOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhatElseIsOnViewController.h; path = Controllers/WhatElse/WhatElseIsOnViewController.h; sourceTree = "<group>"; };
-		6F668DC81C6F51A800475BCA /* WhatElseIsOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhatElseIsOnViewController.m; path = Controllers/WhatElse/WhatElseIsOnViewController.m; sourceTree = "<group>"; };
+		6F668DC71C6F51A800475BCA /* IDXAWhatElseIsOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDXAWhatElseIsOnViewController.h; path = Controllers/WhatElse/IDXAWhatElseIsOnViewController.h; sourceTree = "<group>"; };
+		6F668DC81C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDXAWhatElseIsOnViewController.m; path = Controllers/WhatElse/IDXAWhatElseIsOnViewController.m; sourceTree = "<group>"; };
+		6F668DCA1C6F556900475BCA /* IDXAWhatElseIsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDXAWhatElseIsOnView.h; path = Controllers/WhatElse/IDXAWhatElseIsOnView.h; sourceTree = "<group>"; };
+		6F668DCB1C6F556900475BCA /* IDXAWhatElseIsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDXAWhatElseIsOnView.m; path = Controllers/WhatElse/IDXAWhatElseIsOnView.m; sourceTree = "<group>"; };
 		6F87D4171C6F25430039A29B /* interaction16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interaction16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F87D41B1C6F25430039A29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F87D41D1C6F25430039A29B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,8 +123,10 @@
 		6F668DC61C6F518800475BCA /* WhatElse */ = {
 			isa = PBXGroup;
 			children = (
-				6F668DC71C6F51A800475BCA /* WhatElseIsOnViewController.h */,
-				6F668DC81C6F51A800475BCA /* WhatElseIsOnViewController.m */,
+				6F668DC71C6F51A800475BCA /* IDXAWhatElseIsOnViewController.h */,
+				6F668DC81C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m */,
+				6F668DCA1C6F556900475BCA /* IDXAWhatElseIsOnView.h */,
+				6F668DCB1C6F556900475BCA /* IDXAWhatElseIsOnView.m */,
 			);
 			name = WhatElse;
 			sourceTree = "<group>";
@@ -305,10 +310,11 @@
 				6F668DBA1C6F420500475BCA /* UIFont+IDXA.m in Sources */,
 				6F668DAE1C6F409500475BCA /* UIButton+IDXA.m in Sources */,
 				6F668DAB1C6F3E7400475BCA /* IDXAMenuViewController.m in Sources */,
-				6F668DC91C6F51A800475BCA /* WhatElseIsOnViewController.m in Sources */,
+				6F668DC91C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
 				6F668DA81C6F3E5100475BCA /* IDXAMenuView.m in Sources */,
 				6F668DA21C6F33CE00475BCA /* UIColor+IDXA.m in Sources */,
+				6F668DCC1C6F556900475BCA /* IDXAWhatElseIsOnView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -75,7 +75,7 @@
     
     
     UIImage *swipeDownImage = [UIImage imageNamed:@"swipeDown"];
-    UIButton *whatElseIsOnButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *whatElseIsOnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [whatElseIsOnButton setBackgroundImage:swipeDownImage forState:UIControlStateNormal];
     [self addSubview:whatElseIsOnButton];
     [whatElseIsOnButton mas_makeConstraints:^(MASConstraintMaker *make) {
