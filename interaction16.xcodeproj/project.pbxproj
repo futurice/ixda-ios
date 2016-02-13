@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38A370B528300F2D05DFBDBE /* Pods_interaction16.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6745A4BFB31EFC7BBCD0CB8 /* Pods_interaction16.framework */; };
 		6F668DA21C6F33CE00475BCA /* UIColor+IDXA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */; };
 		6F668DA81C6F3E5100475BCA /* IDXAMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA71C6F3E5100475BCA /* IDXAMenuView.m */; };
 		6F668DAB1C6F3E7400475BCA /* IDXAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAA1C6F3E7400475BCA /* IDXAMenuViewController.m */; };
@@ -22,6 +21,7 @@
 		6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41E1C6F25430039A29B /* AppDelegate.m */; };
 		6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4261C6F25430039A29B /* Assets.xcassets */; };
 		6F87D42A1C6F25430039A29B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4281C6F25430039A29B /* LaunchScreen.storyboard */; };
+		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 		6F87D4291C6F25430039A29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F87D42B1C6F25430039A29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		707C2CE9765B9BBCA6D3866C /* Pods-interaction16.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.debug.xcconfig"; sourceTree = "<group>"; };
-		F6745A4BFB31EFC7BBCD0CB8 /* Pods_interaction16.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_interaction16.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interaction16.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38A370B528300F2D05DFBDBE /* Pods_interaction16.framework in Frameworks */,
+				B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,7 @@
 		0EED1D783B6E94657A397A02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F6745A4BFB31EFC7BBCD0CB8 /* Pods_interaction16.framework */,
+				FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

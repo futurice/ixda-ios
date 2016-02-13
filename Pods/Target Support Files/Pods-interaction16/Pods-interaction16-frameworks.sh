@@ -82,16 +82,3 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-interaction16/AFNetworking.framework"
-  install_framework "Pods-interaction16/Masonry.framework"
-  install_framework "Pods-interaction16/ReactiveCocoa.framework"
-  install_framework "Pods-interaction16/Result.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-interaction16/AFNetworking.framework"
-  install_framework "Pods-interaction16/Masonry.framework"
-  install_framework "Pods-interaction16/ReactiveCocoa.framework"
-  install_framework "Pods-interaction16/Result.framework"
-fi
