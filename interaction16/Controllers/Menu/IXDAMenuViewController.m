@@ -10,6 +10,7 @@
 #import "IXDAMenuView.h"
 
 #import "IXDAProgramViewController.h"
+#import "IXDASpeakersViewController.h"
 #import "IXDAMapViewController.h"
 #import "IXDAWhatElseIsOnViewController.h"
 
@@ -82,6 +83,12 @@
     [menuView.programButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [menuView.speakersButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
