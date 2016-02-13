@@ -1,20 +1,20 @@
 //
-//  IDXAMenuView.m
+//  IXDAMenuView.m
 //  interaction16
 //
 //  Created by Evangelos Sismanidis on 13/02/16.
 //  Copyright © 2016 Futurice. All rights reserved.
 //
 
-#import "IDXAMenuView.h"
+#import "IXDAMenuView.h"
 
-#import "UIButton+IDXA.h"
-#import "UIFont+IDXA.h"
+#import "UIButton+IXDA.h"
+#import "UIFont+IXDA.h"
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@implementation IDXAMenuView
+@implementation IXDAMenuView
 
 - (instancetype)init {
     self = [super init];
@@ -25,7 +25,7 @@
     CGFloat leftPadding = 42;
   
     
-    UIButton *programButton = [UIButton idxa_menuButtonWithTitle:@"Program"];
+    UIButton *programButton = [UIButton ixda_menuButtonWithTitle:@"Program"];
     [self addSubview:programButton];
     [programButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(topPadding);
@@ -33,7 +33,7 @@
     }];
     self.programButtonSignal = [programButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *speakersButton = [UIButton idxa_menuButtonWithTitle:@"Speakers"];
+    UIButton *speakersButton = [UIButton ixda_menuButtonWithTitle:@"Speakers"];
     [self addSubview:speakersButton];
     [speakersButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(programButton.mas_bottom).offset(buttonSpace);
@@ -41,7 +41,7 @@
     }];
     self.speakersButtonSignal = [speakersButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *workshopsButton = [UIButton idxa_menuButtonWithTitle:@"Workshops"];
+    UIButton *workshopsButton = [UIButton ixda_menuButtonWithTitle:@"Workshops"];
     [self addSubview:workshopsButton];
     [workshopsButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(speakersButton.mas_bottom).offset(buttonSpace);
@@ -49,7 +49,7 @@
     }];
     self.workshopsButtonSignal = [workshopsButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *scheduleButton = [UIButton idxa_menuButtonWithTitle:@"Schedule"];
+    UIButton *scheduleButton = [UIButton ixda_menuButtonWithTitle:@"Schedule"];
     [self addSubview:scheduleButton];
     [scheduleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(workshopsButton.mas_bottom).offset(buttonSpace);
@@ -57,7 +57,7 @@
     }];
     self.scheduleButtonSignal = [scheduleButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *venueAndMapButton = [UIButton idxa_menuButtonWithTitle:@"Venue and map"];
+    UIButton *venueAndMapButton = [UIButton ixda_menuButtonWithTitle:@"Venue and map"];
     [self addSubview:venueAndMapButton];
     [venueAndMapButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(scheduleButton.mas_bottom).offset(buttonSpace);
@@ -65,7 +65,7 @@
     }];
     self.venueAndMapButtonSignal = [venueAndMapButton rac_signalForControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *infoButton = [UIButton idxa_menuButtonWithTitle:@"Info"];
+    UIButton *infoButton = [UIButton ixda_menuButtonWithTitle:@"Info"];
     [self addSubview:infoButton];
     [infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(venueAndMapButton.mas_bottom).offset(buttonSpace);
@@ -87,7 +87,7 @@
     
     UILabel *whatElseIsOnLabel = [[UILabel alloc] init];
     whatElseIsOnLabel.textColor = [UIColor whiteColor];
-    whatElseIsOnLabel.font = [UIFont idxa_menuItemFontSmall];
+    whatElseIsOnLabel.font = [UIFont ixda_menuItemFontSmall];
     whatElseIsOnLabel.text = @"What else is on?";
     [self addSubview:whatElseIsOnLabel];
     [whatElseIsOnLabel mas_makeConstraints:^(MASConstraintMaker *make) {

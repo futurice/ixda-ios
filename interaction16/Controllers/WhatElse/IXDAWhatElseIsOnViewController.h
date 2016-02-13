@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDXAWhatElseIsOnViewController : UIViewController
+@interface IXDAWhatElseIsOnViewController : UIViewController
 
 @end

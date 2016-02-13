@@ -1,5 +1,5 @@
 //
-//  UIFont+IDXA.h
+//  ViewController.h
 //  interaction16
 //
 //  Created by Evangelos Sismanidis on 13/02/16.
@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIFont (IDXA)
+@interface IXDAMenuViewController : UIViewController
 
-+ (UIFont *)idxa_menuItemFontStandard;
-+ (UIFont *)idxa_menuItemFontSmall;
 
 @end
+

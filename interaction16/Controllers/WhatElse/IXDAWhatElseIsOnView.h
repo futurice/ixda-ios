@@ -1,5 +1,5 @@
 //
-//  IDXAWhatElseIsOnView.h
+//  IXDAWhatElseIsOnView.h
 //  interaction16
 //
 //  Created by Evangelos Sismanidis on 13/02/16.
@@ -10,7 +10,7 @@
 
 @class RACSignal;
 
-@interface IDXAWhatElseIsOnView : UIView
+@interface IXDAWhatElseIsOnView : UIView
 
 @property (nonatomic, strong) RACSignal *backToMenuButtonSignal;
 @property (nonatomic, strong) RACSignal *educationButtonSignal;

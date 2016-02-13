@@ -1,26 +1,26 @@
 //
-//  IDXAWhatElseIsOnView.m
+//  IXDAWhatElseIsOnView.m
 //  interaction16
 //
 //  Created by Evangelos Sismanidis on 13/02/16.
 //  Copyright © 2016 Futurice. All rights reserved.
 //
 
-#import "IDXAWhatElseIsOnView.h"
+#import "IXDAWhatElseIsOnView.h"
 
-#import "UIColor+IDXA.h"
-#import "UIFont+IDXA.h"
+#import "UIColor+IXDA.h"
+#import "UIFont+IXDA.h"
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@implementation IDXAWhatElseIsOnView
+@implementation IXDAWhatElseIsOnView
 
 - (instancetype)init {
     self = [super init];
     if (!self) return nil;
     
-    self.backgroundColor = [UIColor idxa_baseBackgroundColorA];
+    self.backgroundColor = [UIColor ixda_baseBackgroundColorA];
     
     CGFloat leftPadding = 42;
     
@@ -37,7 +37,7 @@
     
     UILabel *backToMenuLabel = [[UILabel alloc] init];
     backToMenuLabel.textColor = [UIColor whiteColor];
-    backToMenuLabel.font = [UIFont idxa_menuItemFontSmall];
+    backToMenuLabel.font = [UIFont ixda_menuItemFontSmall];
     backToMenuLabel.text = @"Back to the main menu";
     [self addSubview:backToMenuLabel];
     [backToMenuLabel mas_makeConstraints:^(MASConstraintMaker *make) {

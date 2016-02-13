@@ -1,5 +1,5 @@
 //
-//  IDXAMenuView.h
+//  IXDAMenuView.h
 //  interaction16
 //
 //  Created by Evangelos Sismanidis on 13/02/16.
@@ -10,7 +10,7 @@
 
 @class RACSignal;
 
-@interface IDXAMenuView : UIView
+@interface IXDAMenuView : UIView
 
 @property (nonatomic, strong) RACSignal *programButtonSignal;
 @property (nonatomic, strong) RACSignal *speakersButtonSignal;

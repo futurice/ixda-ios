@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "IDXAMenuViewController.h"
+#import "IXDAMenuViewController.h"
 
-#import "UIColor+IDXA.h"
+#import "UIColor+IXDA.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    IDXAMenuViewController *vc = [[IDXAMenuViewController alloc] init];
+    IXDAMenuViewController *vc = [[IXDAMenuViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nvc;
     

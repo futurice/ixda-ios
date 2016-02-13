@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F668DA21C6F33CE00475BCA /* UIColor+IDXA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */; };
-		6F668DA81C6F3E5100475BCA /* IDXAMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA71C6F3E5100475BCA /* IDXAMenuView.m */; };
-		6F668DAB1C6F3E7400475BCA /* IDXAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAA1C6F3E7400475BCA /* IDXAMenuViewController.m */; };
-		6F668DAE1C6F409500475BCA /* UIButton+IDXA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAD1C6F409500475BCA /* UIButton+IDXA.m */; };
-		6F668DBA1C6F420500475BCA /* UIFont+IDXA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DB91C6F420500475BCA /* UIFont+IDXA.m */; };
+		6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */; };
+		6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */; };
+		6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */; };
+		6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAD1C6F409500475BCA /* UIButton+IXDA.m */; };
+		6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DB91C6F420500475BCA /* UIFont+IXDA.m */; };
 		6F668DBF1C6F423E00475BCA /* CircularStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBB1C6F423E00475BCA /* CircularStd-Black.otf */; };
 		6F668DC01C6F423E00475BCA /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBC1C6F423E00475BCA /* CircularStd-Bold.otf */; };
 		6F668DC11C6F423E00475BCA /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBD1C6F423E00475BCA /* CircularStd-Book.otf */; };
 		6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */; };
-		6F668DC91C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DC81C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m */; };
-		6F668DCC1C6F556900475BCA /* IDXAWhatElseIsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DCB1C6F556900475BCA /* IDXAWhatElseIsOnView.m */; };
+		6F668DC91C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DC81C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m */; };
+		6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */; };
+		6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */; };
+		6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */; };
 		6F87D41C1C6F25430039A29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41B1C6F25430039A29B /* main.m */; };
 		6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41E1C6F25430039A29B /* AppDelegate.m */; };
 		6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4261C6F25430039A29B /* Assets.xcassets */; };
@@ -27,24 +29,27 @@
 
 /* Begin PBXFileReference section */
 		0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.release.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.release.xcconfig"; sourceTree = "<group>"; };
-		6F668DA01C6F33CE00475BCA /* UIColor+IDXA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IDXA.h"; path = "Helpers/UIColor+IDXA.h"; sourceTree = "<group>"; };
-		6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IDXA.m"; path = "Helpers/UIColor+IDXA.m"; sourceTree = "<group>"; };
-		6F668DA61C6F3E5100475BCA /* IDXAMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDXAMenuView.h; path = Controllers/Menu/IDXAMenuView.h; sourceTree = "<group>"; };
-		6F668DA71C6F3E5100475BCA /* IDXAMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDXAMenuView.m; path = Controllers/Menu/IDXAMenuView.m; sourceTree = "<group>"; };
-		6F668DA91C6F3E7400475BCA /* IDXAMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDXAMenuViewController.h; path = Controllers/Menu/IDXAMenuViewController.h; sourceTree = "<group>"; };
-		6F668DAA1C6F3E7400475BCA /* IDXAMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDXAMenuViewController.m; path = Controllers/Menu/IDXAMenuViewController.m; sourceTree = "<group>"; };
-		6F668DAC1C6F409500475BCA /* UIButton+IDXA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+IDXA.h"; path = "Helpers/UIButton+IDXA.h"; sourceTree = "<group>"; };
-		6F668DAD1C6F409500475BCA /* UIButton+IDXA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+IDXA.m"; path = "Helpers/UIButton+IDXA.m"; sourceTree = "<group>"; };
-		6F668DB81C6F420500475BCA /* UIFont+IDXA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+IDXA.h"; path = "Helpers/UIFont+IDXA.h"; sourceTree = "<group>"; };
-		6F668DB91C6F420500475BCA /* UIFont+IDXA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+IDXA.m"; path = "Helpers/UIFont+IDXA.m"; sourceTree = "<group>"; };
+		6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IXDA.h"; path = "Helpers/UIColor+IXDA.h"; sourceTree = "<group>"; };
+		6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IXDA.m"; path = "Helpers/UIColor+IXDA.m"; sourceTree = "<group>"; };
+		6F668DA61C6F3E5100475BCA /* IXDAMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMenuView.h; path = Controllers/Menu/IXDAMenuView.h; sourceTree = "<group>"; };
+		6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMenuView.m; path = Controllers/Menu/IXDAMenuView.m; sourceTree = "<group>"; };
+		6F668DA91C6F3E7400475BCA /* IXDAMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMenuViewController.h; path = Controllers/Menu/IXDAMenuViewController.h; sourceTree = "<group>"; };
+		6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMenuViewController.m; path = Controllers/Menu/IXDAMenuViewController.m; sourceTree = "<group>"; };
+		6F668DAC1C6F409500475BCA /* UIButton+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+IXDA.h"; path = "Helpers/UIButton+IXDA.h"; sourceTree = "<group>"; };
+		6F668DAD1C6F409500475BCA /* UIButton+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+IXDA.m"; path = "Helpers/UIButton+IXDA.m"; sourceTree = "<group>"; };
+		6F668DB81C6F420500475BCA /* UIFont+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+IXDA.h"; path = "Helpers/UIFont+IXDA.h"; sourceTree = "<group>"; };
+		6F668DB91C6F420500475BCA /* UIFont+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+IXDA.m"; path = "Helpers/UIFont+IXDA.m"; sourceTree = "<group>"; };
 		6F668DBB1C6F423E00475BCA /* CircularStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Black.otf"; path = "Fonts/CircularStd-Black.otf"; sourceTree = "<group>"; };
 		6F668DBC1C6F423E00475BCA /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.otf"; path = "Fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		6F668DBD1C6F423E00475BCA /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Book.otf"; path = "Fonts/CircularStd-Book.otf"; sourceTree = "<group>"; };
 		6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Medium.otf"; path = "Fonts/CircularStd-Medium.otf"; sourceTree = "<group>"; };
-		6F668DC71C6F51A800475BCA /* IDXAWhatElseIsOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDXAWhatElseIsOnViewController.h; path = Controllers/WhatElse/IDXAWhatElseIsOnViewController.h; sourceTree = "<group>"; };
-		6F668DC81C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDXAWhatElseIsOnViewController.m; path = Controllers/WhatElse/IDXAWhatElseIsOnViewController.m; sourceTree = "<group>"; };
-		6F668DCA1C6F556900475BCA /* IDXAWhatElseIsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDXAWhatElseIsOnView.h; path = Controllers/WhatElse/IDXAWhatElseIsOnView.h; sourceTree = "<group>"; };
-		6F668DCB1C6F556900475BCA /* IDXAWhatElseIsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDXAWhatElseIsOnView.m; path = Controllers/WhatElse/IDXAWhatElseIsOnView.m; sourceTree = "<group>"; };
+		6F668DC71C6F51A800475BCA /* IXDAWhatElseIsOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWhatElseIsOnViewController.h; path = Controllers/WhatElse/IXDAWhatElseIsOnViewController.h; sourceTree = "<group>"; };
+		6F668DC81C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWhatElseIsOnViewController.m; path = Controllers/WhatElse/IXDAWhatElseIsOnViewController.m; sourceTree = "<group>"; };
+		6F668DCA1C6F556900475BCA /* IXDAWhatElseIsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWhatElseIsOnView.h; path = Controllers/WhatElse/IXDAWhatElseIsOnView.h; sourceTree = "<group>"; };
+		6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWhatElseIsOnView.m; path = Controllers/WhatElse/IXDAWhatElseIsOnView.m; sourceTree = "<group>"; };
+		6F668DD31C6F638B00475BCA /* IXDAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMapViewController.h; path = Controllers/MapAndVenue/IXDAMapViewController.h; sourceTree = "<group>"; };
+		6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMapViewController.m; path = Controllers/MapAndVenue/IXDAMapViewController.m; sourceTree = "<group>"; };
+		6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IXDAMapViewController.xib; path = Controllers/MapAndVenue/IXDAMapViewController.xib; sourceTree = "<group>"; };
 		6F87D4171C6F25430039A29B /* interaction16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interaction16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F87D41B1C6F25430039A29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F87D41D1C6F25430039A29B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -79,12 +84,12 @@
 		6F668D9F1C6F339F00475BCA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6F668DAC1C6F409500475BCA /* UIButton+IDXA.h */,
-				6F668DAD1C6F409500475BCA /* UIButton+IDXA.m */,
-				6F668DA01C6F33CE00475BCA /* UIColor+IDXA.h */,
-				6F668DA11C6F33CE00475BCA /* UIColor+IDXA.m */,
-				6F668DB81C6F420500475BCA /* UIFont+IDXA.h */,
-				6F668DB91C6F420500475BCA /* UIFont+IDXA.m */,
+				6F668DAC1C6F409500475BCA /* UIButton+IXDA.h */,
+				6F668DAD1C6F409500475BCA /* UIButton+IXDA.m */,
+				6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */,
+				6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */,
+				6F668DB81C6F420500475BCA /* UIFont+IXDA.h */,
+				6F668DB91C6F420500475BCA /* UIFont+IXDA.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6F668DCD1C6F632C00475BCA /* MapAndVenue */,
 				6F668DC61C6F518800475BCA /* WhatElse */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
 			);
@@ -101,10 +107,10 @@
 		6F668DA51C6F3E1700475BCA /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				6F668DA61C6F3E5100475BCA /* IDXAMenuView.h */,
-				6F668DA71C6F3E5100475BCA /* IDXAMenuView.m */,
-				6F668DA91C6F3E7400475BCA /* IDXAMenuViewController.h */,
-				6F668DAA1C6F3E7400475BCA /* IDXAMenuViewController.m */,
+				6F668DA61C6F3E5100475BCA /* IXDAMenuView.h */,
+				6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */,
+				6F668DA91C6F3E7400475BCA /* IXDAMenuViewController.h */,
+				6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -123,12 +129,22 @@
 		6F668DC61C6F518800475BCA /* WhatElse */ = {
 			isa = PBXGroup;
 			children = (
-				6F668DC71C6F51A800475BCA /* IDXAWhatElseIsOnViewController.h */,
-				6F668DC81C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m */,
-				6F668DCA1C6F556900475BCA /* IDXAWhatElseIsOnView.h */,
-				6F668DCB1C6F556900475BCA /* IDXAWhatElseIsOnView.m */,
+				6F668DC71C6F51A800475BCA /* IXDAWhatElseIsOnViewController.h */,
+				6F668DC81C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m */,
+				6F668DCA1C6F556900475BCA /* IXDAWhatElseIsOnView.h */,
+				6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */,
 			);
 			name = WhatElse;
+			sourceTree = "<group>";
+		};
+		6F668DCD1C6F632C00475BCA /* MapAndVenue */ = {
+			isa = PBXGroup;
+			children = (
+				6F668DD31C6F638B00475BCA /* IXDAMapViewController.h */,
+				6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */,
+				6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */,
+			);
+			name = MapAndVenue;
 			sourceTree = "<group>";
 		};
 		6F87D40E1C6F25430039A29B = {
@@ -248,6 +264,7 @@
 				6F87D42A1C6F25430039A29B /* LaunchScreen.storyboard in Resources */,
 				6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */,
 				6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */,
+				6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,14 +324,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
-				6F668DBA1C6F420500475BCA /* UIFont+IDXA.m in Sources */,
-				6F668DAE1C6F409500475BCA /* UIButton+IDXA.m in Sources */,
-				6F668DAB1C6F3E7400475BCA /* IDXAMenuViewController.m in Sources */,
-				6F668DC91C6F51A800475BCA /* IDXAWhatElseIsOnViewController.m in Sources */,
+				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
+				6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */,
+				6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */,
+				6F668DC91C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
-				6F668DA81C6F3E5100475BCA /* IDXAMenuView.m in Sources */,
-				6F668DA21C6F33CE00475BCA /* UIColor+IDXA.m in Sources */,
-				6F668DCC1C6F556900475BCA /* IDXAWhatElseIsOnView.m in Sources */,
+				6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */,
+				6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */,
+				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
+				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

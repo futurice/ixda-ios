@@ -6,15 +6,15 @@
 //  Copyright © 2016 Futurice. All rights reserved.
 //
 
-#import "IDXAWhatElseIsOnViewController.h"
-#import "IDXAWhatElseIsOnView.h"
+#import "IXDAWhatElseIsOnViewController.h"
+#import "IXDAWhatElseIsOnView.h"
 
-#import "UIColor+IDXA.h"
+#import "UIColor+IXDA.h"
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@implementation IDXAWhatElseIsOnViewController
+@implementation IXDAWhatElseIsOnViewController
 
 
 #pragma mark - Life Cycle
@@ -23,9 +23,9 @@
     self = [super init];
     if (!self) return nil;
     
-    self.view.backgroundColor = [UIColor idxa_baseBackgroundColorA];
+    self.view.backgroundColor = [UIColor ixda_baseBackgroundColorA];
 
-    IDXAWhatElseIsOnView *whatElseIsOnView = [[IDXAWhatElseIsOnView alloc] init];
+    IXDAWhatElseIsOnView *whatElseIsOnView = [[IXDAWhatElseIsOnView alloc] init];
     [self.view addSubview:whatElseIsOnView];
     [whatElseIsOnView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);

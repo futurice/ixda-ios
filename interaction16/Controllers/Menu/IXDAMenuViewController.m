@@ -6,17 +6,18 @@
 //  Copyright © 2016 Futurice. All rights reserved.
 //
 
-#import "IDXAMenuViewController.h"
-#import "IDXAMenuView.h"
+#import "IXDAMenuViewController.h"
+#import "IXDAMenuView.h"
 
-#import "IDXAWhatElseIsOnViewController.h"
+#import "IXDAWhatElseIsOnViewController.h"
+#import "IXDAMapViewController.h"
 
-#import "UIColor+IDXA.h"
+#import "UIColor+IXDA.h"
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@implementation IDXAMenuViewController
+@implementation IXDAMenuViewController
 
 #pragma mark - Life Cycle
 
@@ -24,10 +25,10 @@
     self = [super init];
     if (!self) return nil;
     
-    self.view.backgroundColor = [UIColor idxa_statusBarBackgroundColorA];;
+    self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorA];;
     
     UIView *logoView = [[UIView alloc] init];
-    logoView.backgroundColor = [UIColor idxa_baseBackgroundColorA];
+    logoView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
     [self.view addSubview:logoView];
     [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
@@ -45,7 +46,7 @@
     
     
     UIView *sponsoringView = [[UIView alloc] init];
-    sponsoringView.backgroundColor = [UIColor idxa_baseBackgroundColorA];
+    sponsoringView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
     [self.view addSubview:sponsoringView];
     [sponsoringView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.view);
@@ -71,7 +72,7 @@
         make.left.right.equalTo(self.view);
     }];
     
-    IDXAMenuView *menuView = [[IDXAMenuView alloc] init];
+    IXDAMenuView *menuView = [[IXDAMenuView alloc] init];
     [backgroundImageView addSubview:menuView];
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(backgroundImageView);
@@ -80,16 +81,16 @@
     @weakify(self)
     [menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
         @strongify(self)
-
+        IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }];
     
     [menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
         @strongify(self)
-        IDXAWhatElseIsOnViewController *vc = [[IDXAWhatElseIsOnViewController alloc] init];
+        IXDAWhatElseIsOnViewController *vc = [[IXDAWhatElseIsOnViewController alloc] init];
         [self presentViewController:vc animated:YES completion:nil];
     }];
-    
-
     
     return self;
 }

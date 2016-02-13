@@ -1,5 +1,5 @@
 //
-//  UIButton+IDXA.h
+//  UIColor+IXDA.h
 //  interaction16
 //
 //  Created by Evangelos Sismanidis on 13/02/16.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton (IDXA)
+@interface UIColor (IXDA)
 
-+ (UIButton *)idxa_menuButtonWithTitle:(NSString *)title;
++ (UIColor *)ixda_baseBackgroundColorA;
+
++ (UIColor *)ixda_statusBarBackgroundColorA;
 
 @end
