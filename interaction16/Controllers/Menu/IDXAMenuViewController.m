@@ -12,6 +12,7 @@
 #import "UIColor+IDXA.h"
 
 #import <Masonry/Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation IDXAMenuViewController
 
@@ -72,7 +73,7 @@
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(backgroundImageView);
     }];
-
+    
 
     return self;
 }
