@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F5019311C6FA05F00CB7937 /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F5019301C6FA05F00CB7937 /* sessions.json */; };
+		6F5019351C6FA1F100CB7937 /* IXDAProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019341C6FA1F100CB7937 /* IXDAProgramViewController.m */; };
+		6F50193A1C6FA7C000CB7937 /* IXDAProgramTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019391C6FA7C000CB7937 /* IXDAProgramTableViewCell.m */; };
 		6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */; };
 		6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */; };
 		6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */; };
@@ -29,6 +32,11 @@
 
 /* Begin PBXFileReference section */
 		0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.release.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.release.xcconfig"; sourceTree = "<group>"; };
+		6F5019301C6FA05F00CB7937 /* sessions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sessions.json; sourceTree = "<group>"; };
+		6F5019331C6FA1F100CB7937 /* IXDAProgramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAProgramViewController.h; path = Controllers/Program/IXDAProgramViewController.h; sourceTree = "<group>"; };
+		6F5019341C6FA1F100CB7937 /* IXDAProgramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAProgramViewController.m; path = Controllers/Program/IXDAProgramViewController.m; sourceTree = "<group>"; };
+		6F5019381C6FA7C000CB7937 /* IXDAProgramTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAProgramTableViewCell.h; path = Controllers/Program/IXDAProgramTableViewCell.h; sourceTree = "<group>"; };
+		6F5019391C6FA7C000CB7937 /* IXDAProgramTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAProgramTableViewCell.m; path = Controllers/Program/IXDAProgramTableViewCell.m; sourceTree = "<group>"; };
 		6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IXDA.h"; path = "Helpers/UIColor+IXDA.h"; sourceTree = "<group>"; };
 		6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IXDA.m"; path = "Helpers/UIColor+IXDA.m"; sourceTree = "<group>"; };
 		6F668DA61C6F3E5100475BCA /* IXDAMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMenuView.h; path = Controllers/Menu/IXDAMenuView.h; sourceTree = "<group>"; };
@@ -81,6 +89,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6F50192F1C6FA02800CB7937 /* JSONs */ = {
+			isa = PBXGroup;
+			children = (
+				6F5019301C6FA05F00CB7937 /* sessions.json */,
+			);
+			name = JSONs;
+			sourceTree = "<group>";
+		};
+		6F5019321C6FA1CF00CB7937 /* Program */ = {
+			isa = PBXGroup;
+			children = (
+				6F5019331C6FA1F100CB7937 /* IXDAProgramViewController.h */,
+				6F5019341C6FA1F100CB7937 /* IXDAProgramViewController.m */,
+				6F5019381C6FA7C000CB7937 /* IXDAProgramTableViewCell.h */,
+				6F5019391C6FA7C000CB7937 /* IXDAProgramTableViewCell.m */,
+			);
+			name = Program;
+			sourceTree = "<group>";
+		};
 		6F668D9F1C6F339F00475BCA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +124,7 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6F5019321C6FA1CF00CB7937 /* Program */,
 				6F668DCD1C6F632C00475BCA /* MapAndVenue */,
 				6F668DC61C6F518800475BCA /* WhatElse */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
@@ -180,6 +208,7 @@
 		6F87D41A1C6F25430039A29B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6F50192F1C6FA02800CB7937 /* JSONs */,
 				6F668DAF1C6F417500475BCA /* Fonts */,
 				6F87D4281C6F25430039A29B /* LaunchScreen.storyboard */,
 				6F87D4261C6F25430039A29B /* Assets.xcassets */,
@@ -232,6 +261,7 @@
 				TargetAttributes = {
 					6F87D4161C6F25430039A29B = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = WM3L2RVJ7C;
 					};
 				};
 			};
@@ -262,6 +292,7 @@
 				6F668DBF1C6F423E00475BCA /* CircularStd-Black.otf in Resources */,
 				6F668DC01C6F423E00475BCA /* CircularStd-Bold.otf in Resources */,
 				6F87D42A1C6F25430039A29B /* LaunchScreen.storyboard in Resources */,
+				6F5019311C6FA05F00CB7937 /* sessions.json in Resources */,
 				6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */,
 				6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */,
 				6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */,
@@ -325,12 +356,14 @@
 			files = (
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
+				6F50193A1C6FA7C000CB7937 /* IXDAProgramTableViewCell.m in Sources */,
 				6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */,
 				6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */,
 				6F668DC91C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
 				6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */,
 				6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */,
+				6F5019351C6FA1F100CB7937 /* IXDAProgramViewController.m in Sources */,
 				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
 				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
 			);
@@ -435,9 +468,10 @@
 			baseConfigurationReference = 707C2CE9765B9BBCA6D3866C /* Pods-interaction16.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = interaction16/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.futurice.interaction16;
+				PRODUCT_BUNDLE_IDENTIFIER = com.futurice.ixda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -447,9 +481,10 @@
 			baseConfigurationReference = 0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = interaction16/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.futurice.interaction16;
+				PRODUCT_BUNDLE_IDENTIFIER = com.futurice.ixda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

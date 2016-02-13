@@ -14,6 +14,10 @@
     return [UIColor colorWithRed:0 green:0.424 blue:0.925 alpha:1];
 }
 
++ (UIColor *)ixda_baseBackgroundColorB {
+    return [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1];
+}
+
 + (UIColor *)ixda_statusBarBackgroundColorA {
     return [UIColor colorWithRed:0 green:0.3 blue:0.7 alpha:1];
 }

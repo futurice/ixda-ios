@@ -31,7 +31,7 @@
     [backToMenuButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(50);
         make.left.equalTo(self).offset(leftPadding);
-        make.size.equalTo(@55);
+        make.size.equalTo(@50);
     }];
     self.backToMenuButtonSignal = [backToMenuButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
@@ -50,7 +50,7 @@
     educationImageView.userInteractionEnabled = YES;
     [self addSubview:educationImageView];
     [educationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backToMenuButton.mas_bottom).offset(100);
+        make.top.equalTo(backToMenuButton.mas_bottom).offset(50);
         make.left.equalTo(backToMenuButton);
     }];
     UITapGestureRecognizer *eduTap = [[UITapGestureRecognizer alloc] init];
@@ -86,7 +86,7 @@
     [self addSubview:sponsoringImageView];
     [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(62);
-        make.bottom.equalTo(self).offset(-35);
+        make.bottom.equalTo(self).offset(-15);
     }];
     
     return self;

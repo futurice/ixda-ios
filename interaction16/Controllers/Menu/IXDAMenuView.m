@@ -20,8 +20,8 @@
     self = [super init];
     if (!self) return nil;
     
-    CGFloat topPadding = 21;
-    CGFloat buttonSpace = 15;
+    CGFloat topPadding = 10;
+    CGFloat buttonSpace = 5;
     CGFloat leftPadding = 42;
   
     
@@ -81,7 +81,7 @@
     [whatElseIsOnButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self).offset(-20);
         make.left.equalTo(venueAndMapButton);
-        make.size.equalTo(@55);
+        make.size.equalTo(@50);
     }];
     self.whatElseIsOnButtonSignal = [whatElseIsOnButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     

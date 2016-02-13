@@ -11,6 +11,7 @@
 @interface UIColor (IXDA)
 
 + (UIColor *)ixda_baseBackgroundColorA;
++ (UIColor *)ixda_baseBackgroundColorB;
 
 + (UIColor *)ixda_statusBarBackgroundColorA;
 

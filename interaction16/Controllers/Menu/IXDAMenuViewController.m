@@ -9,8 +9,9 @@
 #import "IXDAMenuViewController.h"
 #import "IXDAMenuView.h"
 
-#import "IXDAWhatElseIsOnViewController.h"
+#import "IXDAProgramViewController.h"
 #import "IXDAMapViewController.h"
+#import "IXDAWhatElseIsOnViewController.h"
 
 #import "UIColor+IXDA.h"
 
@@ -33,7 +34,7 @@
     [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
         make.left.right.equalTo(self.view);
-        make.height.equalTo(@145);
+        make.height.equalTo(@140);
     }];
     
     UIImage *logoImage = [UIImage imageNamed:@"logo"];
@@ -43,14 +44,13 @@
         make.top.left.equalTo(logoView).offset(42);
     }];
     
-    
-    
+
     UIView *sponsoringView = [[UIView alloc] init];
     sponsoringView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
     [self.view addSubview:sponsoringView];
     [sponsoringView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.view);
-        make.height.equalTo(@75);
+        make.height.equalTo(@50);
     }];
     
     UIImage *sponsoringImage = [UIImage imageNamed:@"sponsoring"];
@@ -58,7 +58,7 @@
     [sponsoringView addSubview:sponsoringImageView];
     [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(sponsoringView).offset(62);
-        make.bottom.equalTo(sponsoringView).offset(-35);
+        make.bottom.equalTo(sponsoringView).offset(-15);
     }];
     
     
@@ -79,11 +79,16 @@
     }];
     
     @weakify(self)
+    [menuView.programButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
     [menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-        
+        [self.navigationController pushViewController:vc animated:YES];        
     }];
     
     [menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
