@@ -27,56 +27,10 @@
     self = [super init];
     if (!self) return nil;
     
-    self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorA];;
-    
-    UIView *logoView = [[UIView alloc] init];
-    logoView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
-    [self.view addSubview:logoView];
-    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(20);
-        make.left.right.equalTo(self.view);
-        make.height.equalTo(@140);
-    }];
-    
-    UIImage *logoImage = [UIImage imageNamed:@"logo"];
-    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logoImage];
-    [logoView addSubview:logoImageView];
-    [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(logoView).offset(42);
-    }];
-    
-
-    UIView *sponsoringView = [[UIView alloc] init];
-    sponsoringView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
-    [self.view addSubview:sponsoringView];
-    [sponsoringView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
-        make.height.equalTo(@50);
-    }];
-    
-    UIImage *sponsoringImage = [UIImage imageNamed:@"sponsoring"];
-    UIImageView *sponsoringImageView = [[UIImageView alloc] initWithImage:sponsoringImage];
-    [sponsoringView addSubview:sponsoringImageView];
-    [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(sponsoringView).offset(62);
-        make.bottom.equalTo(sponsoringView).offset(-15);
-    }];
-    
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundSlice"];
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
-    backgroundImageView.userInteractionEnabled = YES;
-    [self.view addSubview:backgroundImageView];
-    [backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(logoView.mas_bottom);
-        make.bottom.equalTo(sponsoringView.mas_top);
-        make.left.right.equalTo(self.view);
-    }];
-    
     IXDAMenuView *menuView = [[IXDAMenuView alloc] init];
-    [backgroundImageView addSubview:menuView];
+    [self.view addSubview:menuView];
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(backgroundImageView);
+        make.edges.equalTo(self.view);
     }];
     
     @weakify(self)
