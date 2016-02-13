@@ -7,6 +7,7 @@
 //
 
 #import "IDXAMenuViewController.h"
+#import "IDXAMenuView.h"
 
 #import "UIColor+IDXA.h"
 
@@ -28,7 +29,7 @@
     [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
         make.left.right.equalTo(self.view);
-        make.height.equalTo(@160);
+        make.height.equalTo(@145);
     }];
     
     UIImage *logoImage = [UIImage imageNamed:@"logo"];
@@ -45,15 +46,15 @@
     [self.view addSubview:sponsoringView];
     [sponsoringView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.view);
-        make.height.equalTo(@80);
+        make.height.equalTo(@75);
     }];
     
     UIImage *sponsoringImage = [UIImage imageNamed:@"sponsoring"];
     UIImageView *sponsoringImageView = [[UIImageView alloc] initWithImage:sponsoringImage];
     [sponsoringView addSubview:sponsoringImageView];
     [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(sponsoringView).offset(42);
-        make.centerY.equalTo(sponsoringView);
+        make.left.equalTo(sponsoringView).offset(62);
+        make.centerY.equalTo(sponsoringView).offset(-5);
     }];
     
     
@@ -66,7 +67,11 @@
         make.left.right.equalTo(self.view);
     }];
     
-    
+    IDXAMenuView *menuView = [[IDXAMenuView alloc] init];
+    [backgroundImageView addSubview:menuView];
+    [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(backgroundImageView);
+    }];
 
 
     return self;
@@ -82,6 +87,10 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillDisappear:animated];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end
