@@ -69,7 +69,7 @@
     [awardsImageView addGestureRecognizer:awardsTap];
     self.awardsButtonSignal = [awardsTap rac_gestureSignal];
     
-    UIImage *challengeImage = [UIImage imageNamed:@"education"];
+    UIImage *challengeImage = [UIImage imageNamed:@"challenge"];
     UIImageView *challengeImageView = [[UIImageView alloc] initWithImage:challengeImage];
     challengeImageView.userInteractionEnabled = YES;
     [self addSubview:challengeImageView];
@@ -78,7 +78,7 @@
         make.left.equalTo(backToMenuButton);
     }];
     UITapGestureRecognizer *challengeTap = [[UITapGestureRecognizer alloc] init];
-    [awardsImageView addGestureRecognizer:challengeTap];
+    [challengeImageView addGestureRecognizer:challengeTap];
     self.challengeButtonSignal = [challengeTap rac_gestureSignal];
     
     UIImage *sponsoringImage = [UIImage imageNamed:@"sponsoring"];

@@ -37,6 +37,18 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
+    [whatElseIsOnView.educationButtonSignal subscribeNext:^(id x) {
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://edusummit.ixda.org"]];
+    }];
+    
+    [whatElseIsOnView.awardsButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
+    [whatElseIsOnView.challengeButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
     return self;
 }
 
