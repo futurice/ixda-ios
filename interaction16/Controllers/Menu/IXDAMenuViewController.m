@@ -78,6 +78,9 @@
         [self.scrollView setContentOffset:CGPointMake(0.0f, self.scrollView.frame.size.height) animated:YES];
     }];
     
+    [menuView.sponsoringImageViewSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
+    }];
     
     
     IXDAWhatElseIsOnView  *whatElseIsOnView = [[IXDAWhatElseIsOnView alloc] init];
@@ -103,6 +106,10 @@
     
     [whatElseIsOnView.challengeButtonSignal subscribeNext:^(id x) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
+    [whatElseIsOnView.sponsoringImageViewSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
     }];
     
     return self;
