@@ -10,9 +10,10 @@
 
 @class RACSignal;
 
-@interface SessionsStore : NSObject
+@interface IXDASessionStore : NSObject
 
 + (instancetype)sharedStore;
 - (RACSignal *)sessions;
+- (RACSignal *)sessionsFromFile;
 
 @end

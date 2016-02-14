@@ -9,8 +9,9 @@
 #import "IXDAProgramViewController.h"
 #import "IXDAProgramTableViewCell.h"
 
-#import "SessionsStore.h"
-
+#import "IXDASessionsViewModel.h"
+#import "IXDASessionStore.h"
+#import "Session.h"
 #import "UIColor+IXDA.h"
 
 #import <Masonry/Masonry.h>
@@ -20,6 +21,7 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
 
 @interface IXDAProgramViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) IXDASessionsViewModel *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
@@ -41,8 +43,10 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
         make.edges.equalTo(self.view);
     }];
     
-    [[[SessionsStore sharedStore] sessions] subscribeNext:^(id x) {
-        NSLog(@"%@", x);
+    self.viewModel = [[IXDASessionsViewModel alloc] init];
+    
+    [RACObserve(self.viewModel, keynotesArray) subscribeNext:^(id x) {
+        [self.tableView reloadData];
     }];
     
     return self;
@@ -55,13 +59,15 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [self.viewModel.keynotesArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IXDAProgramTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_PROGRAMTABLEVIEWCELL];
     
+    Session *session = [self keyNoteAtIndexPath:indexPath];
+    cell.textLabel.text = session.name;
     cell.backgroundColor = ((BOOL)indexPath.row % 2
                             ? [UIColor ixda_baseBackgroundColorA]
                             : [UIColor ixda_baseBackgroundColorB]);
@@ -73,6 +79,12 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  100;
+}
+
+#pragma mark - Helpers
+
+- (Session *)keyNoteAtIndexPath:(NSIndexPath *)indexPath {
+    return self.viewModel.keynotesArray[indexPath.row];
 }
 
 
