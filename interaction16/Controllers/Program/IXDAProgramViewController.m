@@ -45,7 +45,7 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
     
     self.viewModel = [[IXDASessionsViewModel alloc] init];
     
-    [RACObserve(self.viewModel, keynotesArray) subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, workshopsArray) subscribeNext:^(id x) {
         [self.tableView reloadData];
     }];
     
@@ -67,8 +67,9 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
     IXDAProgramTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_PROGRAMTABLEVIEWCELL];
     
     Session *session = [self keyNoteAtIndexPath:indexPath];
-    cell.textLabel.text = session.name;
-    cell.backgroundColor = ((BOOL)indexPath.row % 2
+    [cell setTitle:session.name];
+    [cell setSpeaker:session.speakers];
+    cell.backgroundColor = ((indexPath.row % 2 == 0)
                             ? [UIColor ixda_baseBackgroundColorA]
                             : [UIColor ixda_baseBackgroundColorB]);
     
@@ -78,13 +79,13 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  100;
+    return  150;
 }
 
 #pragma mark - Helpers
 
 - (Session *)keyNoteAtIndexPath:(NSIndexPath *)indexPath {
-    return self.viewModel.keynotesArray[indexPath.row];
+    return self.viewModel.workshopsArray[indexPath.row];
 }
 
 

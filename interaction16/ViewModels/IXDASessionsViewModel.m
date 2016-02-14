@@ -8,6 +8,7 @@
 
 #import "IXDASessionsViewModel.h"
 
+#import "Session.h"
 #import "IXDASessionStore.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -25,8 +26,30 @@
 }
 
 - (void)loadSessions {
-    [[[IXDASessionStore sharedStore] sessions] subscribeNext:^(NSArray *array) {
-        self.keynotesArray = array;
+    [[[IXDASessionStore sharedStore] sessions] subscribeNext:^(NSArray *sessions) {
+        NSMutableArray *keynotesMutableArray = [NSMutableArray new];
+        NSMutableArray *longTalksMutableArray = [NSMutableArray new];
+        NSMutableArray *mediumTalksMutableArray = [NSMutableArray new];
+        NSMutableArray *lightningTalksMutableArray = [NSMutableArray new];
+        NSMutableArray *workshopsMutableArray = [NSMutableArray new];
+        for (Session *session in sessions) {
+            if ([session.event_type isEqualToString:@"Keynote"]) {
+                [keynotesMutableArray addObject:session];
+            } else if ([session.event_type isEqualToString:@"Long Talk"]){
+                [longTalksMutableArray addObject:session];
+            } else if ([session.event_type isEqualToString:@"Medium Talk"]) {
+                [mediumTalksMutableArray addObject:session];
+            } else if ([session.event_type isEqualToString:@"Lightning Talk"]) {
+                [lightningTalksMutableArray addObject:session];
+            } else if ([session.event_type isEqualToString:@"Workshop"]) {
+                [workshopsMutableArray addObject:session];
+            }
+        }
+        self.keynotesArray = [keynotesMutableArray copy];
+        self.longTalksArray = [longTalksMutableArray copy];
+        self.mediumTalksArray = [mediumTalksMutableArray copy];
+        self.lightningTalksArray = [lightningTalksMutableArray copy];
+        self.workshopsArray = [workshopsMutableArray copy];
     }];
 }
 

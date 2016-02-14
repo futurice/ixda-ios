@@ -10,4 +10,7 @@
 
 @interface IXDAProgramTableViewCell : UITableViewCell
 
+- (void)setTitle:(NSString *)title;
+- (void)setSpeaker:(NSString *)speaker;
+
 @end
