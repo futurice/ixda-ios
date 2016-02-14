@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSArray *keynotesArray;
 @property (nonatomic, strong) NSArray *longTalksArray;
 @property (nonatomic, strong) NSArray *mediumTalksArray;
+@property (nonatomic, strong) NSArray *lightningTalksArray;
 @property (nonatomic, strong) NSArray *workshopsArray;
 
 @end

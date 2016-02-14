@@ -18,4 +18,12 @@
     return [UIFont fontWithName:@"CircularStd-Bold" size:16.0];
 }
 
++ (UIFont *)ixda_programCellTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:25.0];
+}
+
++ (UIFont *)ixda_programCellSubTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:20.0];
+}
+
 @end

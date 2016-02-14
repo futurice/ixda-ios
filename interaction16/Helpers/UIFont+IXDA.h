@@ -13,4 +13,7 @@
 + (UIFont *)ixda_menuItemFontStandard;
 + (UIFont *)ixda_menuItemFontSmall;
 
++ (UIFont *)ixda_programCellTitle;
++ (UIFont *)ixda_programCellSubTitle;
+
 @end
