@@ -50,11 +50,15 @@
     
     UIImage *sponsoringImage = [UIImage imageNamed:@"sponsoring"];
     UIImageView *sponsoringImageView = [[UIImageView alloc] initWithImage:sponsoringImage];
+    sponsoringImageView.userInteractionEnabled = YES;
     [sponsoringView addSubview:sponsoringImageView];
     [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(sponsoringView).offset(62);
         make.bottom.equalTo(sponsoringView).offset(-15);
     }];
+    UITapGestureRecognizer *sponsoringTap = [[UITapGestureRecognizer alloc] init];
+    [sponsoringImageView addGestureRecognizer:sponsoringTap];
+    self.sponsoringImageViewSignal = [sponsoringTap rac_gestureSignal];
     
     
     CGFloat topPadding = 10;

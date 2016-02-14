@@ -19,5 +19,6 @@
 @property (nonatomic, strong) RACSignal *venueAndMapButtonSignal;
 @property (nonatomic, strong) RACSignal *infoButtonSignal;
 @property (nonatomic, strong) RACSignal *whatElseIsOnButtonSignal;
+@property (nonatomic, strong) RACSignal *sponsoringImageViewSignal;
 
 @end
