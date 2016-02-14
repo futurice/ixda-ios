@@ -21,7 +21,6 @@
 		6F668DC01C6F423E00475BCA /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBC1C6F423E00475BCA /* CircularStd-Bold.otf */; };
 		6F668DC11C6F423E00475BCA /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBD1C6F423E00475BCA /* CircularStd-Book.otf */; };
 		6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */; };
-		6F668DC91C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DC81C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m */; };
 		6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */; };
 		6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */; };
 		6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */; };
@@ -57,8 +56,6 @@
 		6F668DBC1C6F423E00475BCA /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Bold.otf"; path = "Fonts/CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		6F668DBD1C6F423E00475BCA /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Book.otf"; path = "Fonts/CircularStd-Book.otf"; sourceTree = "<group>"; };
 		6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "CircularStd-Medium.otf"; path = "Fonts/CircularStd-Medium.otf"; sourceTree = "<group>"; };
-		6F668DC71C6F51A800475BCA /* IXDAWhatElseIsOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWhatElseIsOnViewController.h; path = Controllers/WhatElse/IXDAWhatElseIsOnViewController.h; sourceTree = "<group>"; };
-		6F668DC81C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWhatElseIsOnViewController.m; path = Controllers/WhatElse/IXDAWhatElseIsOnViewController.m; sourceTree = "<group>"; };
 		6F668DCA1C6F556900475BCA /* IXDAWhatElseIsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWhatElseIsOnView.h; path = Controllers/WhatElse/IXDAWhatElseIsOnView.h; sourceTree = "<group>"; };
 		6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWhatElseIsOnView.m; path = Controllers/WhatElse/IXDAWhatElseIsOnView.m; sourceTree = "<group>"; };
 		6F668DD31C6F638B00475BCA /* IXDAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMapViewController.h; path = Controllers/MapAndVenue/IXDAMapViewController.h; sourceTree = "<group>"; };
@@ -157,6 +154,8 @@
 				6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */,
 				6F668DA91C6F3E7400475BCA /* IXDAMenuViewController.h */,
 				6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */,
+				6F668DCA1C6F556900475BCA /* IXDAWhatElseIsOnView.h */,
+				6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -175,10 +174,6 @@
 		6F668DC61C6F518800475BCA /* WhatElse */ = {
 			isa = PBXGroup;
 			children = (
-				6F668DC71C6F51A800475BCA /* IXDAWhatElseIsOnViewController.h */,
-				6F668DC81C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m */,
-				6F668DCA1C6F556900475BCA /* IXDAWhatElseIsOnView.h */,
-				6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */,
 			);
 			name = WhatElse;
 			sourceTree = "<group>";
@@ -378,7 +373,6 @@
 				6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */,
 				6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */,
 				6F50193E1C6FAB4E00CB7937 /* IXDASpeakersViewController.m in Sources */,
-				6F668DC91C6F51A800475BCA /* IXDAWhatElseIsOnViewController.m in Sources */,
 				6F5019411C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
 				6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */,
