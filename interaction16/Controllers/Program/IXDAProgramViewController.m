@@ -9,9 +9,12 @@
 #import "IXDAProgramViewController.h"
 #import "IXDAProgramTableViewCell.h"
 
+#import "SessionsStore.h"
+
 #import "UIColor+IXDA.h"
 
 #import <Masonry/Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
 
@@ -36,6 +39,10 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
+    }];
+    
+    [[[SessionsStore sharedStore] sessions] subscribeNext:^(id x) {
+        NSLog(@"%@", x);
     }];
     
     return self;
