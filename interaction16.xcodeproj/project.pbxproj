@@ -19,6 +19,7 @@
 		6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019531C70C41C00CB7937 /* IXDASpeakerStore.m */; };
 		6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019561C70C4EC00CB7937 /* Speaker.m */; };
 		6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019591C70C6A800CB7937 /* IXDASpeakerViewModel.m */; };
+		6F6308F41C724DBD00558AA8 /* speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F6308F31C724DBD00558AA8 /* speakers.json */; };
 		6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */; };
 		6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */; };
 		6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */; };
@@ -63,6 +64,7 @@
 		6F5019561C70C4EC00CB7937 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Speaker.m; path = Models/Speaker.m; sourceTree = "<group>"; };
 		6F5019581C70C6A800CB7937 /* IXDASpeakerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakerViewModel.h; path = ViewModels/IXDASpeakerViewModel.h; sourceTree = "<group>"; };
 		6F5019591C70C6A800CB7937 /* IXDASpeakerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerViewModel.m; path = ViewModels/IXDASpeakerViewModel.m; sourceTree = "<group>"; };
+		6F6308F31C724DBD00558AA8 /* speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speakers.json; sourceTree = "<group>"; };
 		6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IXDA.h"; path = "Helpers/UIColor+IXDA.h"; sourceTree = "<group>"; };
 		6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IXDA.m"; path = "Helpers/UIColor+IXDA.m"; sourceTree = "<group>"; };
 		6F668DA61C6F3E5100475BCA /* IXDAMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMenuView.h; path = Controllers/Menu/IXDAMenuView.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				6F5019301C6FA05F00CB7937 /* sessions.json */,
+				6F6308F31C724DBD00558AA8 /* speakers.json */,
 			);
 			name = JSONs;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				6F5019311C6FA05F00CB7937 /* sessions.json in Resources */,
 				6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */,
 				6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */,
+				6F6308F41C724DBD00558AA8 /* speakers.json in Resources */,
 				6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

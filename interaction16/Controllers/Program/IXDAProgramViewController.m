@@ -28,9 +28,11 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
 
 @implementation IXDAProgramViewController
 
-- (instancetype)init {
+- (instancetype)initWithSessionsViewModel:(IXDASessionsViewModel *)viewModel {
     self = [super init];
     if (!self) return nil;
+    
+    self.viewModel = viewModel;
     
     self.tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
@@ -42,10 +44,9 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_PROGRAMTABLEVIEWCELL";
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
-    self.viewModel = [[IXDASessionsViewModel alloc] init];
-    
-    [RACObserve(self.viewModel, workshopsArray) subscribeNext:^(id x) {
+
+    [[RACObserve(self.viewModel, workshopsArray) deliverOnMainThread] subscribeNext:^(id x) {
+        NSLog(@"Array changed");
         [self.tableView reloadData];
     }];
     

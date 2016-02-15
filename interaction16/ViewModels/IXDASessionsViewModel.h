@@ -16,4 +16,6 @@
 @property (nonatomic, strong) NSArray *lightningTalksArray;
 @property (nonatomic, strong) NSArray *workshopsArray;
 
+- (void)loadSessionsFromBackend;
+
 @end

@@ -33,15 +33,43 @@
 
 #pragma mark - Public Methods
 
-- (RACSignal *)speaker {
+- (RACSignal *)speakers {
     return [[[IXDASessionManager sharedManager] GET:@"user/list?fields=name,role,avatar,about,company,position,location&" parameters:nil] map:^NSArray *(NSArray *array) {
-        return [[[[array rac_sequence] map:^NSArray *(NSDictionary *dict) {
+        return [[[[array rac_sequence] filter:^BOOL(NSDictionary *dict) {
+            return [dict[@"role"] isEqualToString:@"speaker"];
+        }] map:^NSArray *(NSDictionary *dict) {
             NSError *error = nil;
             return [MTLJSONAdapter modelOfClass:Speaker.class fromJSONDictionary:dict error:&error];
-        }] filter:^BOOL(Speaker *speaker) {
-            return [speaker.role isEqualToString:@"speaker"];
         }] array];
     }];
+}
+
+
+- (RACSignal *)speakersFromFile {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"speakers" ofType:@"json"];
+        NSData* data = [NSData dataWithContentsOfFile:filePath];
+        __autoreleasing NSError* error = nil;
+        id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if (!error) {
+            NSArray *array = [self speakersArrayFromJSONArray:result];
+            [subscriber sendNext:array];
+            [subscriber sendCompleted];
+        } else {
+            [subscriber sendError:error];
+        }
+        
+        return nil;
+    }];
+}
+
+#pragma mark - Private Helpers
+
+- (NSArray *)speakersArrayFromJSONArray:(NSArray *)JSONArray {
+    return [[[JSONArray rac_sequence] map:^NSArray *(NSDictionary *dict) {
+        NSError *error = nil;
+        return [MTLJSONAdapter modelOfClass:Speaker.class fromJSONDictionary:dict error:&error];
+    }] array];
 }
 
 @end

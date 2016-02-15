@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class IXDASpeakerViewModel;
+
 @interface IXDASpeakersViewController : UIViewController
+
+- (instancetype)initWithSpeakersViewModel:(IXDASpeakerViewModel *)viewModel;
 
 @end

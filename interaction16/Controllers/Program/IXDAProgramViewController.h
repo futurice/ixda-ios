@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class IXDASessionsViewModel;
+
 @interface IXDAProgramViewController : UIViewController
+
+- (instancetype)initWithSessionsViewModel:(IXDASessionsViewModel *)sessionsViewModel;
 
 @end

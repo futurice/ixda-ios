@@ -9,6 +9,9 @@
 #import "IXDAMenuViewController.h"
 #import "IXDAMenuView.h"
 
+#import "IXDASessionsViewModel.h"
+#import "IXDASpeakerViewModel.h"
+
 #import "IXDAProgramViewController.h"
 #import "IXDASpeakersViewController.h"
 #import "IXDAMapViewController.h"
@@ -24,6 +27,9 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) IXDAMenuView *menuView;
 @property (nonatomic, strong) IXDAWhatElseIsOnView *whatElseIsOnView;
+
+@property (nonatomic, strong) IXDASessionsViewModel *sessionsViewModel;
+@property (nonatomic, strong) IXDASpeakerViewModel *speakersViewModel;
 
 @end
 
@@ -48,6 +54,9 @@
         make.edges.equalTo(self.view);
     }];
 
+    self.sessionsViewModel = [[IXDASessionsViewModel alloc] init];
+    self.speakersViewModel = [[IXDASpeakerViewModel alloc] init];
+    
     [self setupMenuView];
     [self setupWhatElseIsOnView];
 
@@ -86,13 +95,13 @@
     @weakify(self)
     [self.menuView.programButtonSignal subscribeNext:^(id x) {
         @strongify(self)
-        IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] init];
+        IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.menuView.speakersButtonSignal subscribeNext:^(id x) {
         @strongify(self)
-        IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] init];
+        IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] initWithSpeakersViewModel:self.speakersViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     

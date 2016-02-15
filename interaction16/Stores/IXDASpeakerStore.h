@@ -14,6 +14,7 @@
 
 + (instancetype)sharedStore;
 
-- (RACSignal *)speaker;
+- (RACSignal *)speakers;
+- (RACSignal *)speakersFromFile;
 
 @end
