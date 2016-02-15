@@ -14,5 +14,6 @@
 + (UIColor *)ixda_baseBackgroundColorB;
 
 + (UIColor *)ixda_statusBarBackgroundColorA;
++ (UIColor *)ixda_statusBarBackgroundColorB;
 
 @end

@@ -6,13 +6,13 @@
 //  Copyright © 2016 Futurice. All rights reserved.
 //
 
-#import "IXDAProgramTableViewCell.h"
+#import "IXDATalksTableViewCell.h"
 
 #import "UIFont+IXDA.h"
 
 #import <Masonry/Masonry.h>
 
-@interface IXDAProgramTableViewCell ()
+@interface IXDATalksTableViewCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *speakerLabel;
@@ -20,7 +20,7 @@
 @end
 
 
-@implementation IXDAProgramTableViewCell
+@implementation IXDATalksTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

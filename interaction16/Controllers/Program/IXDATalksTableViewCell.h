@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IXDAProgramTableViewCell : UITableViewCell
+@interface IXDATalksTableViewCell : UITableViewCell
 
 - (void)setTitle:(NSString *)title;
 - (void)setSpeaker:(NSString *)speaker;
