@@ -15,8 +15,11 @@ typedef NS_ENUM(NSUInteger, TalkType) {
     TalkTypeLightningTalk
 };
 
+@class RACSignal;
+
 @interface IXDATalksNavigationView : UIView
 
+@property (nonatomic, strong) RACSignal *backButtonSignal;
 @property (nonatomic, strong) NSNumber *talkType;
 
 @end
