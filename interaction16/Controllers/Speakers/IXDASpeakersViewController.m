@@ -67,11 +67,13 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
     IXDASpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_SPEAKERSTABLEVIEWCELL];
 
     Speaker *speaker = [self speakerAtIndexPath:indexPath];
-    cell.textLabel.text = speaker.name;
+    [cell setName:speaker.name];
+    [cell setJob:speaker.position];
+    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder"];
     if  (speaker.avatarURL && speaker.avatarURL.length > 10) {
-        [cell.imageView setImageWithURL:[NSURL URLWithString:speaker.avatarURL]];
+        [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:speaker.avatarURL] placeholderImage:placeholderImage];
     } else {
-        cell.imageView.image = [UIImage imageNamed:@"swipeUp"];
+        cell.backgroundImageView.image = placeholderImage;
     }
     
     return cell;
@@ -80,7 +82,7 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  200;
+    return  240;
 }
 
 #pragma mark - Helpers
