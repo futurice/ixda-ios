@@ -46,7 +46,13 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_TALKSTABLEVIEWCELL";
     [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
         make.left.right.equalTo(self.view);
-        make.height.equalTo(@140);
+        make.height.equalTo(@130);
+    }];
+    
+    @weakify(self)
+    [navigationView.backButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
     [RACObserve(navigationView, talkType) subscribeNext:^(NSNumber *talkType) {
@@ -64,6 +70,7 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_TALKSTABLEVIEWCELL";
                 self.talksArray = self.viewModel.lightningTalksArray;
                 break;
             default:
+                self.talksArray = self.viewModel.keynotesArray;
                 break;
         }
     }];
@@ -85,6 +92,12 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_TALKSTABLEVIEWCELL";
     }];
     
     return self;
+}
+
+#pragma mark - Appearance
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - View Life Cycle
