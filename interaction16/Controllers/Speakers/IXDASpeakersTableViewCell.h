@@ -10,4 +10,9 @@
 
 @interface IXDASpeakersTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+
+- (void)setName:(NSString *)name;
+- (void)setJob:(NSString *)job;
+
 @end

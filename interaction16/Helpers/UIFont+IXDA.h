@@ -16,4 +16,7 @@
 + (UIFont *)ixda_programCellTitle;
 + (UIFont *)ixda_programCellSubTitle;
 
++ (UIFont *)ixda_speakersCellTitle;
++ (UIFont *)ixda_speakersCellSubTitle;
+
 @end

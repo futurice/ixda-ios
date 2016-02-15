@@ -22,6 +22,8 @@
 @interface IXDAMenuViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) IXDAMenuView *menuView;
+@property (nonatomic, strong) IXDAWhatElseIsOnView *whatElseIsOnView;
 
 @end
 
@@ -46,72 +48,9 @@
         make.edges.equalTo(self.view);
     }];
 
-    
-    IXDAMenuView *menuView = [[IXDAMenuView alloc] init];
-    [self.scrollView addSubview:menuView];
-    [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.height.equalTo(self.view);
-        make.top.equalTo(self.scrollView.mas_top);
-    }];
+    [self setupMenuView];
+    [self setupWhatElseIsOnView];
 
-    @weakify(self)
-    [menuView.programButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
-    
-    [menuView.speakersButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
-    
-    [menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];        
-    }];
-    
-    [menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
-        @strongify(self);
-        [self.scrollView setContentOffset:CGPointMake(0.0f, self.scrollView.frame.size.height) animated:YES];
-    }];
-    
-    [menuView.sponsoringImageViewSignal subscribeNext:^(id x) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
-    }];
-    
-    
-    IXDAWhatElseIsOnView  *whatElseIsOnView = [[IXDAWhatElseIsOnView alloc] init];
-    [self.scrollView addSubview:whatElseIsOnView];
-    [whatElseIsOnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(menuView.mas_bottom);
-        make.left.right.height.equalTo(menuView);
-        make.bottom.equalTo(self.scrollView.mas_bottom);
-    }];
-    
-    [whatElseIsOnView.backToMenuButtonSignal subscribeNext:^(id x) {
-        @strongify(self);
-        [self.scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-    }];
-    
-    [whatElseIsOnView.educationButtonSignal subscribeNext:^(id x) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://edusummit.ixda.org"]];
-    }];
-    
-    [whatElseIsOnView.awardsButtonSignal subscribeNext:^(id x) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
-    }];
-    
-    [whatElseIsOnView.challengeButtonSignal subscribeNext:^(id x) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
-    }];
-    
-    [whatElseIsOnView.sponsoringImageViewSignal subscribeNext:^(id x) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
-    }];
-    
     return self;
 }
 
@@ -132,6 +71,77 @@
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - Private Helpers
+
+- (void)setupMenuView {
+    self.menuView = [[IXDAMenuView alloc] init];
+    [self.scrollView addSubview:self.menuView];
+    [self.menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(self.view);
+        make.top.equalTo(self.scrollView.mas_top);
+    }];
+    
+    @weakify(self)
+    [self.menuView.programButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.speakersButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
+        @strongify(self);
+        [self.scrollView setContentOffset:CGPointMake(0.0f, self.scrollView.frame.size.height) animated:YES];
+    }];
+    
+    [self.menuView.sponsoringImageViewSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
+    }];
+}
+
+- (void)setupWhatElseIsOnView {
+    self.whatElseIsOnView = [[IXDAWhatElseIsOnView alloc] init];
+    [self.scrollView addSubview:self.whatElseIsOnView];
+    [self.whatElseIsOnView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.menuView.mas_bottom);
+        make.left.right.height.equalTo(self.menuView);
+        make.bottom.equalTo(self.scrollView.mas_bottom);
+    }];
+    
+    @weakify(self)
+    [self.whatElseIsOnView.backToMenuButtonSignal subscribeNext:^(id x) {
+        @strongify(self);
+        [self.scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+    }];
+    
+    [self.whatElseIsOnView.educationButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://edusummit.ixda.org"]];
+    }];
+    
+    [self.whatElseIsOnView.awardsButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
+    [self.whatElseIsOnView.challengeButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
+    [self.whatElseIsOnView.sponsoringImageViewSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
+    }];
 }
 
 @end
