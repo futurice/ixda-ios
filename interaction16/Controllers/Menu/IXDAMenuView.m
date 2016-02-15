@@ -21,7 +21,7 @@
     self = [super init];
     if (!self) return nil;
     
-    self.backgroundColor = [UIColor ixda_statusBarBackgroundColorA];;
+    self.backgroundColor = [UIColor ixda_statusBarBackgroundColorA];
     
     UIView *logoView = [[UIView alloc] init];
     logoView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
@@ -75,7 +75,7 @@
         make.left.right.equalTo(self);
     }];
     
-    UIButton *programButton = [UIButton ixda_menuButtonWithTitle:@"Program"];
+    UIButton *programButton = [UIButton ixda_menuButtonWithTitle:@"Talks"];
     [backgroundImageView addSubview:programButton];
     [programButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backgroundImageView).offset(topPadding);

@@ -12,7 +12,7 @@
 #import "IXDASessionsViewModel.h"
 #import "IXDASpeakerViewModel.h"
 
-#import "IXDAProgramViewController.h"
+#import "IXDATalksViewController.h"
 #import "IXDASpeakersViewController.h"
 #import "IXDAMapViewController.h"
 #import "IXDAWhatElseIsOnView.h"
@@ -95,7 +95,7 @@
     @weakify(self)
     [self.menuView.programButtonSignal subscribeNext:^(id x) {
         @strongify(self)
-        IXDAProgramViewController *vc = [[IXDAProgramViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
+        IXDATalksViewController *vc = [[IXDATalksViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     

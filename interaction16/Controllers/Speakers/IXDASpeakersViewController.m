@@ -29,12 +29,14 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 @implementation IXDASpeakersViewController
 
+#pragma mark - Life Cycle
+
 - (instancetype)initWithSpeakersViewModel:(IXDASpeakerViewModel *)viewModel {
     self = [super init];
     if (!self) return nil;
     
     self.viewModel = viewModel;
-    
+
     self.tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

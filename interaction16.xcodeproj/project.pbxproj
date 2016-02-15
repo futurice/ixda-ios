@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6F5019311C6FA05F00CB7937 /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F5019301C6FA05F00CB7937 /* sessions.json */; };
-		6F5019351C6FA1F100CB7937 /* IXDAProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019341C6FA1F100CB7937 /* IXDAProgramViewController.m */; };
-		6F50193A1C6FA7C000CB7937 /* IXDAProgramTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019391C6FA7C000CB7937 /* IXDAProgramTableViewCell.m */; };
+		6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */; };
+		6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019391C6FA7C000CB7937 /* IXDATalksTableViewCell.m */; };
 		6F50193E1C6FAB4E00CB7937 /* IXDASpeakersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F50193D1C6FAB4E00CB7937 /* IXDASpeakersViewController.m */; };
 		6F5019411C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019401C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m */; };
 		6F5019451C70786B00CB7937 /* IXDASessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019441C70786B00CB7937 /* IXDASessionStore.m */; };
@@ -20,6 +20,7 @@
 		6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019561C70C4EC00CB7937 /* Speaker.m */; };
 		6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019591C70C6A800CB7937 /* IXDASpeakerViewModel.m */; };
 		6F6308F41C724DBD00558AA8 /* speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F6308F31C724DBD00558AA8 /* speakers.json */; };
+		6F6308F71C72709000558AA8 /* IXDATalksNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6308F61C72709000558AA8 /* IXDATalksNavigationView.m */; };
 		6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */; };
 		6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DA71C6F3E5100475BCA /* IXDAMenuView.m */; };
 		6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DAA1C6F3E7400475BCA /* IXDAMenuViewController.m */; };
@@ -42,10 +43,10 @@
 /* Begin PBXFileReference section */
 		0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.release.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.release.xcconfig"; sourceTree = "<group>"; };
 		6F5019301C6FA05F00CB7937 /* sessions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sessions.json; sourceTree = "<group>"; };
-		6F5019331C6FA1F100CB7937 /* IXDAProgramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAProgramViewController.h; path = Controllers/Program/IXDAProgramViewController.h; sourceTree = "<group>"; };
-		6F5019341C6FA1F100CB7937 /* IXDAProgramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAProgramViewController.m; path = Controllers/Program/IXDAProgramViewController.m; sourceTree = "<group>"; };
-		6F5019381C6FA7C000CB7937 /* IXDAProgramTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAProgramTableViewCell.h; path = Controllers/Program/IXDAProgramTableViewCell.h; sourceTree = "<group>"; };
-		6F5019391C6FA7C000CB7937 /* IXDAProgramTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAProgramTableViewCell.m; path = Controllers/Program/IXDAProgramTableViewCell.m; sourceTree = "<group>"; };
+		6F5019331C6FA1F100CB7937 /* IXDATalksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATalksViewController.h; path = Controllers/Program/IXDATalksViewController.h; sourceTree = "<group>"; };
+		6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATalksViewController.m; path = Controllers/Program/IXDATalksViewController.m; sourceTree = "<group>"; };
+		6F5019381C6FA7C000CB7937 /* IXDATalksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATalksTableViewCell.h; path = Controllers/Program/IXDATalksTableViewCell.h; sourceTree = "<group>"; };
+		6F5019391C6FA7C000CB7937 /* IXDATalksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATalksTableViewCell.m; path = Controllers/Program/IXDATalksTableViewCell.m; sourceTree = "<group>"; };
 		6F50193C1C6FAB4E00CB7937 /* IXDASpeakersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakersViewController.h; path = Controllers/Speakers/IXDASpeakersViewController.h; sourceTree = "<group>"; };
 		6F50193D1C6FAB4E00CB7937 /* IXDASpeakersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakersViewController.m; path = Controllers/Speakers/IXDASpeakersViewController.m; sourceTree = "<group>"; };
 		6F50193F1C6FAB7300CB7937 /* IXDASpeakersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakersTableViewCell.h; path = Controllers/Speakers/IXDASpeakersTableViewCell.h; sourceTree = "<group>"; };
@@ -65,6 +66,8 @@
 		6F5019581C70C6A800CB7937 /* IXDASpeakerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakerViewModel.h; path = ViewModels/IXDASpeakerViewModel.h; sourceTree = "<group>"; };
 		6F5019591C70C6A800CB7937 /* IXDASpeakerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerViewModel.m; path = ViewModels/IXDASpeakerViewModel.m; sourceTree = "<group>"; };
 		6F6308F31C724DBD00558AA8 /* speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = speakers.json; sourceTree = "<group>"; };
+		6F6308F51C72709000558AA8 /* IXDATalksNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATalksNavigationView.h; path = Controllers/Program/IXDATalksNavigationView.h; sourceTree = "<group>"; };
+		6F6308F61C72709000558AA8 /* IXDATalksNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATalksNavigationView.m; path = Controllers/Program/IXDATalksNavigationView.m; sourceTree = "<group>"; };
 		6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+IXDA.h"; path = "Helpers/UIColor+IXDA.h"; sourceTree = "<group>"; };
 		6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+IXDA.m"; path = "Helpers/UIColor+IXDA.m"; sourceTree = "<group>"; };
 		6F668DA61C6F3E5100475BCA /* IXDAMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMenuView.h; path = Controllers/Menu/IXDAMenuView.h; sourceTree = "<group>"; };
@@ -124,24 +127,26 @@
 			name = JSONs;
 			sourceTree = "<group>";
 		};
-		6F5019321C6FA1CF00CB7937 /* Program */ = {
+		6F5019321C6FA1CF00CB7937 /* Talks */ = {
 			isa = PBXGroup;
 			children = (
-				6F5019331C6FA1F100CB7937 /* IXDAProgramViewController.h */,
-				6F5019341C6FA1F100CB7937 /* IXDAProgramViewController.m */,
-				6F5019381C6FA7C000CB7937 /* IXDAProgramTableViewCell.h */,
-				6F5019391C6FA7C000CB7937 /* IXDAProgramTableViewCell.m */,
+				6F6308F51C72709000558AA8 /* IXDATalksNavigationView.h */,
+				6F6308F61C72709000558AA8 /* IXDATalksNavigationView.m */,
+				6F5019381C6FA7C000CB7937 /* IXDATalksTableViewCell.h */,
+				6F5019391C6FA7C000CB7937 /* IXDATalksTableViewCell.m */,
+				6F5019331C6FA1F100CB7937 /* IXDATalksViewController.h */,
+				6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */,
 			);
-			name = Program;
+			name = Talks;
 			sourceTree = "<group>";
 		};
 		6F50193B1C6FAB1500CB7937 /* Speakers */ = {
 			isa = PBXGroup;
 			children = (
-				6F50193C1C6FAB4E00CB7937 /* IXDASpeakersViewController.h */,
-				6F50193D1C6FAB4E00CB7937 /* IXDASpeakersViewController.m */,
 				6F50193F1C6FAB7300CB7937 /* IXDASpeakersTableViewCell.h */,
 				6F5019401C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m */,
+				6F50193C1C6FAB4E00CB7937 /* IXDASpeakersViewController.h */,
+				6F50193D1C6FAB4E00CB7937 /* IXDASpeakersViewController.m */,
 			);
 			name = Speakers;
 			sourceTree = "<group>";
@@ -197,11 +202,11 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6F50193B1C6FAB1500CB7937 /* Speakers */,
-				6F5019321C6FA1CF00CB7937 /* Program */,
 				6F668DCD1C6F632C00475BCA /* MapAndVenue */,
-				6F668DC61C6F518800475BCA /* WhatElse */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
+				6F5019321C6FA1CF00CB7937 /* Talks */,
+				6F50193B1C6FAB1500CB7937 /* Speakers */,
+				6F668DC61C6F518800475BCA /* WhatElse */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -432,7 +437,8 @@
 			files = (
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
-				6F50193A1C6FA7C000CB7937 /* IXDAProgramTableViewCell.m in Sources */,
+				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,
+				6F6308F71C72709000558AA8 /* IXDATalksNavigationView.m in Sources */,
 				6F5019511C70A16F00CB7937 /* Session.m in Sources */,
 				6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */,
 				6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */,
@@ -446,7 +452,7 @@
 				6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */,
 				6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */,
 				6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */,
-				6F5019351C6FA1F100CB7937 /* IXDAProgramViewController.m in Sources */,
+				6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */,
 				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
 				6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */,
 				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
@@ -557,7 +563,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurice.ixda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "45247894-152e-45d0-b28a-77e22e746fd5";
 			};
 			name = Debug;
 		};

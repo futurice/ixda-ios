@@ -10,7 +10,7 @@
 
 @class IXDASessionsViewModel;
 
-@interface IXDAProgramViewController : UIViewController
+@interface IXDATalksViewController : UIViewController
 
 - (instancetype)initWithSessionsViewModel:(IXDASessionsViewModel *)sessionsViewModel;
 
