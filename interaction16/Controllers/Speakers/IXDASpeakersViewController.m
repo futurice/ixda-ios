@@ -29,9 +29,11 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 @implementation IXDASpeakersViewController
 
-- (instancetype)init {
+- (instancetype)initWithSpeakersViewModel:(IXDASpeakerViewModel *)viewModel {
     self = [super init];
     if (!self) return nil;
+    
+    self.viewModel = viewModel;
     
     self.tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
@@ -44,7 +46,6 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
         make.edges.equalTo(self.view);
     }];
     
-    self.viewModel = [[IXDASpeakerViewModel alloc] init];
     [RACObserve(self.viewModel, speakerArray) subscribeNext:^(id x) {
         [self.tableView reloadData];
     }];

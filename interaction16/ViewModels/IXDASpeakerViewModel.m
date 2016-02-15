@@ -19,13 +19,24 @@
     self = [super init];
     if (!self) return nil;
     
-    [self loadSpeaker];
+    [self loadSpeakers];
     
     return self;
 }
 
-- (void)loadSpeaker {
-    [[[IXDASpeakerStore sharedStore] speaker] subscribeNext:^(NSArray *speakersArray) {
+
+
+- (void)loadSpeakers {
+    @weakify(self)
+    [[[IXDASpeakerStore sharedStore] speakersFromFile] subscribeNext:^(NSArray *speakersArray) {
+        @strongify(self)
+        self.speakerArray = speakersArray;
+        [self loadSpeakerFromBackend];
+    }];
+}
+
+- (void)loadSpeakerFromBackend {
+    [[[IXDASpeakerStore sharedStore] speakers] subscribeNext:^(NSArray *speakersArray) {
         self.speakerArray = speakersArray;
     }];
 }

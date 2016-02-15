@@ -32,11 +32,10 @@
 #pragma mark - Public Methods
 
 - (RACSignal *)sessions {
+    @weakify(self)
     return [[[IXDASessionManager sharedManager] GET:@"session/list?" parameters:nil] map:^NSArray *(NSArray *array) {
-        return [[[array rac_sequence] map:^NSArray *(NSDictionary *dict) {
-            NSError *error = nil;
-            return [MTLJSONAdapter modelOfClass:Session.class fromJSONDictionary:dict error:&error];
-        }] array];
+        @strongify(self)
+        return [self sessionsArrayFromJSONArray:array];
     }];
 }
 
@@ -47,13 +46,23 @@
         __autoreleasing NSError* error = nil;
         id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if (!error) {
-            [subscriber sendNext:result];
+            NSArray *array = [self sessionsArrayFromJSONArray:result];
+            [subscriber sendNext:array];
             [subscriber sendCompleted];
         } else {
             [subscriber sendError:error];
         }
+        
         return nil;
     }];
 }
 
+#pragma mark - Private Helpers
+
+- (NSArray *)sessionsArrayFromJSONArray:(NSArray *)JSONArray {
+    return [[[JSONArray rac_sequence] map:^NSArray *(NSDictionary *dict) {
+        NSError *error = nil;
+        return [MTLJSONAdapter modelOfClass:Session.class fromJSONDictionary:dict error:&error];
+    }] array];
+}
 @end

@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *speakerArray;
 
+- (void)loadSpeakerFromBackend;
+
 @end
