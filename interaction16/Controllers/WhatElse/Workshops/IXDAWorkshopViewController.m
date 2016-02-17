@@ -87,10 +87,6 @@ static NSString *IDXA_WORKSHOPTABLEVIEWCELL = @"IDXA_WORKSHOPTABLEVIEWCELL";
     self.navigationController.navigationBarHidden = YES;
 }
 
--(void)viewDidLayoutSubviews{
-    self.automaticallyAdjustsScrollViewInsets = NO;
-}
-
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
