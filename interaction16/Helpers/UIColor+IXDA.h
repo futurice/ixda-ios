@@ -16,4 +16,6 @@
 + (UIColor *)ixda_statusBarBackgroundColorA;
 + (UIColor *)ixda_statusBarBackgroundColorB;
 
++ (UIColor *)ixda_mapScrollViewBackgroundColor;
+
 @end

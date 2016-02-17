@@ -34,7 +34,6 @@
 		6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */; };
 		6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */; };
 		6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */; };
-		6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */; };
 		6F87D41C1C6F25430039A29B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41B1C6F25430039A29B /* main.m */; };
 		6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41E1C6F25430039A29B /* AppDelegate.m */; };
 		6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4261C6F25430039A29B /* Assets.xcassets */; };
@@ -92,7 +91,6 @@
 		6F668DCB1C6F556900475BCA /* IXDAWhatElseIsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWhatElseIsOnView.m; path = Controllers/WhatElse/IXDAWhatElseIsOnView.m; sourceTree = "<group>"; };
 		6F668DD31C6F638B00475BCA /* IXDAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMapViewController.h; path = Controllers/MapAndVenue/IXDAMapViewController.h; sourceTree = "<group>"; };
 		6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMapViewController.m; path = Controllers/MapAndVenue/IXDAMapViewController.m; sourceTree = "<group>"; };
-		6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IXDAMapViewController.xib; path = Controllers/MapAndVenue/IXDAMapViewController.xib; sourceTree = "<group>"; };
 		6F87D4171C6F25430039A29B /* interaction16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interaction16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F87D41B1C6F25430039A29B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F87D41D1C6F25430039A29B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -264,7 +262,6 @@
 			children = (
 				6F668DD31C6F638B00475BCA /* IXDAMapViewController.h */,
 				6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */,
-				6F668DD51C6F638B00475BCA /* IXDAMapViewController.xib */,
 			);
 			name = MapAndVenue;
 			sourceTree = "<group>";
@@ -394,7 +391,6 @@
 				6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */,
 				6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */,
 				6F6308F41C724DBD00558AA8 /* speakers.json in Resources */,
-				6F668DD71C6F638B00475BCA /* IXDAMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
