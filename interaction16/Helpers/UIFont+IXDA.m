@@ -35,7 +35,7 @@
 }
 
 + (UIFont *)ixda_speakersCellTitle {
-    return [UIFont fontWithName:@"CircularStd-Bold" size:20.0];
+    return [UIFont fontWithName:@"CircularStd-Bold" size:26.0];
 }
 
 

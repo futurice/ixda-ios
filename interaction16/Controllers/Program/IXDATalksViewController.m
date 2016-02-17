@@ -69,6 +69,9 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_TALKSTABLEVIEWCELL";
             case TalkTypeLightningTalk:
                 self.talksArray = self.viewModel.lightningTalksArray;
                 break;
+            case TalkTypeSocialEvent:
+                self.talksArray = self.viewModel.socialEventsArray;
+                break;
             default:
                 self.talksArray = self.viewModel.keynotesArray;
                 break;

@@ -100,10 +100,21 @@
     [lightningTalksButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(mediumTalksButton.mas_right).offset(20);
         make.centerY.height.equalTo(mediumTalksButton);
-        make.right.equalTo(navigationScrollView.mas_right).offset(-20);
     }];
     [[lightningTalksButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         self.talkType = @(TalkTypeLightningTalk);
+    }];
+    
+    UIButton *socialEventsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [socialEventsButton setTitle:@"Social Event" forState:UIControlStateNormal];
+    [navigationScrollView addSubview:socialEventsButton];
+    [socialEventsButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(lightningTalksButton.mas_right).offset(20);
+        make.centerY.height.equalTo(lightningTalksButton);
+        make.right.equalTo(navigationScrollView.mas_right).offset(-20);
+    }];
+    [[socialEventsButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        self.talkType = @(TalkTypeSocialEvent);
     }];
     
     [RACObserve(self, talkType) subscribeNext:^(NSNumber *talkType) {
@@ -116,6 +127,8 @@
         mediumTalksButton.tintColor = [UIColor blackColor];
         lightningTalksButton.titleLabel.font = [UIFont ixda_programNavigationItem];
         lightningTalksButton.tintColor = [UIColor blackColor];
+        socialEventsButton.titleLabel.font = [UIFont ixda_programNavigationItem];
+        socialEventsButton.tintColor = [UIColor blackColor];
         
         UIButton *selectedButton = nil;
         switch ([talkType unsignedIntegerValue]) {
@@ -129,7 +142,11 @@
                 break;
             case TalkTypeLightningTalk:
                 selectedButton = lightningTalksButton;
-                [navigationScrollView setContentOffset:CGPointMake(navigationScrollView.frame.size.width - selectedButton.frame.size.width, 0) animated:YES];
+                [navigationScrollView setContentOffset:CGPointMake(selectedButton.frame.size.width/2 +selectedButton.frame.origin.x - self.frame.size.width/2, 0) animated:YES];
+                break;
+            case TalkTypeSocialEvent:
+                selectedButton = socialEventsButton;
+                [navigationScrollView setContentOffset:CGPointMake(navigationScrollView.frame.size.width, 0) animated:YES];
                 break;
             default:
                 selectedButton = keynoteButton;

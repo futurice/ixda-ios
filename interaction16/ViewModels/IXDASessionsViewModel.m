@@ -50,6 +50,7 @@
     NSMutableArray *mediumTalksMutableArray = [NSMutableArray new];
     NSMutableArray *lightningTalksMutableArray = [NSMutableArray new];
     NSMutableArray *workshopsMutableArray = [NSMutableArray new];
+    NSMutableArray *socialEventsMutableArray = [NSMutableArray new];
     for (Session *session in sessionsArray) {
         if ([session.event_type isEqualToString:@"Keynote"]) {
             [keynotesMutableArray addObject:session];
@@ -61,6 +62,8 @@
             [lightningTalksMutableArray addObject:session];
         } else if ([session.event_type isEqualToString:@"Workshop"]) {
             [workshopsMutableArray addObject:session];
+        } else if ([session.event_type isEqualToString:@"Social Event"]) {
+            [socialEventsMutableArray addObject:session];
         }
     }
     self.keynotesArray = [keynotesMutableArray copy];
@@ -68,6 +71,7 @@
     self.mediumTalksArray = [mediumTalksMutableArray copy];
     self.lightningTalksArray = [lightningTalksMutableArray copy];
     self.workshopsArray = [workshopsMutableArray copy];
+    self.socialEventsArray = [socialEventsMutableArray copy];
 }
 
 @end

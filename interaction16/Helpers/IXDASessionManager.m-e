@@ -43,7 +43,7 @@
 }
 
 + (NSString *)apiKey {
-    return @"<INSERT API KEY HERE PLEASE>";
+    return @"ac2f7fe214de3d304b0e098abf688cbe";
 }
 
 @end

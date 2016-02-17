@@ -75,7 +75,7 @@
         make.left.right.equalTo(self);
     }];
     
-    UIButton *programButton = [UIButton ixda_menuButtonWithTitle:@"Talks"];
+    UIButton *programButton = [UIButton ixda_menuButtonWithTitle:@"Program"];
     [backgroundImageView addSubview:programButton];
     [programButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backgroundImageView).offset(topPadding);
@@ -107,7 +107,7 @@
     }];
     self.scheduleButtonSignal = [scheduleButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *venueAndMapButton = [UIButton ixda_menuButtonWithTitle:@"Venue and map"];
+    UIButton *venueAndMapButton = [UIButton ixda_menuButtonWithTitle:@"Map"];
     [backgroundImageView addSubview:venueAndMapButton];
     [venueAndMapButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(scheduleButton.mas_bottom).offset(buttonSpace);
@@ -115,7 +115,7 @@
     }];
     self.venueAndMapButtonSignal = [venueAndMapButton rac_signalForControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *infoButton = [UIButton ixda_menuButtonWithTitle:@"Info"];
+    UIButton *infoButton = [UIButton ixda_menuButtonWithTitle:@"Info and Venue"];
     [backgroundImageView addSubview:infoButton];
     [infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(venueAndMapButton.mas_bottom).offset(buttonSpace);

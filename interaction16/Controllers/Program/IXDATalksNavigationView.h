@@ -12,7 +12,8 @@ typedef NS_ENUM(NSUInteger, TalkType) {
     TalkTypeKeyNote,
     TalkTypeLongTalk,
     TalkTypeMediumTalk,
-    TalkTypeLightningTalk
+    TalkTypeLightningTalk,
+    TalkTypeSocialEvent
 };
 
 @class RACSignal;
