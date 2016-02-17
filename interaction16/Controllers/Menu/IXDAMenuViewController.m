@@ -16,6 +16,7 @@
 #import "IXDASpeakersViewController.h"
 #import "IXDAWorkshopViewController.h"
 #import "IXDAMapViewController.h"
+#import "IXDAInfoViewController.h"
 #import "IXDAWhatElseIsOnView.h"
 
 #import "UIColor+IXDA.h"
@@ -109,6 +110,12 @@
     [self.menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.infoButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAInfoViewController *vc = [[IXDAInfoViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */; };
 		6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */; };
+		6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */; };
 		6F5019311C6FA05F00CB7937 /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F5019301C6FA05F00CB7937 /* sessions.json */; };
 		6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */; };
 		6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019391C6FA7C000CB7937 /* IXDATalksTableViewCell.m */; };
@@ -47,6 +48,8 @@
 		6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWorkshopViewController.m; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.m; sourceTree = "<group>"; };
 		6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATitleBarView.h; path = Views/IXDATitleBarView.h; sourceTree = "<group>"; };
 		6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATitleBarView.m; path = Views/IXDATitleBarView.m; sourceTree = "<group>"; };
+		6F5006061C74F80B00F56DBA /* IXDAInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAInfoViewController.h; path = Controllers/InfoAndVenue/IXDAInfoViewController.h; sourceTree = "<group>"; };
+		6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAInfoViewController.m; path = Controllers/InfoAndVenue/IXDAInfoViewController.m; sourceTree = "<group>"; };
 		6F5019301C6FA05F00CB7937 /* sessions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sessions.json; sourceTree = "<group>"; };
 		6F5019331C6FA1F100CB7937 /* IXDATalksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATalksViewController.h; path = Controllers/Program/IXDATalksViewController.h; sourceTree = "<group>"; };
 		6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATalksViewController.m; path = Controllers/Program/IXDATalksViewController.m; sourceTree = "<group>"; };
@@ -140,6 +143,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		6F5006051C74F7DE00F56DBA /* InfoAndVenue */ = {
+			isa = PBXGroup;
+			children = (
+				6F5006061C74F80B00F56DBA /* IXDAInfoViewController.h */,
+				6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */,
+			);
+			name = InfoAndVenue;
+			sourceTree = "<group>";
+		};
 		6F50192F1C6FA02800CB7937 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +236,7 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6F5006051C74F7DE00F56DBA /* InfoAndVenue */,
 				6F668DCD1C6F632C00475BCA /* MapAndVenue */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
 				6F5019321C6FA1CF00CB7937 /* Program */,
@@ -469,6 +482,7 @@
 				6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */,
 				6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */,
 				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
+				6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */,
 				6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */,
 				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
 				6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */,
