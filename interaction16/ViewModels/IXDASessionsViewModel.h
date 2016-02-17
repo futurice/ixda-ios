@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *mediumTalksArray;
 @property (nonatomic, strong) NSArray *lightningTalksArray;
 @property (nonatomic, strong) NSArray *workshopsArray;
+@property (nonatomic, strong) NSArray *socialEventsArray;
 
 - (void)loadSessionsFromBackend;
 

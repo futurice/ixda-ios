@@ -60,7 +60,16 @@
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.jobLabel.mas_top);
         make.left.equalTo(self.contentView).offset(10);
-        make.right.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).offset(-50);
+    }];
+    
+    UIView * additionalSeparator = [[UIView alloc] init];
+    additionalSeparator.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:additionalSeparator];
+    [additionalSeparator mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.contentView);
+        make.height.equalTo(@4);
+        make.left.right.equalTo(self.contentView);
     }];
 
     
