@@ -25,6 +25,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
+    self.backgroundColor = [UIColor whiteColor];
+    
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.font = [UIFont ixda_programCellTitle];
@@ -44,11 +46,18 @@
     [self.speakerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_centerY).offset(10);
         make.left.equalTo(self.contentView).offset(10);
-        make.right.equalTo(self.contentView).offset(-10);
         make.bottom.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).offset(-50);
     }];
     
-    self.backgroundColor = [UIColor whiteColor];
+    UIView * additionalSeparator = [[UIView alloc] init];
+    additionalSeparator.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:additionalSeparator];
+    [additionalSeparator mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.contentView);
+        make.height.equalTo(@4);
+        make.left.right.equalTo(self.contentView);
+    }];
     
     return self;
 }

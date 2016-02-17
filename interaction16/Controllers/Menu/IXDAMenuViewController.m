@@ -14,6 +14,7 @@
 
 #import "IXDATalksViewController.h"
 #import "IXDASpeakersViewController.h"
+#import "IXDAWorkshopViewController.h"
 #import "IXDAMapViewController.h"
 #import "IXDAWhatElseIsOnView.h"
 
@@ -108,6 +109,12 @@
     [self.menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.workshopsButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAWorkshopViewController *vc = [[IXDAWorkshopViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
