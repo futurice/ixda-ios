@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */; };
+		6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */; };
 		6F5019311C6FA05F00CB7937 /* sessions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F5019301C6FA05F00CB7937 /* sessions.json */; };
 		6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */; };
 		6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5019391C6FA7C000CB7937 /* IXDATalksTableViewCell.m */; };
@@ -42,6 +44,10 @@
 
 /* Begin PBXFileReference section */
 		0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.release.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.release.xcconfig"; sourceTree = "<group>"; };
+		6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWorkshopViewController.h; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.h; sourceTree = "<group>"; };
+		6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWorkshopViewController.m; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.m; sourceTree = "<group>"; };
+		6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATitleBarView.h; path = Views/IXDATitleBarView.h; sourceTree = "<group>"; };
+		6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATitleBarView.m; path = Views/IXDATitleBarView.m; sourceTree = "<group>"; };
 		6F5019301C6FA05F00CB7937 /* sessions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sessions.json; sourceTree = "<group>"; };
 		6F5019331C6FA1F100CB7937 /* IXDATalksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATalksViewController.h; path = Controllers/Program/IXDATalksViewController.h; sourceTree = "<group>"; };
 		6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATalksViewController.m; path = Controllers/Program/IXDATalksViewController.m; sourceTree = "<group>"; };
@@ -118,6 +124,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6F5005FD1C74E4B100F56DBA /* Workshops */ = {
+			isa = PBXGroup;
+			children = (
+				6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */,
+				6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */,
+			);
+			name = Workshops;
+			sourceTree = "<group>";
+		};
+		6F5006041C74E85800F56DBA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */,
+				6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		6F50192F1C6FA02800CB7937 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +151,7 @@
 			name = JSONs;
 			sourceTree = "<group>";
 		};
-		6F5019321C6FA1CF00CB7937 /* Talks */ = {
+		6F5019321C6FA1CF00CB7937 /* Program */ = {
 			isa = PBXGroup;
 			children = (
 				6F6308F51C72709000558AA8 /* IXDATalksNavigationView.h */,
@@ -137,7 +161,7 @@
 				6F5019331C6FA1F100CB7937 /* IXDATalksViewController.h */,
 				6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */,
 			);
-			name = Talks;
+			name = Program;
 			sourceTree = "<group>";
 		};
 		6F50193B1C6FAB1500CB7937 /* Speakers */ = {
@@ -204,9 +228,9 @@
 			children = (
 				6F668DCD1C6F632C00475BCA /* MapAndVenue */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
-				6F5019321C6FA1CF00CB7937 /* Talks */,
+				6F5019321C6FA1CF00CB7937 /* Program */,
 				6F50193B1C6FAB1500CB7937 /* Speakers */,
-				6F668DC61C6F518800475BCA /* WhatElse */,
+				6F5005FD1C74E4B100F56DBA /* Workshops */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -233,13 +257,6 @@
 				6F668DBE1C6F423E00475BCA /* CircularStd-Medium.otf */,
 			);
 			name = Fonts;
-			sourceTree = "<group>";
-		};
-		6F668DC61C6F518800475BCA /* WhatElse */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = WhatElse;
 			sourceTree = "<group>";
 		};
 		6F668DCD1C6F632C00475BCA /* MapAndVenue */ = {
@@ -281,6 +298,7 @@
 				6F5019421C70781C00CB7937 /* Stores */,
 				6F87D41A1C6F25430039A29B /* Supporting Files */,
 				6F50194A1C709D2600CB7937 /* ViewModels */,
+				6F5006041C74E85800F56DBA /* Views */,
 			);
 			path = interaction16;
 			sourceTree = "<group>";
@@ -453,9 +471,11 @@
 				6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */,
 				6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */,
 				6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */,
+				6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */,
 				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
 				6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */,
 				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
+				6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

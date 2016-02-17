@@ -33,14 +33,6 @@
         make.edges.equalTo(self.contentView);
     }];
     
-    UIView *blurView = [[UIView alloc] init];
-    blurView.alpha = 0.5;
-    blurView.backgroundColor = [UIColor ixda_statusBarBackgroundColorA];
-    [self.backgroundImageView addSubview:blurView];
-    [blurView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
-    
     self.jobLabel = [[UILabel alloc] init];
     self.jobLabel.numberOfLines = 0;
     self.jobLabel.textColor = [UIColor whiteColor];
