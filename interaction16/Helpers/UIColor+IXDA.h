@@ -18,4 +18,5 @@
 
 + (UIColor *)ixda_mapScrollViewBackgroundColor;
 
++ (UIColor *)ixda_speakersTableViewCellBlurColor;
 @end

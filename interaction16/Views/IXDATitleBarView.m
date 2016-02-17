@@ -22,17 +22,17 @@
 
 @implementation IXDATitleBarView
 
-- (instancetype)init {
+- (instancetype)initWithTitle:(NSString *)title {
     self = [super init];
     if (!self) return nil;
     
     self.backgroundColor = [UIColor whiteColor];
     
-    UILabel *title = [[UILabel alloc] init];
-    title.font = [UIFont ixda_menuItemFontSmall];
-    title.text = @"Workshops";
-    [self addSubview:title];
-    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.font = [UIFont ixda_menuItemFontSmall];
+    titleLabel.text = title;
+    [self addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.top.equalTo(self).offset(15);
     }];
@@ -41,7 +41,7 @@
     [backButton setBackgroundImage:[UIImage imageNamed:@"arrowBlue"] forState:UIControlStateNormal];
     [self addSubview:backButton];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(title);
+        make.centerY.equalTo(titleLabel);
         make.width.height.equalTo(@20);
         make.left.equalTo(self).offset(15);
     }];

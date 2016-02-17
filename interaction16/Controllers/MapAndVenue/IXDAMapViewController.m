@@ -34,7 +34,7 @@
     CGFloat statusBarHeight = 20.0;
     CGFloat titleBarHeight = 50.0;
     
-    IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] init];
+    IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] initWithTitle:@"Map"];
     [self.view addSubview:navigationView];
     [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(statusBarHeight);

@@ -38,7 +38,7 @@ static NSString *IDXA_WORKSHOPTABLEVIEWCELL = @"IDXA_WORKSHOPTABLEVIEWCELL";
     
     self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorB];
     
-    IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] init];
+    IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] initWithTitle:@"Workshops"];
     [self.view addSubview:navigationView];
     [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);

@@ -8,7 +8,7 @@
 
 #import "IXDASpeakersViewController.h"
 #import "IXDASpeakersTableViewCell.h"
-
+#import "IXDATitleBarView.h"
 #import "IXDASpeakerViewModel.h"
 #import "Speaker.h"
 
@@ -36,6 +36,19 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
     if (!self) return nil;
     
     self.viewModel = viewModel;
+    
+    self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorB];
+    
+    CGFloat statusBarHeight = 20.0;
+    CGFloat titleBarHeight = 50.0;
+    
+    IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] initWithTitle:@"Speakers"];
+    [self.view addSubview:navigationView];
+    [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(statusBarHeight);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@(titleBarHeight));
+    }];
 
     self.tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
@@ -45,14 +58,34 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
            forCellReuseIdentifier:IXDA_SPEAKERSTABLEVIEWCELL];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.equalTo(navigationView.mas_bottom);
+        make.left.bottom.right.equalTo(self.view);
     }];
     
     [RACObserve(self.viewModel, speakerArray) subscribeNext:^(id x) {
         [self.tableView reloadData];
     }];
     
+    
+    @weakify(self)
+    [navigationView.backButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
     return self;
+}
+
+#pragma mark - Appearance
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - View Life Cycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = YES;
 }
 
 #pragma mark - UITableViewDataSource
