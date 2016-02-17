@@ -30,4 +30,8 @@
     return [UIColor colorWithRed:0 green:0.27 blue:0.93 alpha:1];
 }
 
++ (UIColor *)ixda_speakersTableViewCellBlurColor {
+    return [UIColor colorWithRed:0 green:0.408 blue:0.941 alpha:0.4];
+}
+
 @end
