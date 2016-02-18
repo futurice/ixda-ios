@@ -14,6 +14,7 @@
 
 #import "IXDATalksViewController.h"
 #import "IXDASpeakersViewController.h"
+#import "FestScheduleViewController.h"
 #import "IXDAWorkshopViewController.h"
 #import "IXDAMapViewController.h"
 #import "IXDAInfoViewController.h"
@@ -104,6 +105,12 @@
     [self.menuView.speakersButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] initWithSpeakersViewModel:self.speakersViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.scheduleButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        FestScheduleViewController *vc = [[FestScheduleViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     

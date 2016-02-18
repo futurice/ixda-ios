@@ -16,10 +16,12 @@
 @property (nonatomic, copy) NSString *info;
 @property (nonatomic, copy) NSString *event_key;
 @property (nonatomic, copy) NSString *event_type;
-@property (nonatomic, copy) NSString   *event_start;
-@property (nonatomic, copy) NSString   *event_end;
+@property (nonatomic, copy) NSDate   *event_start;
+@property (nonatomic, copy) NSDate   *event_end;
 @property (nonatomic, copy) NSString *speakers;
 @property (nonatomic, copy) NSString *venue;
 @property (nonatomic, copy) NSString *venue_id;
+
+- (NSString *)day;
 
 @end
