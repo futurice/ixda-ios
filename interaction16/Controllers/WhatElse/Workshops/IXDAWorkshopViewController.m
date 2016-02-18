@@ -52,8 +52,8 @@ static NSString *IDXA_WORKSHOPTABLEVIEWCELL = @"IDXA_WORKSHOPTABLEVIEWCELL";
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
-    [RACObserve(self.viewModel, workshopsArray) subscribeNext:^(NSNumber *talkType) {
-        self.workshopsArray = self.viewModel.workshopsArray;
+    [RACObserve(self.viewModel, sessions) subscribeNext:^(NSNumber *talkType) {
+        self.workshopsArray = [self.viewModel workshops];
     }];
     
     self.tableView = [[UITableView alloc] init];

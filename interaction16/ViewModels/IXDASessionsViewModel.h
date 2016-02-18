@@ -10,13 +10,14 @@
 
 @interface IXDASessionsViewModel : NSObject
 
-@property (nonatomic, strong) NSArray *keynotesArray;
-@property (nonatomic, strong) NSArray *longTalksArray;
-@property (nonatomic, strong) NSArray *mediumTalksArray;
-@property (nonatomic, strong) NSArray *lightningTalksArray;
-@property (nonatomic, strong) NSArray *workshopsArray;
-@property (nonatomic, strong) NSArray *socialEventsArray;
+@property (nonatomic, strong) NSArray *sessions;
 
 - (void)loadSessionsFromBackend;
+- (NSArray *)keynotes;
+- (NSArray *)longTalks;
+- (NSArray *)mediumTalks;
+- (NSArray *)lightningTalks;
+- (NSArray *)workshops;
+- (NSArray *)socialEvents;
 
 @end
