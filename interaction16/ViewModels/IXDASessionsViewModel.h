@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, IXDASessionDay) {
+    IXDASessionDayWednesday,
+    IXDASessionDayThursday,
+    IXDASessionDayFriday,
+    IXDASessionDaySaturday
+};
+
 @interface IXDASessionsViewModel : NSObject
 
 @property (nonatomic, strong) NSArray *sessions;
@@ -19,5 +26,7 @@
 - (NSArray *)lightningTalks;
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
+
+- (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 
 @end

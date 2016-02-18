@@ -74,4 +74,11 @@
     }] array];
 }
 
+- (NSArray *)sessionsOfDay:(IXDASessionDay)sessionType {
+    return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        NSInteger day = [[[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:session.event_start] day];
+        return day == sessionType;
+    }] array];
+}
+
 @end

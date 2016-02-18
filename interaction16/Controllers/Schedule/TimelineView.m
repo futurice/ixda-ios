@@ -202,11 +202,7 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
     NSDate *begin = [NSDate distantFuture];
     NSDate *end = [NSDate distantPast];
 
-    if([[self.sessions firstObject] isKindOfClass:[Session class]]) {
         for (Session *session in self.sessions) {
-            if (![session.day isEqualToString:self.currentDay]) {
-                continue;
-            }
             
             if ([session.event_start compare:begin] == NSOrderedAscending ) {
                 begin = session.event_start;
@@ -215,7 +211,6 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
             if ([session.event_end compare:end] == NSOrderedDescending) {
                 end = session.event_end;
             }
-        }
     }
 
     self.dayBegin = begin;

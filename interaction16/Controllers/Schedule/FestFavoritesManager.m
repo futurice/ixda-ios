@@ -43,7 +43,7 @@
     return self;
 }
 
-- (void)toggleFavourite:(Session *)session favourite:(BOOL)favourite
+- (void)toggleFavorite:(Session *)session favorite:(BOOL)favourite
 {
     if (!session) {
         NSLog(@"error, toggling favourites without session");

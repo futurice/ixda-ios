@@ -37,13 +37,16 @@
     self.timeLineView.delegate = self;
 
     // sessions
+    @weakify(self)
     IXDASessionsViewModel *viewModel = [[IXDASessionsViewModel alloc] init];
-    [RACObserve(viewModel, sessions) subscribeNext:^(id x) {
-        self.timeLineView.sessions = x;
+    [RACObserve(viewModel, sessions) subscribeNext:^(id __unused _) {
+        @strongify(self)
+        self.timeLineView.sessions = [viewModel sessionsOfDay:IXDASessionDaySaturday    ];
     }];
     
-    [RACObserve(viewModel, sessions) subscribeNext:^(id x) {
-        self.timeLineView.favoritedSessions = x;
+    [RACObserve(viewModel, sessions) subscribeNext:^(id __unused _) {
+        @strongify(self)
+        self.timeLineView.favoritedSessions = [viewModel sessionsOfDay:IXDASessionDaySaturday];
     }];
 
     // back button
@@ -109,10 +112,12 @@
 
 - (void)dayChooser:(DayChooser *)dayChooser selectedDayWithIndex:(NSUInteger)dayIndex
 {
-    NSString *currentDay = @"Friday";
+    NSString *currentDay = @"Wednesday";
     switch (dayIndex) {
-        case 0: currentDay = @"Friday"; break;
-        case 1: currentDay = @"Saturday"; break;
+        case 0: currentDay = @"Wednesday"; break;
+        case 1: currentDay = @"Thursday"; break;
+        case 2: currentDay = @"Friday"; break;
+        case 3: currentDay = @"Saturday"; break;
     }
 
     self.timeLineView.currentDay = currentDay;
