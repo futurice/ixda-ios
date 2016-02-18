@@ -29,7 +29,7 @@
     @weakify(self)
     [[[IXDASessionStore sharedStore] sessionsFromFile] subscribeNext:^(NSArray *sessions) {
         @strongify(self)
-        [self sortSessionsArrayIntoSubArrays:sessions];
+        self.sessions = sessions;
         [self loadSessionsFromBackend];
     }];
 }
@@ -38,40 +38,40 @@
     @weakify(self)
     [[[IXDASessionStore sharedStore] sessions] subscribeNext:^(NSArray *sessions) {
         @strongify(self)
-        [self sortSessionsArrayIntoSubArrays:sessions];
+        self.sessions = sessions;
     }];
+}
+
+- (NSArray *)keynotes {
+    return [self sessionsOfType:@"Keynote"];
+}
+
+- (NSArray *)longTalks {
+    return [self sessionsOfType:@"Long Talk"];
+}
+
+- (NSArray *)mediumTalks {
+    return [self sessionsOfType:@"Medium Talk"];
+}
+
+- (NSArray *)lightningTalks {
+    return [self sessionsOfType:@"Lightning Talk"];
+}
+
+- (NSArray *)workshops {
+    return [self sessionsOfType:@"Workshop"];
+}
+
+- (NSArray *)socialEvents {
+    return [self sessionsOfType:@"Social Event"];
 }
 
 #pragma mark - Private Helpers
 
-- (void)sortSessionsArrayIntoSubArrays:(NSArray *)sessionsArray {
-    NSMutableArray *keynotesMutableArray = [NSMutableArray new];
-    NSMutableArray *longTalksMutableArray = [NSMutableArray new];
-    NSMutableArray *mediumTalksMutableArray = [NSMutableArray new];
-    NSMutableArray *lightningTalksMutableArray = [NSMutableArray new];
-    NSMutableArray *workshopsMutableArray = [NSMutableArray new];
-    NSMutableArray *socialEventsMutableArray = [NSMutableArray new];
-    for (Session *session in sessionsArray) {
-        if ([session.event_type isEqualToString:@"Keynote"]) {
-            [keynotesMutableArray addObject:session];
-        } else if ([session.event_type isEqualToString:@"Long Talk"]){
-            [longTalksMutableArray addObject:session];
-        } else if ([session.event_type isEqualToString:@"Medium Talk"]) {
-            [mediumTalksMutableArray addObject:session];
-        } else if ([session.event_type isEqualToString:@"Lightning Talk"]) {
-            [lightningTalksMutableArray addObject:session];
-        } else if ([session.event_type isEqualToString:@"Workshop"]) {
-            [workshopsMutableArray addObject:session];
-        } else if ([session.event_type isEqualToString:@"Social Event"]) {
-            [socialEventsMutableArray addObject:session];
-        }
-    }
-    self.keynotesArray = [keynotesMutableArray copy];
-    self.longTalksArray = [longTalksMutableArray copy];
-    self.mediumTalksArray = [mediumTalksMutableArray copy];
-    self.lightningTalksArray = [lightningTalksMutableArray copy];
-    self.workshopsArray = [workshopsMutableArray copy];
-    self.socialEventsArray = [socialEventsMutableArray copy];
+- (NSArray *)sessionsOfType:(NSString *)sessionType {
+    return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        return [session.event_type isEqualToString:sessionType];
+    }] array];
 }
 
 @end

@@ -58,22 +58,22 @@ static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_TALKSTABLEVIEWCELL";
     [RACObserve(navigationView, talkType) subscribeNext:^(NSNumber *talkType) {
         switch ([talkType unsignedIntegerValue]) {
             case TalkTypeKeyNote:
-                self.talksArray = self.viewModel.keynotesArray;
+                self.talksArray = [self.viewModel keynotes];
                 break;
             case TalkTypeLongTalk:
-                self.talksArray = self.viewModel.longTalksArray;
+                self.talksArray = [self.viewModel longTalks];
                 break;
             case TalkTypeMediumTalk:
-                self.talksArray = self.viewModel.mediumTalksArray;
+                self.talksArray = [self.viewModel mediumTalks];
                 break;
             case TalkTypeLightningTalk:
-                self.talksArray = self.viewModel.lightningTalksArray;
+                self.talksArray = [self.viewModel lightningTalks];
                 break;
             case TalkTypeSocialEvent:
-                self.talksArray = self.viewModel.socialEventsArray;
+                self.talksArray = [self.viewModel socialEvents];
                 break;
             default:
-                self.talksArray = self.viewModel.keynotesArray;
+                self.talksArray = [self.viewModel keynotes];
                 break;
         }
     }];
