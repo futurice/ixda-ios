@@ -31,7 +31,11 @@
 }
 
 + (UIColor *)ixda_speakersTableViewCellBlurColor {
-    return [UIColor colorWithRed:0 green:0.408 blue:0.941 alpha:0.4];
+    return [UIColor colorWithRed:0 green:0.41 blue:0.94 alpha:0.4];
+}
+
++ (UIColor *)ixda_infoSubtitleColor {
+    return [UIColor colorWithRed:0 green:0.41 blue:0.94 alpha:1];
 }
 
 @end
