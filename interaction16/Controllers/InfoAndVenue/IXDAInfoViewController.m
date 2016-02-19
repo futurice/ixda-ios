@@ -7,7 +7,7 @@
 //
 
 #import "IXDAInfoViewController.h"
-
+#import "IXDAInfoView.h"
 #import "IXDATitleBarView.h"
 
 #import "UIColor+IXDA.h"
@@ -38,16 +38,12 @@
         make.height.equalTo(@(titleBarHeight));
     }];
     
-    UIWebView *webView = [[UIWebView alloc] init];
-    [self.view addSubview:webView];
-    [webView mas_makeConstraints:^(MASConstraintMaker *make) {
+    IXDAInfoView *infoView = [[IXDAInfoView alloc] init];
+    [self.view addSubview:infoView];
+    [infoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(navigationView.mas_bottom);
         make.left.bottom.right.equalTo(self.view);
     }];
-    NSString *urlAddress = @"http://interaction16.ixda.org/partners/";
-    NSURL *url = [NSURL URLWithString:urlAddress];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];
     
     return self;
 }

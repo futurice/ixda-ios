@@ -45,6 +45,9 @@
 		6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F87D41E1C6F25430039A29B /* AppDelegate.m */; };
 		6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4261C6F25430039A29B /* Assets.xcassets */; };
 		6F87D42A1C6F25430039A29B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F87D4281C6F25430039A29B /* LaunchScreen.storyboard */; };
+		6FA68C5F1C772767003237FB /* IXDAInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA68C5E1C772767003237FB /* IXDAInfoView.m */; };
+		6FA68C621C77364B003237FB /* IXDAInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA68C611C77364B003237FB /* IXDAInfoTableViewCell.m */; };
+		6FA68C651C7737E5003237FB /* UILabel+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA68C641C7737E5003237FB /* UILabel+IXDA.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +121,12 @@
 		6F87D4261C6F25430039A29B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F87D4291C6F25430039A29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F87D42B1C6F25430039A29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FA68C5D1C772767003237FB /* IXDAInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAInfoView.h; path = Controllers/InfoAndVenue/IXDAInfoView.h; sourceTree = "<group>"; };
+		6FA68C5E1C772767003237FB /* IXDAInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAInfoView.m; path = Controllers/InfoAndVenue/IXDAInfoView.m; sourceTree = "<group>"; };
+		6FA68C601C77364B003237FB /* IXDAInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAInfoTableViewCell.h; path = Controllers/InfoAndVenue/IXDAInfoTableViewCell.h; sourceTree = "<group>"; };
+		6FA68C611C77364B003237FB /* IXDAInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAInfoTableViewCell.m; path = Controllers/InfoAndVenue/IXDAInfoTableViewCell.m; sourceTree = "<group>"; };
+		6FA68C631C7737E5003237FB /* UILabel+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+IXDA.h"; path = "Helpers/UILabel+IXDA.h"; sourceTree = "<group>"; };
+		6FA68C641C7737E5003237FB /* UILabel+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+IXDA.m"; path = "Helpers/UILabel+IXDA.m"; sourceTree = "<group>"; };
 		707C2CE9765B9BBCA6D3866C /* Pods-interaction16.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.debug.xcconfig"; sourceTree = "<group>"; };
 		FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interaction16.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,13 +185,17 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		6F5006051C74F7DE00F56DBA /* InfoAndVenue */ = {
+		6F5006051C74F7DE00F56DBA /* Info */ = {
 			isa = PBXGroup;
 			children = (
 				6F5006061C74F80B00F56DBA /* IXDAInfoViewController.h */,
 				6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */,
+				6FA68C5D1C772767003237FB /* IXDAInfoView.h */,
+				6FA68C5E1C772767003237FB /* IXDAInfoView.m */,
+				6FA68C601C77364B003237FB /* IXDAInfoTableViewCell.h */,
+				6FA68C611C77364B003237FB /* IXDAInfoTableViewCell.m */,
 			);
-			name = InfoAndVenue;
+			name = Info;
 			sourceTree = "<group>";
 		};
 		6F50192F1C6FA02800CB7937 /* JSONs */ = {
@@ -256,14 +269,16 @@
 			children = (
 				6F3156061C76420E006A43AF /* NSDate+Additions.h */,
 				6F3156071C76420E006A43AF /* NSDate+Additions.m */,
+				6F5019471C7079D900CB7937 /* IXDASessionManager.h */,
+				6F5019481C7079D900CB7937 /* IXDASessionManager.m */,
 				6F668DAC1C6F409500475BCA /* UIButton+IXDA.h */,
 				6F668DAD1C6F409500475BCA /* UIButton+IXDA.m */,
 				6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */,
 				6F668DA11C6F33CE00475BCA /* UIColor+IXDA.m */,
 				6F668DB81C6F420500475BCA /* UIFont+IXDA.h */,
 				6F668DB91C6F420500475BCA /* UIFont+IXDA.m */,
-				6F5019471C7079D900CB7937 /* IXDASessionManager.h */,
-				6F5019481C7079D900CB7937 /* IXDASessionManager.m */,
+				6FA68C631C7737E5003237FB /* UILabel+IXDA.h */,
+				6FA68C641C7737E5003237FB /* UILabel+IXDA.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -272,8 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				6F3155F61C763A29006A43AF /* Schedule */,
-				6F5006051C74F7DE00F56DBA /* InfoAndVenue */,
-				6F668DCD1C6F632C00475BCA /* MapAndVenue */,
+				6F5006051C74F7DE00F56DBA /* Info */,
+				6F668DCD1C6F632C00475BCA /* Map */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
 				6F5019321C6FA1CF00CB7937 /* Program */,
 				6F50193B1C6FAB1500CB7937 /* Speakers */,
@@ -306,13 +321,13 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		6F668DCD1C6F632C00475BCA /* MapAndVenue */ = {
+		6F668DCD1C6F632C00475BCA /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				6F668DD31C6F638B00475BCA /* IXDAMapViewController.h */,
 				6F668DD41C6F638B00475BCA /* IXDAMapViewController.m */,
 			);
-			name = MapAndVenue;
+			name = Map;
 			sourceTree = "<group>";
 		};
 		6F87D40E1C6F25430039A29B = {
@@ -504,12 +519,15 @@
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
 				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,
+				6FA68C651C7737E5003237FB /* UILabel+IXDA.m in Sources */,
 				6F6308F71C72709000558AA8 /* IXDATalksNavigationView.m in Sources */,
 				6F5019511C70A16F00CB7937 /* Session.m in Sources */,
+				6FA68C621C77364B003237FB /* IXDAInfoTableViewCell.m in Sources */,
 				6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */,
 				6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */,
 				6F50193E1C6FAB4E00CB7937 /* IXDASpeakersViewController.m in Sources */,
 				6F5019451C70786B00CB7937 /* IXDASessionStore.m in Sources */,
+				6FA68C5F1C772767003237FB /* IXDAInfoView.m in Sources */,
 				6F5019411C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
 				6F5019491C7079D900CB7937 /* IXDASessionManager.m in Sources */,
