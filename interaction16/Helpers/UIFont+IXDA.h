@@ -21,4 +21,9 @@
 + (UIFont *)ixda_speakersCellTitle;
 + (UIFont *)ixda_speakersCellSubTitle;
 
+
++ (UIFont *)ixda_infoCellTitleFont;
++ (UIFont *)ixda_infoCellDescriptionFont;
++ (UIFont *)ixda_infoCellSubTitleFont;
+
 @end
