@@ -8,9 +8,12 @@
 
 #import "IXDAInfoTableViewCell.h"
 
-#import <Masonry/Masonry.h>
 #import "UILabel+IXDA.h"
+#import "UIFont+IXDA.h"
 #import "UIColor+IXDA.h"
+
+#import <Masonry/Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation IXDAInfoTableViewCell
 
@@ -112,10 +115,17 @@
 }
 
 - (UIView *)venueView {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    
     UIImage *image = [UIImage imageNamed:@"infoVenueBackgroundView"];
-    UIImageView *view = [[UIImageView alloc] initWithImage:image];
-    view.clipsToBounds = YES;
-    view.contentMode = UIViewContentModeScaleAspectFill;
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.clipsToBounds = YES;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(view);
+    }];
     
     UILabel *title = [UILabel ixda_infoTitleLabel];
     title.text = @"The main venue";
@@ -150,7 +160,24 @@
         make.top.equalTo(secondTitle.mas_bottom).offset(20);
     }];
     
-    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"Directions" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor blackColor];
+    button.tintColor = [UIColor whiteColor];
+    button.titleLabel.font = [UIFont ixda_menuItemFontSmall];
+    [view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view);
+        make.top.equalTo(secondDescription.mas_bottom).offset(20);
+        make.width.equalTo(@140);
+    }];
+    [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        NSString *urlString = [NSString stringWithFormat:@"comgooglemaps://?daddr=%@&directionmode=driving", secondDescription.text];
+        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        if([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        };
+    }];
     
     return view;
 }

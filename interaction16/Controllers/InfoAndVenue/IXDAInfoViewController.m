@@ -38,6 +38,12 @@
         make.height.equalTo(@(titleBarHeight));
     }];
     
+    @weakify(self)
+    [navigationView.backButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
     IXDAInfoView *infoView = [[IXDAInfoView alloc] init];
     [self.view addSubview:infoView];
     [infoView mas_makeConstraints:^(MASConstraintMaker *make) {
