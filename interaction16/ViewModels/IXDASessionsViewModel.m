@@ -9,7 +9,9 @@
 #import "IXDASessionsViewModel.h"
 
 #import "Session.h"
+#import "Speaker.h"
 #import "IXDASessionStore.h"
+#import "IXDASpeakerStore.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -21,9 +23,28 @@
     if (!self) return nil;
     
     [self loadSessions];
+    [self loadSpeakers];
     
     return self;
 }
+
+
+
+- (void)loadSpeakers {
+    @weakify(self)
+    [[[IXDASpeakerStore sharedStore] speakersFromFile] subscribeNext:^(NSArray *speakersArray) {
+        @strongify(self)
+        self.speakers = [self mapSpeakersArrayToDict:speakersArray];
+        [self loadSpeakerFromBackend];
+    }];
+}
+
+- (void)loadSpeakerFromBackend {
+    [[[IXDASpeakerStore sharedStore] speakers] subscribeNext:^(NSArray *speakersArray) {
+        self.speakers = [self mapSpeakersArrayToDict:speakersArray];
+    }];
+}
+
 
 - (void)loadSessions {
     @weakify(self)
@@ -72,6 +93,14 @@
     return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
         return [session.event_type isEqualToString:sessionType];
     }] array];
+}
+
+- (NSDictionary *)mapSpeakersArrayToDict:(NSArray *)speakersArray {
+    NSMutableDictionary *mutableDiict = [[NSMutableDictionary alloc] init];
+    for (Speaker *speaker in speakersArray) {
+        [mutableDiict addEntriesFromDictionary:@{ speaker.name : speaker }];
+    }
+    return [mutableDiict copy];
 }
 
 @end
