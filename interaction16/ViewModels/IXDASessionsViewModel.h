@@ -11,6 +11,7 @@
 @interface IXDASessionsViewModel : NSObject
 
 @property (nonatomic, strong) NSArray *sessions;
+@property (nonatomic, strong) NSDictionary *speakers;
 
 - (void)loadSessionsFromBackend;
 - (NSArray *)keynotes;
