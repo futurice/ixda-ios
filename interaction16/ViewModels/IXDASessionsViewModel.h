@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class IXDASessionDetailsViewModel;
+
 @interface IXDASessionsViewModel : NSObject
 
 @property (nonatomic, strong) NSArray *sessions;
@@ -20,5 +22,8 @@
 - (NSArray *)lightningTalks;
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
+
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+
 
 @end

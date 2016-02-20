@@ -7,6 +7,7 @@
 //
 
 #import "IXDASessionsViewModel.h"
+#import "IXDASessionDetailsViewModel.h"
 
 #import "Session.h"
 #import "Speaker.h"
@@ -87,6 +88,16 @@
     return [self sessionsOfType:@"Social Event"];
 }
 
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    IXDASessionDetailsViewModel *viewModel = nil;
+    if ([selectedSessions objectAtIndex:index]) {
+        Session *session = selectedSessions[index];
+        NSArray *speakers = [self speakersOfSession:session.speakers];
+        viewModel = [[IXDASessionDetailsViewModel alloc] initWithSession:session speakers:speakers];
+    }
+    return viewModel;
+}
+
 #pragma mark - Private Helpers
 
 - (NSArray *)sessionsOfType:(NSString *)sessionType {
@@ -101,6 +112,16 @@
         [mutableDiict addEntriesFromDictionary:@{ speaker.name : speaker }];
     }
     return [mutableDiict copy];
+}
+
+- (NSArray *)speakersOfSession:(NSString *)speakersString {
+    return [[[[speakersString componentsSeparatedByString:@","] rac_sequence] map:^Speaker*(NSString *name) {
+        return [self speakerBy:name];
+    }] array];
+}
+
+- (Speaker *)speakerBy:(NSString *)name {
+    return self.speakers[name];
 }
 
 @end
