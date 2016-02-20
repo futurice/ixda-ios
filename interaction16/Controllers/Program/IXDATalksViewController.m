@@ -10,11 +10,11 @@
 #import "IXDATalksTableViewCell.h"
 #import "IXDASpeakersTableViewCell.h"
 #import "IXDATalksNavigationView.h"
+#import "IXDATalkDetailViewController.h"
 
+#import "IXDASessionDetailsViewModel.h"
 #import "IXDASessionsViewModel.h"
 #import "IXDASessionStore.h"
-#import "Speaker.h"
-#import "Session.h"
 #import "UIColor+IXDA.h"
 #import "UIFont+IXDA.h"
 
@@ -29,7 +29,6 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 @property (nonatomic, strong) IXDASessionsViewModel *viewModel;
 @property (nonatomic, strong) NSArray *talksArray;
-@property (nonatomic, strong) NSNumber *talkType; // TalkType
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
@@ -59,12 +58,8 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
         @strongify(self)
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    [RACObserve(navigationView, talkType) subscribeNext:^(NSNumber *talkType) {
-        @strongify(self)
-        self.talkType = talkType;
-    }];
     
-    [RACObserve(self, talkType) subscribeNext:^(NSNumber *talkType) {
+    [RACObserve(navigationView, talkType) subscribeNext:^(NSNumber *talkType) {
         switch ([talkType unsignedIntegerValue]) {
             case TalkTypeKeyNote:
                 self.talksArray = [self.viewModel keynotes];
@@ -136,24 +131,25 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    Session *session = [self talkAtIndexPath:indexPath];
-    if (self.talkType.unsignedIntegerValue == TalkTypeKeyNote) {
+    IXDASessionDetailsViewModel *detailViewModel = [self.viewModel sessionsDetailViewModelOfArray:self.talksArray forIndex:indexPath.row];
+    if ([[detailViewModel sessionType] isEqualToString:@"Keynote"]) {
         IXDASpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_SPEAKERSTABLEVIEWCELL];
-        Speaker *speaker = [self speaker:session.speakers];
-        [cell setName:speaker.name];
-        [cell setJob:speaker.position];
+        [cell setName:[detailViewModel speakerNameFromIndex:0]];
+        [cell setJob:[detailViewModel companyNameFromIndex:0]];
         UIImage *placeholderImage = [UIImage imageNamed:@"placeholder"];
-        if  (speaker.avatarURL && speaker.avatarURL.length > 10) {
-            [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:speaker.avatarURL] placeholderImage:placeholderImage];
+        NSString *avatarURL = [detailViewModel speakerIconURLFromIndex:0];
+        if  (avatarURL.length > 10) {
+            [cell.backgroundImageView setImageWithURL:[NSURL URLWithString:avatarURL] placeholderImage:placeholderImage];
+        } else {
+            cell.backgroundImageView.image = placeholderImage;
         }
         return cell;
     }
     else {
         IXDATalksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_PROGRAMTABLEVIEWCELL];
         
-        [cell setTitle:session.name];
-        [cell setSpeaker:session.speakers];
+        [cell setTitle:detailViewModel.sessionName];
+        [cell setSpeaker:[detailViewModel speakerNameFromIndex:0]];
         cell.backgroundColor = ((indexPath.row % 2 == 0)
                                 ? [UIColor ixda_baseBackgroundColorA]
                                 : [UIColor ixda_baseBackgroundColorB]);
@@ -163,7 +159,9 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    IXDASessionDetailsViewModel *detailViewModel = [self.viewModel sessionsDetailViewModelOfArray:self.talksArray forIndex:indexPath.row];
+    IXDATalkDetailViewController *vc = [[IXDATalkDetailViewController alloc] initWithViewModel:detailViewModel];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -173,14 +171,9 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
     return  200;
 }
 
-#pragma mark - Helpers
-
-- (Session *)talkAtIndexPath:(NSIndexPath *)indexPath {
-    return self.talksArray[indexPath.row];
-}
-
-- (Speaker *)speaker:(NSString *)name {
-    return self.viewModel.speakers[name];
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return NO;
 }
 
 @end
