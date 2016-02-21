@@ -54,4 +54,16 @@
     return [UIFont fontWithName:@"CircularStd-Bold" size:18.0];
 }
 
++ (UIFont *)ixda_sessionDetailsTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:23.0];
+}
+
++ (UIFont *)ixda_sessionDetailsSubTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:14.0];
+}
+
++ (UIFont *)ixda_sessionDetailsDescription {
+    return [UIFont fontWithName:@"CircularStd-Book" size:16.0];
+}
+
 @end

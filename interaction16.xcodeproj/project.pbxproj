@@ -48,6 +48,10 @@
 		6FA68C5F1C772767003237FB /* IXDAInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA68C5E1C772767003237FB /* IXDAInfoView.m */; };
 		6FA68C621C77364B003237FB /* IXDAInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA68C611C77364B003237FB /* IXDAInfoTableViewCell.m */; };
 		6FA68C651C7737E5003237FB /* UILabel+IXDA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA68C641C7737E5003237FB /* UILabel+IXDA.m */; };
+		6FE307C31C788FB300B0A356 /* IXDATalkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307C21C788FB300B0A356 /* IXDATalkDetailViewController.m */; };
+		6FE307C61C78911200B0A356 /* IXDASessionDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */; };
+		6FE307C91C7895E700B0A356 /* IXDASpeakerInformationDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307C81C7895E700B0A356 /* IXDASpeakerInformationDetailView.m */; };
+		6FE307CC1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307CB1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +131,14 @@
 		6FA68C611C77364B003237FB /* IXDAInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAInfoTableViewCell.m; path = Controllers/InfoAndVenue/IXDAInfoTableViewCell.m; sourceTree = "<group>"; };
 		6FA68C631C7737E5003237FB /* UILabel+IXDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+IXDA.h"; path = "Helpers/UILabel+IXDA.h"; sourceTree = "<group>"; };
 		6FA68C641C7737E5003237FB /* UILabel+IXDA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+IXDA.m"; path = "Helpers/UILabel+IXDA.m"; sourceTree = "<group>"; };
+		6FE307C11C788FB300B0A356 /* IXDATalkDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATalkDetailViewController.h; path = Controllers/Program/Detail/IXDATalkDetailViewController.h; sourceTree = "<group>"; };
+		6FE307C21C788FB300B0A356 /* IXDATalkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDATalkDetailViewController.m; path = Controllers/Program/Detail/IXDATalkDetailViewController.m; sourceTree = "<group>"; };
+		6FE307C41C78911200B0A356 /* IXDASessionDetailBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASessionDetailBar.h; path = Views/IXDASessionDetailBar.h; sourceTree = "<group>"; };
+		6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASessionDetailBar.m; path = Views/IXDASessionDetailBar.m; sourceTree = "<group>"; };
+		6FE307C71C7895E700B0A356 /* IXDASpeakerInformationDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakerInformationDetailView.h; path = Views/IXDASpeakerInformationDetailView.h; sourceTree = "<group>"; };
+		6FE307C81C7895E700B0A356 /* IXDASpeakerInformationDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerInformationDetailView.m; path = Views/IXDASpeakerInformationDetailView.m; sourceTree = "<group>"; };
+		6FE307CA1C789BDE00B0A356 /* IXDASessionDetailsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASessionDetailsViewModel.h; path = ViewModels/IXDASessionDetailsViewModel.h; sourceTree = "<group>"; };
+		6FE307CB1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASessionDetailsViewModel.m; path = ViewModels/IXDASessionDetailsViewModel.m; sourceTree = "<group>"; };
 		707C2CE9765B9BBCA6D3866C /* Pods-interaction16.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.debug.xcconfig"; sourceTree = "<group>"; };
 		FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interaction16.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -181,6 +193,10 @@
 			children = (
 				6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */,
 				6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */,
+				6FE307C41C78911200B0A356 /* IXDASessionDetailBar.h */,
+				6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */,
+				6FE307C71C7895E700B0A356 /* IXDASpeakerInformationDetailView.h */,
+				6FE307C81C7895E700B0A356 /* IXDASpeakerInformationDetailView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -210,6 +226,7 @@
 		6F5019321C6FA1CF00CB7937 /* Program */ = {
 			isa = PBXGroup;
 			children = (
+				6FE307C01C788DEC00B0A356 /* Detail */,
 				6F6308F51C72709000558AA8 /* IXDATalksNavigationView.h */,
 				6F6308F61C72709000558AA8 /* IXDATalksNavigationView.m */,
 				6F5019381C6FA7C000CB7937 /* IXDATalksTableViewCell.h */,
@@ -249,6 +266,8 @@
 				6F50194C1C709D6C00CB7937 /* IXDASessionsViewModel.m */,
 				6F5019581C70C6A800CB7937 /* IXDASpeakerViewModel.h */,
 				6F5019591C70C6A800CB7937 /* IXDASpeakerViewModel.m */,
+				6FE307CA1C789BDE00B0A356 /* IXDASessionDetailsViewModel.h */,
+				6FE307CB1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -375,6 +394,15 @@
 				6F87D41B1C6F25430039A29B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6FE307C01C788DEC00B0A356 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				6FE307C11C788FB300B0A356 /* IXDATalkDetailViewController.h */,
+				6FE307C21C788FB300B0A356 /* IXDATalkDetailViewController.m */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		DFCE96087D752A9B6A72080C /* Pods */ = {
@@ -521,11 +549,15 @@
 				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,
 				6FA68C651C7737E5003237FB /* UILabel+IXDA.m in Sources */,
 				6F6308F71C72709000558AA8 /* IXDATalksNavigationView.m in Sources */,
+				6FE307C61C78911200B0A356 /* IXDASessionDetailBar.m in Sources */,
+				6FE307C31C788FB300B0A356 /* IXDATalkDetailViewController.m in Sources */,
 				6F5019511C70A16F00CB7937 /* Session.m in Sources */,
 				6FA68C621C77364B003237FB /* IXDAInfoTableViewCell.m in Sources */,
 				6F668DAE1C6F409500475BCA /* UIButton+IXDA.m in Sources */,
+				6FE307C91C7895E700B0A356 /* IXDASpeakerInformationDetailView.m in Sources */,
 				6F668DAB1C6F3E7400475BCA /* IXDAMenuViewController.m in Sources */,
 				6F50193E1C6FAB4E00CB7937 /* IXDASpeakersViewController.m in Sources */,
+				6FE307CC1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m in Sources */,
 				6F5019451C70786B00CB7937 /* IXDASessionStore.m in Sources */,
 				6FA68C5F1C772767003237FB /* IXDAInfoView.m in Sources */,
 				6F5019411C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m in Sources */,
