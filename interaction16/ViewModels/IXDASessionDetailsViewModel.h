@@ -22,6 +22,8 @@
 - (NSString *)sessionType;
 - (NSString *)venueName;
 - (NSString *)date;
+- (NSString *)startToEndTime;
+- (NSString *)dayAndStartingTime;
 
 - (NSString *)speakerNameFromIndex:(NSUInteger)index;
 - (NSString *)speakerIconURLFromIndex:(NSUInteger)index;

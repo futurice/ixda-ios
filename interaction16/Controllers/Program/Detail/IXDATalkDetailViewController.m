@@ -35,7 +35,7 @@
     CGFloat statusBarHeight = 20.0;
     CGFloat titleBarHeight = 220.0;
     
-    IXDASessionDetailBar *navigationView = [[IXDASessionDetailBar alloc] initWithTitle:self.viewModel.sessionName   venue:self.viewModel.venueName date:self.viewModel.date];
+    IXDASessionDetailBar *navigationView = [[IXDASessionDetailBar alloc] initWithTitle:self.viewModel.sessionName   venue:self.viewModel.venueName date:self.viewModel.startToEndTime];
     [self.view addSubview:navigationView];
     [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(statusBarHeight);
