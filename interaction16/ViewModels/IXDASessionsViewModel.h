@@ -15,9 +15,12 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
     IXDASessionDaySaturday
 };
 
+@class IXDASessionDetailsViewModel;
+
 @interface IXDASessionsViewModel : NSObject
 
 @property (nonatomic, strong) NSArray *sessions;
+@property (nonatomic, strong) NSDictionary *speakers;
 
 - (void)loadSessionsFromBackend;
 - (NSArray *)keynotes;
@@ -28,5 +31,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 - (NSArray *)socialEvents;
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+
 
 @end

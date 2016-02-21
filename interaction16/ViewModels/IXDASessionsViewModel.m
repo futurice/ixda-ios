@@ -7,9 +7,12 @@
 //
 
 #import "IXDASessionsViewModel.h"
+#import "IXDASessionDetailsViewModel.h"
 
 #import "Session.h"
+#import "Speaker.h"
 #import "IXDASessionStore.h"
+#import "IXDASpeakerStore.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -21,9 +24,28 @@
     if (!self) return nil;
     
     [self loadSessions];
+    [self loadSpeakers];
     
     return self;
 }
+
+
+
+- (void)loadSpeakers {
+    @weakify(self)
+    [[[IXDASpeakerStore sharedStore] speakersFromFile] subscribeNext:^(NSArray *speakersArray) {
+        @strongify(self)
+        self.speakers = [self mapSpeakersArrayToDict:speakersArray];
+        [self loadSpeakerFromBackend];
+    }];
+}
+
+- (void)loadSpeakerFromBackend {
+    [[[IXDASpeakerStore sharedStore] speakers] subscribeNext:^(NSArray *speakersArray) {
+        self.speakers = [self mapSpeakersArrayToDict:speakersArray];
+    }];
+}
+
 
 - (void)loadSessions {
     @weakify(self)
@@ -66,6 +88,16 @@
     return [self sessionsOfType:@"Social Event"];
 }
 
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    IXDASessionDetailsViewModel *viewModel = nil;
+    if ([selectedSessions objectAtIndex:index]) {
+        Session *session = selectedSessions[index];
+        NSArray *speakers = [self speakersOfSession:session.speakers];
+        viewModel = [[IXDASessionDetailsViewModel alloc] initWithSession:session speakers:speakers];
+    }
+    return viewModel;
+}
+
 #pragma mark - Private Helpers
 
 - (NSArray *)sessionsOfType:(NSString *)sessionType {
@@ -79,6 +111,24 @@
         NSInteger day = [[[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:session.event_start] day];
         return day == sessionType;
     }] array];
+}
+
+- (NSDictionary *)mapSpeakersArrayToDict:(NSArray *)speakersArray {
+    NSMutableDictionary *mutableDiict = [[NSMutableDictionary alloc] init];
+    for (Speaker *speaker in speakersArray) {
+        [mutableDiict addEntriesFromDictionary:@{ speaker.name : speaker }];
+    }
+    return [mutableDiict copy];
+}
+
+- (NSArray *)speakersOfSession:(NSString *)speakersString {
+    return [[[[speakersString componentsSeparatedByString:@","] rac_sequence] map:^Speaker*(NSString *name) {
+        return [self speakerBy:name];
+    }] array];
+}
+
+- (Speaker *)speakerBy:(NSString *)name {
+    return self.speakers[name];
 }
 
 @end
