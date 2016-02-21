@@ -38,6 +38,21 @@
 }
 
 - (NSString *)date {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"dd.MM.yyyy";
+    return [format stringFromDate:self.session.event_start];
+}
+
+- (NSString *)startToEndTime {
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    timeFormatter.dateFormat = @"HH:mm";
+    NSString *startTimeString = [timeFormatter stringFromDate:self.session.event_start];
+    NSString *endTimeString = [timeFormatter stringFromDate:self.session.event_end];
+    
+    return [NSString stringWithFormat:@"%@ - %@", startTimeString, endTimeString];
+}
+
+- (NSString *)dayAndStartingTime {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     NSString *dayString = [[dateFormatter stringFromDate:self.session.event_start] substringToIndex:3];
@@ -45,7 +60,7 @@
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
     timeFormatter.dateFormat = @"HH:mm";
     NSString *timeString = [timeFormatter stringFromDate:self.session.event_start];
-
+    
     return [NSString stringWithFormat:@"%@ %@", dayString, timeString];
 }
 
