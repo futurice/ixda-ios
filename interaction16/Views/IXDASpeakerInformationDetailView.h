@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IXDASpeakerInformationDetailView : UIView
+@interface IXDASpeakerInformationDetailView : UIView <UITableViewDelegate>
 
-- (instancetype)initWithName:(NSString *)name company:(NSString *)company description:(NSString *)description;
+- (instancetype)initWithNames:(NSArray *)names companies:(NSArray *)companies description:(NSString *)description;
 
 @end
