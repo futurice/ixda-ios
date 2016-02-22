@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) RACSignal *starSignal;
 
+- (void)showStar:(BOOL)show;
+
 - (void)setTitle:(NSString *)title;
 - (void)setSpeaker:(NSString *)speaker;
 - (void)setStarred:(BOOL)starred;

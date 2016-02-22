@@ -101,7 +101,7 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IXDASpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_SPEAKERSTABLEVIEWCELL];
-
+    [cell showStar:NO];
     Speaker *speaker = [self speakerAtIndexPath:indexPath];
     [cell setName:speaker.name];
     [cell setJob:speaker.position];

@@ -13,6 +13,9 @@
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) RACSignal *starSignal;
+
+- (void)showStar:(BOOL)show;
+
 - (void)setName:(NSString *)name;
 - (void)setJob:(NSString *)job;
 - (void)setStarred:(BOOL)starred;

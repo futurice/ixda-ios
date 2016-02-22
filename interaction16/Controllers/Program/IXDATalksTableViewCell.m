@@ -85,6 +85,15 @@
     return self;
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [self showStar:YES];
+}
+
+- (void)showStar:(BOOL)show {
+    self.starButton.hidden = !show;
+}
+
 - (void)setTitle:(NSString *)title {
     self.titleLabel.text = title;
 }
