@@ -169,7 +169,7 @@ static NSString *IXDA_SOCIALTABLEVIEWCELL = @"IXDA_SOCIALTABLEVIEWCELL";
         IXDATalksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_PROGRAMTABLEVIEWCELL];
         
         [cell setTitle:detailViewModel.sessionName];
-        [cell setSpeaker:[detailViewModel speakerNameFromIndex:0]];
+        [cell setSpeaker:[[detailViewModel speakerNames] componentsJoinedByString:@", "]];
         [cell setStarred:[detailViewModel starred]];
         cell.backgroundColor = ((indexPath.row % 2 == 0)
                                 ? [UIColor ixda_baseBackgroundColorA]
