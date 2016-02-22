@@ -9,7 +9,7 @@
 #import "IXDATalkDetailViewController.h"
 #import "IXDASpeakerInformationDetailView.h"
 #import "IXDASessionDetailBar.h"
-
+#import "IXDASocialEventDetailBar.h"
 #import "IXDASessionDetailsViewModel.h"
 
 #import "UIColor+IXDA.h"
@@ -35,18 +35,31 @@
     CGFloat statusBarHeight = 20.0;
     CGFloat titleBarHeight = 220.0;
     
-    IXDASessionDetailBar *navigationView = [[IXDASessionDetailBar alloc] initWithTitle:self.viewModel.sessionName   venue:self.viewModel.venueName date:self.viewModel.startToEndTime];
-    [self.view addSubview:navigationView];
-    [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *generalNavigationView;
+    
+    if ([self.viewModel.sessionType isEqualToString:@"Social Event"]) {
+        IXDASocialEventDetailBar *navigationView = [[IXDASocialEventDetailBar alloc] initWithTitle:self.viewModel.sessionName venue:self.viewModel.venueName date:self.viewModel.date time:self.viewModel.startToEndTime];
+
+        @weakify(self)
+        [navigationView.backButtonSignal subscribeNext:^(id x) {
+            @strongify(self)
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        generalNavigationView = navigationView;
+    } else {
+        IXDASessionDetailBar *navigationView = [[IXDASessionDetailBar alloc] initWithTitle:self.viewModel.sessionName   venue:self.viewModel.venueName date:self.viewModel.startToEndTime];
+        @weakify(self)
+        [navigationView.backButtonSignal subscribeNext:^(id x) {
+            @strongify(self)
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        generalNavigationView = navigationView;
+    }
+    [self.view addSubview:generalNavigationView];
+    [generalNavigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(statusBarHeight);
         make.left.right.equalTo(self.view);
         make.height.equalTo(@(titleBarHeight));
-    }];
-    
-    @weakify(self)
-    [navigationView.backButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        [self.navigationController popViewControllerAnimated:YES];
     }];
     
     if (self.viewModel.speakers > 0) {
@@ -56,7 +69,7 @@
         IXDASpeakerInformationDetailView *speakersInformationView = [[IXDASpeakerInformationDetailView alloc] initWithName:name company:company description:description];
         [self.view addSubview:speakersInformationView];
         [speakersInformationView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(navigationView.mas_bottom);
+            make.top.equalTo(generalNavigationView.mas_bottom);
             make.left.right.bottom.equalTo(self.view);
         }];
     }

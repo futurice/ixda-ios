@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		644FBCE21C7B13A8001161C6 /* IXDAStarredSessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 644FBCE11C7B13A8001161C6 /* IXDAStarredSessionStore.m */; };
 		644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */; };
+		645EB52A1C7B3F12008C801F /* IXDASocialEventDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */; };
 		6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */; };
 		6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */; };
 		6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */; };
@@ -57,6 +58,8 @@
 		644FBCE11C7B13A8001161C6 /* IXDAStarredSessionStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAStarredSessionStore.m; path = Stores/IXDAStarredSessionStore.m; sourceTree = "<group>"; };
 		644FBCE31C7B2B9E001161C6 /* IXDASocialEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASocialEventTableViewCell.h; path = Controllers/Program/IXDASocialEventTableViewCell.h; sourceTree = "<group>"; };
 		644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASocialEventTableViewCell.m; path = Controllers/Program/IXDASocialEventTableViewCell.m; sourceTree = "<group>"; };
+		645EB5281C7B3F12008C801F /* IXDASocialEventDetailBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASocialEventDetailBar.h; path = Views/IXDASocialEventDetailBar.h; sourceTree = "<group>"; };
+		645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASocialEventDetailBar.m; path = Views/IXDASocialEventDetailBar.m; sourceTree = "<group>"; };
 		6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWorkshopViewController.h; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.h; sourceTree = "<group>"; };
 		6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWorkshopViewController.m; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.m; sourceTree = "<group>"; };
 		6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATitleBarView.h; path = Views/IXDATitleBarView.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */,
 				6FE307C41C78911200B0A356 /* IXDASessionDetailBar.h */,
 				6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */,
+				645EB5281C7B3F12008C801F /* IXDASocialEventDetailBar.h */,
+				645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */,
 				6FE307C71C7895E700B0A356 /* IXDASpeakerInformationDetailView.h */,
 				6FE307C81C7895E700B0A356 /* IXDASpeakerInformationDetailView.m */,
 			);
@@ -547,6 +552,7 @@
 				6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */,
 				6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */,
 				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
+				645EB52A1C7B3F12008C801F /* IXDASocialEventDetailBar.m in Sources */,
 				6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
