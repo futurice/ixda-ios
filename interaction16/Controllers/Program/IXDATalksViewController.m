@@ -9,6 +9,7 @@
 #import "IXDATalksViewController.h"
 #import "IXDATalksTableViewCell.h"
 #import "IXDASpeakersTableViewCell.h"
+#import "IXDASocialEventTableViewCell.h"
 #import "IXDATalksNavigationView.h"
 #import "IXDATalkDetailViewController.h"
 
@@ -24,6 +25,7 @@
 
 static NSString *IXDA_PROGRAMTABLEVIEWCELL = @"IDXA_TALKSTABLEVIEWCELL";
 static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
+static NSString *IXDA_SOCIALTABLEVIEWCELL = @"IXDA_SOCIALTABLEVIEWCELL";
 
 @interface IXDATalksViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
@@ -90,6 +92,7 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
            forCellReuseIdentifier:IXDA_PROGRAMTABLEVIEWCELL];
     [self.tableView registerClass:IXDASpeakersTableViewCell.class
            forCellReuseIdentifier:IXDA_SPEAKERSTABLEVIEWCELL];
+    [self.tableView registerClass:IXDASocialEventTableViewCell.class forCellReuseIdentifier:IXDA_SOCIALTABLEVIEWCELL];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(navigationView.mas_bottom);
@@ -150,6 +153,16 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
             [detailViewModel setStarred:[selected boolValue]];
         }];
         
+        return cell;
+    }
+    else if ([[detailViewModel sessionType] isEqualToString:@"Social Event"]) {
+        IXDASocialEventTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:IXDA_SOCIALTABLEVIEWCELL];
+        [cell setDay:detailViewModel.date time:detailViewModel.startToEndTime];
+        [cell setTitle:detailViewModel.sessionName];
+        [cell setLocationName:detailViewModel.venueName];
+        cell.backgroundColor = ((indexPath.row % 2 == 0)
+                                ? [UIColor ixda_baseBackgroundColorA]
+                                : [UIColor ixda_baseBackgroundColorB]);
         return cell;
     }
     else {
