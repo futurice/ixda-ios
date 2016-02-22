@@ -23,7 +23,7 @@
 - (NSString *)venueName;
 - (NSString *)date;
 - (NSString *)startToEndTime;
-- (NSString *)dayAndStartingTime;
+- (NSString *)dayAndTime;
 
 - (BOOL)starred;
 - (void)setStarred:(BOOL)starred;

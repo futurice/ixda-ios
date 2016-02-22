@@ -47,7 +47,7 @@
         }];
         generalNavigationView = navigationView;
     } else {
-        IXDASessionDetailBar *navigationView = [[IXDASessionDetailBar alloc] initWithTitle:self.viewModel.sessionName   venue:self.viewModel.venueName date:self.viewModel.startToEndTime];
+        IXDASessionDetailBar *navigationView = [[IXDASessionDetailBar alloc] initWithTitle:self.viewModel.sessionName   venue:self.viewModel.venueName date:self.viewModel.dayAndTime];
         @weakify(self)
         [navigationView.backButtonSignal subscribeNext:^(id x) {
             @strongify(self)
