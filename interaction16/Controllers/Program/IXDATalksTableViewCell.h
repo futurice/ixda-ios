@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface IXDATalksTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) RACSignal *starSignal;
+
 - (void)setTitle:(NSString *)title;
 - (void)setSpeaker:(NSString *)speaker;
+- (void)setStarred:(BOOL)starred;
 
 @end

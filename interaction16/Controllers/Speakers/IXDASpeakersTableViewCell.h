@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface IXDASpeakersTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
-
+@property (nonatomic, strong) RACSignal *starSignal;
 - (void)setName:(NSString *)name;
 - (void)setJob:(NSString *)job;
+- (void)setStarred:(BOOL)starred;
 
 @end
