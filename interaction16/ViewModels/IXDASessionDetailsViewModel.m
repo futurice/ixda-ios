@@ -10,6 +10,7 @@
 
 #import "Session.h"
 #import "Speaker.h"
+#import "IXDAStarredSessionStore.h"
 
 @implementation IXDASessionDetailsViewModel
 
@@ -50,6 +51,14 @@
     NSString *endTimeString = [timeFormatter stringFromDate:self.session.event_end];
     
     return [NSString stringWithFormat:@"%@ - %@", startTimeString, endTimeString];
+}
+
+- (BOOL)starred {
+    return [[IXDAStarredSessionStore sharedStore] starredForEventKey:self.session.event_key];
+}
+
+- (void)setStarred:(BOOL)starred {
+    [[IXDAStarredSessionStore sharedStore] setStarred:starred forEventKey:self.session.event_key];
 }
 
 - (NSString *)dayAndStartingTime {
@@ -100,5 +109,7 @@
     
     return @"";
 }
+
+
 
 @end

@@ -25,6 +25,9 @@
 - (NSString *)startToEndTime;
 - (NSString *)dayAndStartingTime;
 
+- (BOOL)starred;
+- (void)setStarred:(BOOL)starred;
+
 - (NSString *)speakerNameFromIndex:(NSUInteger)index;
 - (NSString *)speakerIconURLFromIndex:(NSUInteger)index;
 - (NSString *)companyNameFromIndex:(NSUInteger)index;
