@@ -26,6 +26,8 @@
 + (UIFont *)ixda_infoCellDescriptionFont;
 + (UIFont *)ixda_infoCellSubTitleFont;
 
++ (UIFont *)ixda_socialCellDateFont;
+
 + (UIFont *)ixda_sessionDetailsTitle;
 + (UIFont *)ixda_sessionDetailsSubTitle;
 + (UIFont *)ixda_sessionDetailsDescription;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		644FBCE21C7B13A8001161C6 /* IXDAStarredSessionStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 644FBCE11C7B13A8001161C6 /* IXDAStarredSessionStore.m */; };
+		644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */; };
 		6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */; };
 		6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */; };
 		6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */; };
@@ -54,6 +55,8 @@
 		0D570BAB5C39CB1CA6BB0A87 /* Pods-interaction16.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.release.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.release.xcconfig"; sourceTree = "<group>"; };
 		644FBCE01C7B13A8001161C6 /* IXDAStarredSessionStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAStarredSessionStore.h; path = Stores/IXDAStarredSessionStore.h; sourceTree = "<group>"; };
 		644FBCE11C7B13A8001161C6 /* IXDAStarredSessionStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAStarredSessionStore.m; path = Stores/IXDAStarredSessionStore.m; sourceTree = "<group>"; };
+		644FBCE31C7B2B9E001161C6 /* IXDASocialEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASocialEventTableViewCell.h; path = Controllers/Program/IXDASocialEventTableViewCell.h; sourceTree = "<group>"; };
+		644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASocialEventTableViewCell.m; path = Controllers/Program/IXDASocialEventTableViewCell.m; sourceTree = "<group>"; };
 		6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWorkshopViewController.h; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.h; sourceTree = "<group>"; };
 		6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWorkshopViewController.m; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.m; sourceTree = "<group>"; };
 		6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATitleBarView.h; path = Views/IXDATitleBarView.h; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				6F5019391C6FA7C000CB7937 /* IXDATalksTableViewCell.m */,
 				6F5019331C6FA1F100CB7937 /* IXDATalksViewController.h */,
 				6F5019341C6FA1F100CB7937 /* IXDATalksViewController.m */,
+				644FBCE31C7B2B9E001161C6 /* IXDASocialEventTableViewCell.h */,
+				644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */,
 			);
 			name = Program;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				6F5019491C7079D900CB7937 /* IXDASessionManager.m in Sources */,
 				6F668DA81C6F3E5100475BCA /* IXDAMenuView.m in Sources */,
 				6F50194D1C709D6C00CB7937 /* IXDASessionsViewModel.m in Sources */,
+				644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */,
 				6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */,
 				6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */,
 				6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */,

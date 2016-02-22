@@ -54,6 +54,10 @@
     return [UIFont fontWithName:@"CircularStd-Bold" size:18.0];
 }
 
++ (UIFont *)ixda_socialCellDateFont {
+    return [UIFont fontWithName:@"CircularStd-Medium" size:16.0];
+}
+
 + (UIFont *)ixda_sessionDetailsTitle {
     return [UIFont fontWithName:@"CircularStd-Bold" size:23.0];
 }
