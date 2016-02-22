@@ -100,7 +100,7 @@ static NSString *IDXA_WORKSHOPTABLEVIEWCELL = @"IDXA_WORKSHOPTABLEVIEWCELL";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IXDATalksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IDXA_WORKSHOPTABLEVIEWCELL];
-    
+    [cell showStar:NO];
     Session *session = [self talkAtIndexPath:indexPath];
     [cell setTitle:session.name];
     [cell setSpeaker:session.speakers];
