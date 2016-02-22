@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *jobLabel;
+@property (nonatomic, strong) UIButton *starButton;
 
 @end
 
@@ -70,6 +71,27 @@
         make.height.equalTo(@4);
         make.left.right.equalTo(self.contentView);
     }];
+    
+    self.starButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.starButton setImage:[UIImage imageNamed:@"starUnselected"] forState:UIControlStateNormal];
+    [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateHighlighted];
+    [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateSelected];
+    [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateFocused];
+    [self.contentView addSubview:self.starButton];
+    [self.starButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.contentView).with.offset(-21);
+        make.right.equalTo(self.contentView).with.offset(-16);
+    }];
+    self.starSignal = [[[self.starButton rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UIButton *button) {
+        if (button.selected) {
+            button.selected = NO;
+            return @(NO);
+        } else {
+            button.selected = YES;
+            return @(YES);
+        }
+        
+    }] takeUntil:self.rac_prepareForReuseSignal];
 
     
     return self;
@@ -81,6 +103,10 @@
 
 - (void)setJob:(NSString *)job {
     self.jobLabel.text = job;
+}
+
+- (void)setStarred:(BOOL)starred {
+    self.starButton.selected = starred;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

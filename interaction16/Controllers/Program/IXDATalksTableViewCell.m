@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *speakerLabel;
+@property (nonatomic, strong) UIButton *starButton;
 
 @end
 
@@ -50,6 +51,28 @@
         make.right.equalTo(self.contentView).offset(-50);
     }];
     
+    self.starButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.starButton setImage:[UIImage imageNamed:@"starUnselected"] forState:UIControlStateNormal];
+    [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateHighlighted];
+    [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateSelected];
+    [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateFocused];
+    [self.contentView addSubview:self.starButton];
+    [self.starButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.contentView).with.offset(-21);
+        make.right.equalTo(self.contentView).with.offset(-16);
+    }];
+
+    self.starSignal = [[[self.starButton rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UIButton *button) {
+        if (button.selected) {
+            button.selected = NO;
+            return @(NO);
+        } else {
+            button.selected = YES;
+            return @(YES);
+        }
+        
+    }] takeUntil:self.rac_prepareForReuseSignal];
+    
     UIView * additionalSeparator = [[UIView alloc] init];
     additionalSeparator.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:additionalSeparator];
@@ -70,6 +93,9 @@
     self.speakerLabel.text = speaker;
 }
 
+- (void)setStarred:(BOOL)starred {
+    self.starButton.selected = starred;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
