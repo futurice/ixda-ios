@@ -10,6 +10,13 @@
 
 @implementation Session
 
++ (NSDateFormatter *)dateFormatter {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    return dateFormatter;
+}
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {
     return @{ @"name"        : @"name",
@@ -21,6 +28,22 @@
               @"speakers"    : @"speakers",
               @"venue"       : @"venue",
               @"venue_id"    : @"venue_id" };
+}
+
++ (NSValueTransformer *)event_startJSONTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
+        return [[self dateFormatter] dateFromString:dateString];
+    } reverseBlock:^id(NSDate *date, BOOL *success, NSError *__autoreleasing *error) {
+        return [[self dateFormatter] stringFromDate:date];
+    }];
+}
+
++ (NSValueTransformer *)event_endJSONTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
+        return [[self dateFormatter] dateFromString:dateString];
+    } reverseBlock:^id(NSDate *date, BOOL *success, NSError *__autoreleasing *error) {
+        return [[self dateFormatter] stringFromDate:date];
+    }];
 }
 
 @end
