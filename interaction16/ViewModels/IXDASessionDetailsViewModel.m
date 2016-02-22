@@ -11,6 +11,7 @@
 #import "Session.h"
 #import "Speaker.h"
 #import "IXDAStarredSessionStore.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation IXDASessionDetailsViewModel
 
@@ -72,6 +73,18 @@
     
     return [NSString stringWithFormat:@"%@ %@", dayString, timeString];
 }
+
+- (NSArray *)speakerNames {
+    return [[self.speakers.rac_sequence map:^NSString *(Speaker *speaker) {
+        return speaker.name;
+    }] array];
+}
+- (NSArray *)speakerCompanies {
+    return [[self.speakers.rac_sequence map:^NSString *(Speaker *speaker) {
+        return speaker.company;
+    }] array];
+}
+
 
 - (NSString *)speakerNameFromIndex:(NSUInteger)index {
     if ([self.speakers objectAtIndex:index]) {

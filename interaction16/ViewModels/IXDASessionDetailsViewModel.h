@@ -28,6 +28,9 @@
 - (BOOL)starred;
 - (void)setStarred:(BOOL)starred;
 
+- (NSArray *)speakerNames;
+- (NSArray *)speakerCompanies;
+
 - (NSString *)speakerNameFromIndex:(NSUInteger)index;
 - (NSString *)speakerIconURLFromIndex:(NSUInteger)index;
 - (NSString *)companyNameFromIndex:(NSUInteger)index;

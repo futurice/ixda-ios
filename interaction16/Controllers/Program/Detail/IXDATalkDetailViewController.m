@@ -62,11 +62,10 @@
         make.height.equalTo(@(titleBarHeight));
     }];
     
+    
     if (self.viewModel.speakers > 0) {
-        NSString *name = [self.viewModel speakerNameFromIndex:0];
-        NSString *company = [self.viewModel companyNameFromIndex:0];
         NSString *description = [self.viewModel descriptionNameFromIndex:0];
-        IXDASpeakerInformationDetailView *speakersInformationView = [[IXDASpeakerInformationDetailView alloc] initWithName:name company:company description:description];
+        IXDASpeakerInformationDetailView *speakersInformationView = [[IXDASpeakerInformationDetailView alloc] initWithNames:self.viewModel.speakerNames companies:self.viewModel.speakerCompanies description:description];
         [self.view addSubview:speakersInformationView];
         [speakersInformationView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(generalNavigationView.mas_bottom);
