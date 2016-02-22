@@ -115,7 +115,7 @@
 }
 
 - (NSArray *)speakersOfSession:(NSString *)speakersString {
-    return [[[[speakersString componentsSeparatedByString:@","] rac_sequence] map:^Speaker*(NSString *name) {
+    return [[[[speakersString componentsSeparatedByString:@", "] rac_sequence] map:^Speaker*(NSString *name) {
         return [self speakerBy:name];
     }] array];
 }
