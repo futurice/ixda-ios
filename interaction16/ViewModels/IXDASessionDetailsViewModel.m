@@ -62,16 +62,15 @@
     [[IXDAStarredSessionStore sharedStore] setStarred:starred forEventKey:self.session.event_key];
 }
 
-- (NSString *)dayAndStartingTime {
+- (NSString *)dayAndTime {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     NSString *dayString = [[dateFormatter stringFromDate:self.session.event_start] substringToIndex:3];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
     timeFormatter.dateFormat = @"HH:mm";
-    NSString *timeString = [timeFormatter stringFromDate:self.session.event_start];
     
-    return [NSString stringWithFormat:@"%@ %@", dayString, timeString];
+    return [NSString stringWithFormat:@"%@ %@", dayString, [self startToEndTime]];
 }
 
 - (NSArray *)speakerNames {
