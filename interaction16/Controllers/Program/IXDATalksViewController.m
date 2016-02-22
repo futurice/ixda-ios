@@ -187,6 +187,7 @@ static NSString *IXDA_SOCIALTABLEVIEWCELL = @"IXDA_SOCIALTABLEVIEWCELL";
     IXDASessionDetailsViewModel *detailViewModel = [self.viewModel sessionsDetailViewModelOfArray:self.talksArray forIndex:indexPath.row];
     IXDATalkDetailViewController *vc = [[IXDATalkDetailViewController alloc] initWithViewModel:detailViewModel];
     [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
