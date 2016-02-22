@@ -132,10 +132,12 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IXDASessionDetailsViewModel *detailViewModel = [self.viewModel sessionsDetailViewModelOfArray:self.talksArray forIndex:indexPath.row];
+    
     if ([[detailViewModel sessionType] isEqualToString:@"Keynote"]) {
         IXDASpeakersTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IXDA_SPEAKERSTABLEVIEWCELL];
         [cell setName:[detailViewModel speakerNameFromIndex:0]];
         [cell setJob:[detailViewModel companyNameFromIndex:0]];
+        [cell setStarred:[detailViewModel starred]];
         UIImage *placeholderImage = [UIImage imageNamed:@"placeholder"];
         NSString *avatarURL = [detailViewModel speakerIconURLFromIndex:0];
         if  (avatarURL.length > 10) {
@@ -143,6 +145,11 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
         } else {
             cell.backgroundImageView.image = placeholderImage;
         }
+        
+        [cell.starSignal subscribeNext:^(id selected) {
+            [detailViewModel setStarred:[selected boolValue]];
+        }];
+        
         return cell;
     }
     else {
@@ -150,9 +157,14 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
         
         [cell setTitle:detailViewModel.sessionName];
         [cell setSpeaker:[detailViewModel speakerNameFromIndex:0]];
+        [cell setStarred:[detailViewModel starred]];
         cell.backgroundColor = ((indexPath.row % 2 == 0)
                                 ? [UIColor ixda_baseBackgroundColorA]
                                 : [UIColor ixda_baseBackgroundColorB]);
+        
+        [cell.starSignal subscribeNext:^(id selected) {
+            [detailViewModel setStarred:[selected boolValue]];
+        }];
         
         return cell;
     }
