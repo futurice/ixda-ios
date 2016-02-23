@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) RACSignal *backButtonSignal;
 
-- (instancetype)initWithTitle:(NSString *)title venue:(NSString *)venue date:(NSString *)date ;
+- (instancetype)initWithTitle:(NSString *)title venue:(NSString *)venue date:(NSString *)date;
 
 @end

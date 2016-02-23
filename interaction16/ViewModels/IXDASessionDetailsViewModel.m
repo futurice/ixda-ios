@@ -11,6 +11,7 @@
 #import "Session.h"
 #import "Speaker.h"
 #import "IXDAStarredSessionStore.h"
+#import "NSString+HTML.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation IXDASessionDetailsViewModel
@@ -116,7 +117,12 @@
 - (NSString *)descriptionNameFromIndex:(NSUInteger)index {
     if ([self.speakers objectAtIndex:index]) {
         Speaker *speaker = self.speakers[index];
-        return speaker.about;
+        
+        // TODO: Move this logic to model?
+        NSString *formattedDescription = [speaker.about stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+        formattedDescription = [formattedDescription kv_decodeHTMLCharacterEntities];
+        
+        return formattedDescription;
     }
     
     return @"";
