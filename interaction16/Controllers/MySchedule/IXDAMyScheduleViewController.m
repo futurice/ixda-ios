@@ -12,6 +12,7 @@
 #import "IXDATalksTableViewCell.h"
 #import "IXDASessionsViewModel.h"
 #import "IXDATalkDetailViewController.h"
+#import "IXDAMyScheduleEmptyStateView.h"
 
 #import "Session.h"
 
@@ -27,6 +28,7 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
 @property (nonatomic, strong) IXDASessionsViewModel *viewModel;
 @property (nonatomic, strong) NSArray *starredTalksArray;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *emptyStateView;
 
 @end
 
@@ -58,6 +60,7 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
         self.starredTalksArray = [self.viewModel starredTalks];
     }];
     
+    // Set up table view.
     self.tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -71,8 +74,20 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
         make.left.bottom.right.equalTo(self.view);
     }];
     
+    // Set up empty state view.
+    self.emptyStateView = [[IXDAMyScheduleEmptyStateView alloc] initWithTitle:NSLocalizedString(@"Nothing saved yet", @"String for title in empty state view for starred talks (My Schedule)") message:NSLocalizedString(@"Create your own talk schedule by tapping the star icon next to the talks you wouldn't want to miss.", @"String for message in empty state view for starred talks (My Schedule)")];
+    self.emptyStateView.hidden = YES;
+    [self.view addSubview:self.emptyStateView];
+    [self.emptyStateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(navigationView.mas_bottom);
+        make.left.bottom.right.equalTo(self.view);
+    }];
+    
     [[RACObserve(self, starredTalksArray) deliverOnMainThread] subscribeNext:^(id x) {
         [self.tableView reloadData];
+        
+        // Show empty state view if there are no starred talks.
+        self.emptyStateView.hidden = self.starredTalksArray.count > 0;
     }];
     
     return self;
