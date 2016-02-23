@@ -13,6 +13,7 @@
 #import "Speaker.h"
 #import "IXDASessionStore.h"
 #import "IXDASpeakerStore.h"
+#import "IXDAStarredSessionStore.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -88,6 +89,12 @@
     return [self sessionsOfType:@"Social Event"];
 }
 
+- (NSArray *)starredTalks {
+    return [self sessionsWithBlock:^BOOL(Session *session) {
+        return [[IXDAStarredSessionStore sharedStore] starredForEventKey:session.event_key];
+    }];
+}
+
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
     IXDASessionDetailsViewModel *viewModel = nil;
     if ([selectedSessions objectAtIndex:index]) {
@@ -110,6 +117,12 @@
     return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
         NSInteger day = [[[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:session.event_start] day];
         return day == sessionType;
+    }] array];
+}
+
+- (NSArray *)sessionsWithBlock:(BOOL (^)(Session *session))filter {
+    return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        return filter(session);
     }] array];
 }
 

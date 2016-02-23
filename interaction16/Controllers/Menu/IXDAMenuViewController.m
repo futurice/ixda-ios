@@ -14,8 +14,9 @@
 
 #import "IXDATalksViewController.h"
 #import "IXDASpeakersViewController.h"
-#import "FestScheduleViewController.h"
 #import "IXDAWorkshopViewController.h"
+#import "FestScheduleViewController.h"
+#import "IXDAMyScheduleViewController.h"
 #import "IXDAMapViewController.h"
 #import "IXDAInfoViewController.h"
 #import "IXDAWhatElseIsOnView.h"
@@ -108,9 +109,21 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
+    [self.menuView.workshopsButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAWorkshopViewController *vc = [[IXDAWorkshopViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
     [self.menuView.scheduleButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         FestScheduleViewController *vc = [[FestScheduleViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.myScheduleButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAMyScheduleViewController *vc = [[IXDAMyScheduleViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -123,12 +136,6 @@
     [self.menuView.infoButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         IXDAInfoViewController *vc = [[IXDAInfoViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
-    
-    [self.menuView.workshopsButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        IXDAWorkshopViewController *vc = [[IXDAWorkshopViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
