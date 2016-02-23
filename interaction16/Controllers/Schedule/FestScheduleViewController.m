@@ -25,7 +25,6 @@
 
 @interface FestScheduleViewController () <TimelineViewDelegate, DayChooserDelegate, UIScrollViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) IBOutlet UIView *timelineVenuesView;
 @property (nonatomic, strong) IBOutlet DayChooser *dayChooser;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet TimelineView *timeLineView;
@@ -226,9 +225,16 @@
 {
     if (!decelerate) {
         [UIView animateWithDuration:0.3 animations:^{
-            self.timelineVenuesView.alpha = 1.0;
+            self.roomTableView.alpha = 1.0;
         }];
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Make sure venues line up with events.
+    CGRect frame = self.roomTableView.frame;
+    frame.origin = CGPointMake(frame.origin.x, 27.0 - scrollView.contentOffset.y);
+    self.roomTableView.frame = frame;
 }
 
 #pragma mark - UITableViewDataSource
