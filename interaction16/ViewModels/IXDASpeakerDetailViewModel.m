@@ -7,6 +7,7 @@
 //
 
 #import "IXDASpeakerDetailViewModel.h"
+#import "NSString+HTML.h"
 
 #import "Speaker.h"
 
@@ -46,7 +47,11 @@
 }
 
 - (NSString *)speakerAbout {
-    return self.speaker.about;
+    // TODO: Move this logic to model?
+    NSString *formattedAbout = [self.speaker.about stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+    formattedAbout = [formattedAbout kv_decodeHTMLCharacterEntities];
+    
+    return formattedAbout;
 }
 
 @end
