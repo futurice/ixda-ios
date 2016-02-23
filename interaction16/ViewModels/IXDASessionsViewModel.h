@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 - (NSArray *)lightningTalks;
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
+- (NSArray *)starredTalks;
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;

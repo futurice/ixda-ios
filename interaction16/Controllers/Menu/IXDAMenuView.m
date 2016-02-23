@@ -63,6 +63,7 @@
     
     CGFloat topPadding = 10;
     CGFloat buttonSpace = 5;
+    CGFloat buttonSectionSpace = 15;
     CGFloat leftPadding = 42;
     
     UIImage *backgroundImage = [UIImage imageNamed:@"backgroundSlice"];
@@ -107,11 +108,19 @@
     }];
     self.scheduleButtonSignal = [scheduleButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *myScheduleButton = [UIButton ixda_menuButtonWithTitle:@"My Schedule"];
+    [backgroundImageView addSubview:myScheduleButton];
+    [myScheduleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(scheduleButton.mas_bottom).offset(buttonSpace + buttonSectionSpace);
+        make.left.equalTo(scheduleButton);
+    }];
+    self.myScheduleButtonSignal = [myScheduleButton rac_signalForControlEvents:UIControlEventTouchUpInside];
+    
     UIButton *venueAndMapButton = [UIButton ixda_menuButtonWithTitle:@"Map"];
     [backgroundImageView addSubview:venueAndMapButton];
     [venueAndMapButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(scheduleButton.mas_bottom).offset(buttonSpace);
-        make.left.equalTo(scheduleButton);
+        make.top.equalTo(myScheduleButton.mas_bottom).offset(buttonSpace);
+        make.left.equalTo(myScheduleButton);
     }];
     self.venueAndMapButtonSignal = [venueAndMapButton rac_signalForControlEvents:UIControlEventTouchUpInside];
 
