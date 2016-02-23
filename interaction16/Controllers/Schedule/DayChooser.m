@@ -4,6 +4,8 @@
 //
 
 #import "DayChooser.h"
+#import "UIFont+IXDA.h"
+#import "UIColor+IXDA.h"
 
 @interface DayChooser () {
 
@@ -55,8 +57,8 @@
     // create buttons
     buttons = [NSMutableArray arrayWithCapacity:dayCount];
 
-    buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, kDayChooserHeight)];
-    buttonContainer.backgroundColor = [UIColor blackColor];
+    buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kDayChooserHeight)];
+    buttonContainer.backgroundColor = [UIColor whiteColor];
     [self addSubview:buttonContainer];
 
     CGFloat fontPointSize = 14;
@@ -69,14 +71,12 @@
         NSString *dayName = dayNames[i];
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 
-        button.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:fontPointSize];
+        button.titleLabel.font = [UIFont ixda_scheduleRoomName];
         [button setTitle:dayName.uppercaseString forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor ixda_baseBackgroundColorA] forState:UIControlStateSelected];
         [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
 
-        [button setBackgroundImage:self.unselectedImage forState:UIControlStateNormal];
-        [button setBackgroundImage:self.selectedImage forState:UIControlStateSelected];
 
         CGSize size = [button intrinsicContentSize];
         totalWidth += size.width;
@@ -85,15 +85,15 @@
         [buttonContainer addSubview:button];
     }
 
-    CGFloat additional = (320 - totalWidth)/dayCount;
+    NSLog(@"button container width: %@", NSStringFromCGRect(self.frame));
+    
+    CGFloat width = (self.frame.size.width)/dayCount;
     CGFloat left = 0;
     for (NSUInteger i = 0; i < dayCount; i++) {
         UIButton *button = buttons[i];
         CGSize size = [button intrinsicContentSize];
-        CGFloat w = size.width + additional;
-        button.frame = CGRectMake(left, 0, w, kDayChooserHeight);
+        button.frame = CGRectMake(i * width, 0, width, kDayChooserHeight);
 
-        left += w;
     }
 
     if (self.selectedDayIndex == NSNotFound) {
