@@ -9,6 +9,8 @@
 #import <AudioToolbox/AudioServices.h>
 #import <AVFoundation/AVFoundation.h>
 #import "FestfavoritesManager.h"
+#import "UIFont+IXDA.h"
+#import "UIColor+IXDA.h"
 
 
 #pragma mark - SessionButton
@@ -30,19 +32,27 @@
     _session = session;
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    self.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
+    self.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -10);
     [self setTitle:session.name.uppercaseString forState:UIControlStateNormal];
     
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = [UIColor blackColor];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.numberOfLines = 3;
     
-    self.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.titleLabel.font = [UIFont ixda_scheduleSessionName];
     
     return self;
+}
+
+- (void)setHighlighted:(BOOL)highlighted {
+    if (highlighted) {
+        self.backgroundColor = [UIColor ixda_baseBackgroundColorA];
+    } else {
+        self.backgroundColor = [UIColor blackColor];
+    }
 }
 
 @end
@@ -75,7 +85,6 @@
 #pragma mark - TimelineView
 
 @interface TimelineView ()
-@property (nonatomic, strong) NSArray *stages;
 
 @property (nonatomic, strong) NSDate *begin;
 @property (nonatomic, strong) NSDate *end;
@@ -86,8 +95,8 @@
 @property (nonatomic, strong) UIView *innerView;
 @end
 
-#define kHourWidth 200
-#define kRowHeight 47
+#define kHourWidth 360
+#define kRowHeight 48
 #define kTopPadding 26
 #define kLeftPadding 76
 #define kRightPadding 40
@@ -222,6 +231,8 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
     CGFloat w = timeWidthFrom(self.begin, self.end) + kRightPadding;
     CGFloat h = kTopPadding + (kRowHeight + kRowPadding + 3 ) * 7;
 
+    self.widthConstraint.constant = w;
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.innerView.frame = CGRectMake(x, y, w, h);
     }];
@@ -269,7 +280,7 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
     UIImage *fretImage = [UIImage imageNamed:@"schedule-hoursep.png"];
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Berlin"]];
+//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Berlin"]];
     [dateFormatter setDateFormat:@"HH:mm"];
 
     while ([fretDate compare:self.end] == NSOrderedAscending) {
@@ -312,7 +323,7 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
             CGFloat y = kTopPadding + kRowPadding + kRowHeight * stageIdx;
             CGFloat w = timeWidthFrom(session.event_start, session.event_end);
             CGFloat h = kRowHeight - kRowPadding * 2;
-            CGRect frame = CGRectMake(x, y, w, h);
+            CGRect frame = CGRectMake(x, y, w-1, h);
             
             SessionButton *button = [[SessionButton alloc] initWithFrame:frame session:session];
             

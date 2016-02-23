@@ -20,6 +20,9 @@
 @property (nonatomic, strong) NSString *currentDay;
 @property (nonatomic, strong, readonly) NSDate *currentDate;
 @property (nonatomic, strong) NSArray *favoritedSessions;
+@property (nonatomic, strong) NSArray *stages;
+
+@property (weak, nonatomic) NSLayoutConstraint *widthConstraint;
 
 @property (nonatomic, weak) id<TimelineViewDelegate> delegate;
 

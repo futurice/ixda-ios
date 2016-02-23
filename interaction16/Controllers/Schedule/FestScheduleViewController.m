@@ -12,17 +12,26 @@
 #import "IXDASessionsViewModel.h"
 #import "TimelineView.h"
 #import "DayChooser.h"
-
+#import "Session.h"
+#import "UIFont+IXDA.h"
 #import "UIColor+IXDA.h"
-
+#import "IXDATitleBarView.h"
+#import "Masonry.h"
+#import "IXDASessionsViewModel.h"
+#import "IXDASessionDetailsViewModel.h"
+#import "IXDASpeakerStore.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "IXDATalkDetailViewController.h"
 
-@interface FestScheduleViewController () <TimelineViewDelegate, DayChooserDelegate, UIScrollViewDelegate>
+@interface FestScheduleViewController () <TimelineViewDelegate, DayChooserDelegate, UIScrollViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UIView *timelineVenuesView;
 @property (nonatomic, strong) IBOutlet DayChooser *dayChooser;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet TimelineView *timeLineView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeLineViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet UITableView *roomTableView;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
 
@@ -33,24 +42,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] initWithTitle:@"Schedule"];
+    [self.headerView addSubview:navigationView];
+    [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.headerView).offset(20);
+        make.left.equalTo(self.headerView);
+        make.right.equalTo(self.headerView);
+        make.height.equalTo(self.headerView.mas_height);
+    }];
+    self.headerView.backgroundColor = [UIColor ixda_statusBarBackgroundColorB];
     self.navigationController.navigationBar.hidden = YES;
     self.dayChooser.delegate = self;
     self.dayChooser.dayNames = @[@"Tuesday", @"Wednesday", @"Thursday", @"Friday"];
 
     self.view.backgroundColor = [UIColor ixda_timelineBackgroundColor];
+    self.timeLineView.widthConstraint = self.timeLineViewWidthConstraint;
     self.timeLineView.delegate = self;
 
+    self.roomTableView.dataSource = self;
+    
     // sessions
     @weakify(self)
     IXDASessionsViewModel *viewModel = [[IXDASessionsViewModel alloc] init];
     [RACObserve(viewModel, sessions) subscribeNext:^(id __unused _) {
         @strongify(self)
         self.timeLineView.sessions = [viewModel sessionsOfDay:IXDASessionDayTuesday    ];
+        [self.roomTableView reloadData];
     }];
     
     [RACObserve(viewModel, sessions) subscribeNext:^(id __unused _) {
         @strongify(self)
         self.timeLineView.favoritedSessions = [viewModel sessionsOfDay:IXDASessionDayTuesday];
+    }];
+    
+    [navigationView.backButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 
     // back button
@@ -154,7 +181,23 @@
 
 - (void)timeLineView:(TimelineView *)timeLineView sessionSelected:(Session *)session
 {
-//    [APPDELEGATE showSession:session];
+    IXDASessionsViewModel *sessionViewModel = [[IXDASessionsViewModel alloc] init];
+    NSMutableArray *speakers = [NSMutableArray array];
+    
+    for (NSString *speakerString in [session.speakers componentsSeparatedByString:@", "]) {
+        Speaker *speaker = sessionViewModel.speakers[speakerString];
+        if (speaker) {
+            [speakers addObject:speaker];
+        }
+    }
+    
+    if (speakers.count == 0) {
+        return;
+    }
+    
+    IXDASessionDetailsViewModel *detailViewModel = [[IXDASessionDetailsViewModel alloc] initWithSession:session speakers:speakers];
+    IXDATalkDetailViewController *vc = [[IXDATalkDetailViewController alloc] initWithViewModel:detailViewModel];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)timeLineView:(TimelineView *)timeLineView session:(Session *)session favorite:(BOOL)favourite
@@ -168,14 +211,14 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [UIView animateWithDuration:0.3 animations:^{
-        self.timelineVenuesView.alpha = 0.25;
+        self.roomTableView.alpha = 0.25;
     }];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [UIView animateWithDuration:0.3 animations:^{
-        self.timelineVenuesView.alpha = 1.0;
+        self.roomTableView.alpha = 1.0;
     }];
 }
 
@@ -187,6 +230,32 @@
         }];
     }
 }
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.timeLineView.stages.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
+    NSString *roomName = self.timeLineView.stages[indexPath.row];
+    roomName = [[roomName componentsSeparatedByString:@"–"] firstObject];
+    cell.textLabel.text = self.timeLineView.stages[indexPath.row];
+    cell.textLabel.font = [UIFont ixda_scheduleRoomName];
+    cell.textLabel.numberOfLines = 2;
+    return cell;
+}
+
 
 #pragma mark Helpers
 

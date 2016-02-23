@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
     IXDASessionDayTuesday = 1,
     IXDASessionDayWednesday = 2,
     IXDASessionDayThursday = 3,
-    IXDASessionDayFriday = 4,
+    IXDASessionDayFriday = 4
 };
 
 @class IXDASessionDetailsViewModel;

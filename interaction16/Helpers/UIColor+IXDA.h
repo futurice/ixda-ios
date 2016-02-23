@@ -21,4 +21,6 @@
 + (UIColor *)ixda_speakersTableViewCellBlurColor;
 
 + (UIColor *)ixda_infoSubtitleColor;
+
++ (UIColor *)ixda_timelineBackgroundColor;
 @end
