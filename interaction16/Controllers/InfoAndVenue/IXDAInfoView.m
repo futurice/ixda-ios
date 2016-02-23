@@ -50,7 +50,7 @@
             return 440;
             break;
         case IXDAInfoCellTypeSponsors:
-            return 520;
+            return 580;
             break;
         default:
             return 0;
