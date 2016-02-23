@@ -61,7 +61,7 @@
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.font = [UIFont ixda_programCellTitle];
-    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.numberOfLines = 2;
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(82);
