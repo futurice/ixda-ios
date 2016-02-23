@@ -59,6 +59,7 @@
     self.timeLineView.delegate = self;
 
     self.roomTableView.dataSource = self;
+    self.roomTableView.tableFooterView = [[UIView alloc] init]; // Hide separators for empty cells.
     
     // sessions
     @weakify(self)
