@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class IXDASpeakerDetailViewModel;
+
 @interface IXDASpeakerViewModel : NSObject
 
 @property (nonatomic, strong) NSArray *speakerArray;
 
 - (void)loadSpeakerFromBackend;
+
+- (IXDASpeakerDetailViewModel *)speakerDetailViewModelOfArray:(NSArray *)selectedSpeakers forIndex:(NSUInteger)index;
 
 @end
