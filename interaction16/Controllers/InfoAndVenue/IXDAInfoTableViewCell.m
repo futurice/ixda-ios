@@ -74,7 +74,7 @@
     [view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(view).offset(10);
+        make.top.equalTo(view).offset(20);
     }];
     
     UILabel *firstSubTitle = [UILabel ixda_infoSubTitleLabel];
@@ -94,22 +94,22 @@
         make.top.equalTo(firstSubTitle.mas_bottom).offset(10);
     }];
     
-    UILabel *secondSubTitle = [UILabel ixda_infoSubTitleLabel];
-    secondSubTitle.text = @"Wi-fi passcode:";
-    [view addSubview:secondSubTitle];
-    [secondSubTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
-        make.top.equalTo(firstDescription.mas_bottom).offset(10);
-    }];
-    
-    UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
-    secondDescription.textColor = [UIColor blackColor];
-    secondDescription.text = @"XXXXXXXXX - XXXXXXXXXX";
-    [view addSubview:secondDescription];
-    [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
-        make.top.equalTo(secondSubTitle.mas_bottom).offset(10);
-    }];
+//    UILabel *secondSubTitle = [UILabel ixda_infoSubTitleLabel];
+//    secondSubTitle.text = @"Wi-fi passcode:";
+//    [view addSubview:secondSubTitle];
+//    [secondSubTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(view);
+//        make.top.equalTo(firstDescription.mas_bottom).offset(10);
+//    }];
+//    
+//    UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
+//    secondDescription.textColor = [UIColor blackColor];
+//    secondDescription.text = @"XXXXXXXXX - XXXXXXXXXX";
+//    [view addSubview:secondDescription];
+//    [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(view);
+//        make.top.equalTo(secondSubTitle.mas_bottom).offset(10);
+//    }];
     
     return view;
 }
