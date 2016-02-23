@@ -56,6 +56,7 @@
 		6FE307C61C78911200B0A356 /* IXDASessionDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */; };
 		6FE307C91C7895E700B0A356 /* IXDASpeakerInformationDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307C81C7895E700B0A356 /* IXDASpeakerInformationDetailView.m */; };
 		6FE307CC1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE307CB1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m */; };
+		8A2971A61C7CB08B00345BFB /* IXDAWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971A51C7CB08B00345BFB /* IXDAWorkshopDetailViewController.m */; };
 		8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */; };
 		8AC3C66B1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
@@ -154,6 +155,8 @@
 		6FE307CA1C789BDE00B0A356 /* IXDASessionDetailsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASessionDetailsViewModel.h; path = ViewModels/IXDASessionDetailsViewModel.h; sourceTree = "<group>"; };
 		6FE307CB1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASessionDetailsViewModel.m; path = ViewModels/IXDASessionDetailsViewModel.m; sourceTree = "<group>"; };
 		707C2CE9765B9BBCA6D3866C /* Pods-interaction16.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interaction16.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interaction16/Pods-interaction16.debug.xcconfig"; sourceTree = "<group>"; };
+		8A2971A41C7CB08B00345BFB /* IXDAWorkshopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWorkshopDetailViewController.h; path = Controllers/WhatElse/Workshops/Detail/IXDAWorkshopDetailViewController.h; sourceTree = "<group>"; };
+		8A2971A51C7CB08B00345BFB /* IXDAWorkshopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWorkshopDetailViewController.m; path = Controllers/WhatElse/Workshops/Detail/IXDAWorkshopDetailViewController.m; sourceTree = "<group>"; };
 		8AC3C6661C7C946200AC54BE /* IXDAMyScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleViewController.h; path = Controllers/MySchedule/IXDAMyScheduleViewController.h; sourceTree = "<group>"; };
 		8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleViewController.m; path = Controllers/MySchedule/IXDAMyScheduleViewController.m; sourceTree = "<group>"; };
 		8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleEmptyStateView.h; path = Views/IXDAMyScheduleEmptyStateView.h; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 		6F5005FD1C74E4B100F56DBA /* Workshops */ = {
 			isa = PBXGroup;
 			children = (
+				8A2971A31C7CB04100345BFB /* Detail */,
 				6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */,
 				6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */,
 			);
@@ -434,6 +438,15 @@
 			name = Detail;
 			sourceTree = "<group>";
 		};
+		8A2971A31C7CB04100345BFB /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8A2971A41C7CB08B00345BFB /* IXDAWorkshopDetailViewController.h */,
+				8A2971A51C7CB08B00345BFB /* IXDAWorkshopDetailViewController.m */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
 		8AC3C6621C7C8A6500AC54BE /* My Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				644FBCE21C7B13A8001161C6 /* IXDAStarredSessionStore.m in Sources */,
+				8A2971A61C7CB08B00345BFB /* IXDAWorkshopDetailViewController.m in Sources */,
 				6F3155FA1C763A72006A43AF /* FestScheduleViewController.m in Sources */,
 				8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */,
 				6F3155FE1C763ACB006A43AF /* TimelineView.m in Sources */,

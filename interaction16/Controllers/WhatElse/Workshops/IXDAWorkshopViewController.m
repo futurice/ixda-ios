@@ -10,6 +10,7 @@
 #import "IXDATitleBarView.h"
 #import "IXDATalksTableViewCell.h"
 #import "IXDASessionsViewModel.h"
+#import "IXDAWorkshopDetailViewController.h"
 
 #import "Session.h"
 
@@ -115,6 +116,13 @@ static NSString *IDXA_WORKSHOPTABLEVIEWCELL = @"IDXA_WORKSHOPTABLEVIEWCELL";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  150;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    IXDASessionDetailsViewModel *detailViewModel = [self.viewModel sessionsDetailViewModelOfArray:self.workshopsArray forIndex:indexPath.row];
+    IXDAWorkshopDetailViewController *vc = [[IXDAWorkshopDetailViewController alloc] initWithViewModel:detailViewModel];
+    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Helpers
