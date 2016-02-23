@@ -325,11 +325,11 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6F3155F61C763A29006A43AF /* Schedule */,
 				6F5006051C74F7DE00F56DBA /* Info */,
 				6F668DCD1C6F632C00475BCA /* Map */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
 				6F5019321C6FA1CF00CB7937 /* Program */,
+				6F3155F61C763A29006A43AF /* Schedule */,
 				6F50193B1C6FAB1500CB7937 /* Speakers */,
 				6F5005FD1C74E4B100F56DBA /* Workshops */,
 			);
@@ -423,6 +423,11 @@
 				6FE307C21C788FB300B0A356 /* IXDATalkDetailViewController.m */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+			isa = PBXGroup;
+			children = (
+			);
 			sourceTree = "<group>";
 		};
 		DFCE96087D752A9B6A72080C /* Pods */ = {
