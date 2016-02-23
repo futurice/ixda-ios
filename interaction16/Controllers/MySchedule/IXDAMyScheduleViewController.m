@@ -11,6 +11,7 @@
 #import "IXDATitleBarView.h"
 #import "IXDATalksTableViewCell.h"
 #import "IXDASessionsViewModel.h"
+#import "IXDATalkDetailViewController.h"
 
 #import "Session.h"
 
@@ -118,6 +119,13 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  150;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    IXDASessionDetailsViewModel *detailViewModel = [self.viewModel sessionsDetailViewModelOfArray:self.starredTalksArray forIndex:indexPath.row];
+    IXDATalkDetailViewController *vc = [[IXDATalkDetailViewController alloc] initWithViewModel:detailViewModel];
+    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Helpers
