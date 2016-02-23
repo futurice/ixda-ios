@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, IXDASessionDay) {
-    IXDASessionDayWednesday,
-    IXDASessionDayThursday,
-    IXDASessionDayFriday,
-    IXDASessionDaySaturday
+    IXDASessionDayTuesday = 1,
+    IXDASessionDayWednesday = 2,
+    IXDASessionDayThursday = 3,
+    IXDASessionDayFriday = 4,
 };
 
 @class IXDASessionDetailsViewModel;

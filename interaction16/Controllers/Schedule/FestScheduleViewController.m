@@ -13,6 +13,8 @@
 #import "TimelineView.h"
 #import "DayChooser.h"
 
+#import "UIColor+IXDA.h"
+
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface FestScheduleViewController () <TimelineViewDelegate, DayChooserDelegate, UIScrollViewDelegate>
@@ -31,9 +33,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    self.navigationController.navigationBar.hidden = YES;
     self.dayChooser.delegate = self;
-    self.dayChooser.dayNames = @[@"Friday", @"Saturday"];
+    self.dayChooser.dayNames = @[@"Tuesday", @"Wednesday", @"Thursday", @"Friday"];
 
+    self.view.backgroundColor = [UIColor ixda_timelineBackgroundColor];
     self.timeLineView.delegate = self;
 
     // sessions
@@ -41,12 +45,12 @@
     IXDASessionsViewModel *viewModel = [[IXDASessionsViewModel alloc] init];
     [RACObserve(viewModel, sessions) subscribeNext:^(id __unused _) {
         @strongify(self)
-        self.timeLineView.sessions = [viewModel sessionsOfDay:IXDASessionDaySaturday    ];
+        self.timeLineView.sessions = [viewModel sessionsOfDay:IXDASessionDayTuesday    ];
     }];
     
     [RACObserve(viewModel, sessions) subscribeNext:^(id __unused _) {
         @strongify(self)
-        self.timeLineView.favoritedSessions = [viewModel sessionsOfDay:IXDASessionDaySaturday];
+        self.timeLineView.favoritedSessions = [viewModel sessionsOfDay:IXDASessionDayTuesday];
     }];
 
     // back button
@@ -112,15 +116,38 @@
 
 - (void)dayChooser:(DayChooser *)dayChooser selectedDayWithIndex:(NSUInteger)dayIndex
 {
-    NSString *currentDay = @"Wednesday";
+    NSString *currentDay = @"Tuesday";
     switch (dayIndex) {
-        case 0: currentDay = @"Wednesday"; break;
-        case 1: currentDay = @"Thursday"; break;
-        case 2: currentDay = @"Friday"; break;
-        case 3: currentDay = @"Saturday"; break;
+        case 0: currentDay = @"Tuesday"; break;
+        case 1: currentDay = @"Wednesday"; break;
+        case 2: currentDay = @"Thursday"; break;
+        case 3: currentDay = @"Friday"; break;
     }
-
+    
+    IXDASessionDay weekday = 0;
+    switch (dayIndex) {
+        case 0: {
+            weekday = IXDASessionDayTuesday;
+            break;
+        } case 1: {
+            weekday = IXDASessionDayWednesday;
+            break;
+        } case 2: {
+            weekday = IXDASessionDayThursday;
+            break;
+        } case 3: {
+            weekday = IXDASessionDayFriday;
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+    
     self.timeLineView.currentDay = currentDay;
+    IXDASessionsViewModel *viewModel = [[IXDASessionsViewModel alloc] init];
+    
+    self.timeLineView.sessions = [viewModel sessionsOfDay:weekday];
 }
 
 #pragma mark TimelineViewDelegate
