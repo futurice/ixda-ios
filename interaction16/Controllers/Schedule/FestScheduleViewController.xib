@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FestScheduleViewController">
+            <connections>
+                <outlet property="dayChooser" destination="Beo-zt-EzU" id="hGu-RK-bHs"/>
+                <outlet property="headerView" destination="OYB-bF-QIG" id="Ix5-xc-uZi"/>
+                <outlet property="roomTableView" destination="VoV-a7-GsE" id="ZdT-g5-yx7"/>
+                <outlet property="scrollView" destination="QZU-Uj-jQk" id="piS-lv-mqW"/>
+                <outlet property="timeLineView" destination="cFC-R6-OQf" id="cGg-Oo-fuU"/>
+                <outlet property="timeLineViewWidthConstraint" destination="n2e-Jh-0eg" id="njq-pY-TJD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYB-bF-QIG">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="wRF-P2-D2N"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qib-Zm-jch" userLabel="DaysContainer">
+                    <rect key="frame" x="0.0" y="80" width="320" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Beo-zt-EzU" customClass="DayChooser">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Beo-zt-EzU" secondAttribute="bottom" id="2UN-Zg-CYv"/>
+                        <constraint firstItem="Beo-zt-EzU" firstAttribute="top" secondItem="qib-Zm-jch" secondAttribute="top" id="2oy-RE-sdw"/>
+                        <constraint firstAttribute="trailing" secondItem="Beo-zt-EzU" secondAttribute="trailing" id="CnF-DI-lyl"/>
+                        <constraint firstItem="Beo-zt-EzU" firstAttribute="leading" secondItem="qib-Zm-jch" secondAttribute="leading" id="d69-qI-MQs"/>
+                        <constraint firstAttribute="height" constant="50" id="o3p-x5-Uql"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qvb-69-9rC" userLabel="TimelineContainer">
+                    <rect key="frame" x="0.0" y="140" width="320" height="428"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZU-Uj-jQk">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="428"/>
+                            <subviews>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFC-R6-OQf" customClass="TimelineView">
+                                    <rect key="frame" x="0.0" y="0.0" width="640" height="370"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="370" id="7aY-Qm-CPh"/>
+                                        <constraint firstAttribute="width" constant="640" id="n2e-Jh-0eg"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="tintColor" red="0.94117647410000005" green="0.55686277149999996" blue="0.047058824450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="cFC-R6-OQf" secondAttribute="trailing" constant="-320" id="Qwr-D3-0aT"/>
+                                <constraint firstAttribute="bottom" secondItem="cFC-R6-OQf" secondAttribute="bottom" constant="58" id="sTH-9A-quF"/>
+                                <constraint firstItem="cFC-R6-OQf" firstAttribute="top" secondItem="QZU-Uj-jQk" secondAttribute="top" id="vnZ-jx-zzc"/>
+                                <constraint firstItem="cFC-R6-OQf" firstAttribute="leading" secondItem="QZU-Uj-jQk" secondAttribute="leading" id="xbc-jK-Ry7"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="QV6-ob-fCF"/>
+                            </connections>
+                        </scrollView>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-iG-BsG" userLabel="Room Table View Container">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="491"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VoV-a7-GsE">
+                                    <rect key="frame" x="0.0" y="27" width="75" height="491"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="QZU-Uj-jQk" secondAttribute="trailing" id="GkJ-Kp-YGf"/>
+                        <constraint firstAttribute="bottom" secondItem="QZU-Uj-jQk" secondAttribute="bottom" id="byG-wb-eqG"/>
+                        <constraint firstItem="QZU-Uj-jQk" firstAttribute="top" secondItem="Qvb-69-9rC" secondAttribute="top" id="hv1-nz-ngf"/>
+                        <constraint firstItem="QZU-Uj-jQk" firstAttribute="leading" secondItem="Qvb-69-9rC" secondAttribute="leading" id="oOO-Ii-IRT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Qvb-69-9rC" firstAttribute="top" secondItem="qib-Zm-jch" secondAttribute="bottom" constant="10" id="1Ig-uS-Rfv"/>
+                <constraint firstAttribute="trailing" secondItem="Qvb-69-9rC" secondAttribute="trailing" id="304-5E-sEF"/>
+                <constraint firstItem="qib-Zm-jch" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4b2-9G-W1i"/>
+                <constraint firstAttribute="bottom" secondItem="Qvb-69-9rC" secondAttribute="bottom" id="E5r-Yi-jkT"/>
+                <constraint firstAttribute="trailing" secondItem="qib-Zm-jch" secondAttribute="trailing" id="T5g-a6-5Tp"/>
+                <constraint firstAttribute="trailing" secondItem="OYB-bF-QIG" secondAttribute="trailing" id="TrG-mK-EQy"/>
+                <constraint firstItem="qib-Zm-jch" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="VFw-sV-DLw"/>
+                <constraint firstItem="Qvb-69-9rC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XEE-ZZ-NMp"/>
+                <constraint firstAttribute="trailing" secondItem="qib-Zm-jch" secondAttribute="trailing" id="YOE-Ue-BIT"/>
+                <constraint firstItem="OYB-bF-QIG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="az5-ci-yPN"/>
+                <constraint firstItem="OYB-bF-QIG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="q5b-o3-tPR"/>
+                <constraint firstItem="qib-Zm-jch" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uLf-xd-Hkj"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+        </view>
+    </objects>
+</document>

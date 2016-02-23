@@ -32,4 +32,7 @@
 + (UIFont *)ixda_sessionDetailsSubTitle;
 + (UIFont *)ixda_sessionDetailsDescription;
 
++ (UIFont *)ixda_scheduleRoomName;
++ (UIFont *)ixda_scheduleSessionName;
+
 @end
