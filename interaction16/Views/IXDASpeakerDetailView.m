@@ -52,14 +52,11 @@
         make.leading.trailing.equalTo(self).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
     }];
     
-    // TODO: Move this logic to view model.
-    NSString *formattedDescription = [description stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
-    
     UITextView *descriptionLabel = [[UITextView alloc] init];
     descriptionLabel.editable = NO;
     descriptionLabel.font = [UIFont ixda_sessionDetailsDescription];
     descriptionLabel.textColor = [UIColor blackColor];
-    descriptionLabel.text = formattedDescription;
+    descriptionLabel.text = description;
     [self addSubview:descriptionLabel];
     [descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self);
