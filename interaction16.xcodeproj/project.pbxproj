@@ -61,6 +61,7 @@
 		8A2971AD1C7CB97F00345BFB /* IXDASpeakerDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971AC1C7CB97F00345BFB /* IXDASpeakerDetailViewModel.m */; };
 		8A2971B01C7CBC7A00345BFB /* IXDASpeakerDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971AF1C7CBC7A00345BFB /* IXDASpeakerDetailBar.m */; };
 		8A2971B31C7CC05900345BFB /* IXDASpeakerDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971B21C7CC05900345BFB /* IXDASpeakerDetailView.m */; };
+		8A2971B61C7D216700345BFB /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971B51C7D216700345BFB /* NSString+HTML.m */; };
 		8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */; };
 		8AC3C66B1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
@@ -169,6 +170,8 @@
 		8A2971AF1C7CBC7A00345BFB /* IXDASpeakerDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerDetailBar.m; path = Views/IXDASpeakerDetailBar.m; sourceTree = "<group>"; };
 		8A2971B11C7CC05900345BFB /* IXDASpeakerDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakerDetailView.h; path = Views/IXDASpeakerDetailView.h; sourceTree = "<group>"; };
 		8A2971B21C7CC05900345BFB /* IXDASpeakerDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerDetailView.m; path = Views/IXDASpeakerDetailView.m; sourceTree = "<group>"; };
+		8A2971B41C7D216700345BFB /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+HTML.h"; path = "Helpers/NSString+HTML.h"; sourceTree = "<group>"; };
+		8A2971B51C7D216700345BFB /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+HTML.m"; path = "Helpers/NSString+HTML.m"; sourceTree = "<group>"; };
 		8AC3C6661C7C946200AC54BE /* IXDAMyScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleViewController.h; path = Controllers/MySchedule/IXDAMyScheduleViewController.h; sourceTree = "<group>"; };
 		8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleViewController.m; path = Controllers/MySchedule/IXDAMyScheduleViewController.m; sourceTree = "<group>"; };
 		8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleEmptyStateView.h; path = Views/IXDAMyScheduleEmptyStateView.h; sourceTree = "<group>"; };
@@ -337,10 +340,12 @@
 		6F668D9F1C6F339F00475BCA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6F3156061C76420E006A43AF /* NSDate+Additions.h */,
-				6F3156071C76420E006A43AF /* NSDate+Additions.m */,
 				6F5019471C7079D900CB7937 /* IXDASessionManager.h */,
 				6F5019481C7079D900CB7937 /* IXDASessionManager.m */,
+				6F3156061C76420E006A43AF /* NSDate+Additions.h */,
+				6F3156071C76420E006A43AF /* NSDate+Additions.m */,
+				8A2971B41C7D216700345BFB /* NSString+HTML.h */,
+				8A2971B51C7D216700345BFB /* NSString+HTML.m */,
 				6F668DAC1C6F409500475BCA /* UIButton+IXDA.h */,
 				6F668DAD1C6F409500475BCA /* UIButton+IXDA.m */,
 				6F668DA01C6F33CE00475BCA /* UIColor+IXDA.h */,
@@ -655,6 +660,7 @@
 				6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */,
 				6F3156011C763B19006A43AF /* DayChooser.m in Sources */,
 				6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */,
+				8A2971B61C7D216700345BFB /* NSString+HTML.m in Sources */,
 				6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */,
 				6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */,
 				8A2971AA1C7CB57100345BFB /* IXDASpeakerDetailViewController.m in Sources */,
