@@ -22,4 +22,6 @@
 @property (nonatomic, copy) NSString *venue;
 @property (nonatomic, copy) NSString *venue_id;
 
+- (NSString *)day;
+
 @end

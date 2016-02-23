@@ -11,6 +11,12 @@
 		644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */; };
 		645EB52A1C7B3F12008C801F /* IXDASocialEventDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */; };
 		645EB52D1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 645EB52C1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m */; };
+		6F3155FA1C763A72006A43AF /* FestScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3155F81C763A72006A43AF /* FestScheduleViewController.m */; };
+		6F3155FB1C763A72006A43AF /* FestScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F3155F91C763A72006A43AF /* FestScheduleViewController.xib */; };
+		6F3155FE1C763ACB006A43AF /* TimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3155FD1C763ACB006A43AF /* TimelineView.m */; };
+		6F3156011C763B19006A43AF /* DayChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3156001C763B19006A43AF /* DayChooser.m */; };
+		6F3156041C763CB2006A43AF /* FestFavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3156021C763CB2006A43AF /* FestFavoritesManager.m */; };
+		6F3156081C76420E006A43AF /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3156071C76420E006A43AF /* NSDate+Additions.m */; };
 		6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */; };
 		6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */; };
 		6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006071C74F80B00F56DBA /* IXDAInfoViewController.m */; };
@@ -63,6 +69,17 @@
 		645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASocialEventDetailBar.m; path = Views/IXDASocialEventDetailBar.m; sourceTree = "<group>"; };
 		645EB52B1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakerInformationTableViewCell.h; path = Views/IXDASpeakerInformationTableViewCell.h; sourceTree = "<group>"; };
 		645EB52C1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerInformationTableViewCell.m; path = Views/IXDASpeakerInformationTableViewCell.m; sourceTree = "<group>"; };
+		6F3155F81C763A72006A43AF /* FestScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestScheduleViewController.m; path = Controllers/Schedule/FestScheduleViewController.m; sourceTree = "<group>"; };
+		6F3155F91C763A72006A43AF /* FestScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FestScheduleViewController.xib; path = Controllers/Schedule/FestScheduleViewController.xib; sourceTree = "<group>"; };
+		6F3155FC1C763ACB006A43AF /* TimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimelineView.h; path = Controllers/Schedule/TimelineView.h; sourceTree = "<group>"; };
+		6F3155FD1C763ACB006A43AF /* TimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineView.m; path = Controllers/Schedule/TimelineView.m; sourceTree = "<group>"; };
+		6F3155FF1C763B19006A43AF /* DayChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayChooser.h; path = Controllers/Schedule/DayChooser.h; sourceTree = "<group>"; };
+		6F3156001C763B19006A43AF /* DayChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayChooser.m; path = Controllers/Schedule/DayChooser.m; sourceTree = "<group>"; };
+		6F3156021C763CB2006A43AF /* FestFavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestFavoritesManager.m; path = Controllers/Schedule/FestFavoritesManager.m; sourceTree = "<group>"; };
+		6F3156031C763CB2006A43AF /* FestScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestScheduleViewController.h; path = Controllers/Schedule/FestScheduleViewController.h; sourceTree = "<group>"; };
+		6F3156051C763FFC006A43AF /* FestFavoritesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FestFavoritesManager.h; path = Controllers/Schedule/FestFavoritesManager.h; sourceTree = "<group>"; };
+		6F3156061C76420E006A43AF /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Additions.h"; path = "Helpers/NSDate+Additions.h"; sourceTree = "<group>"; };
+		6F3156071C76420E006A43AF /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Additions.m"; path = "Helpers/NSDate+Additions.m"; sourceTree = "<group>"; };
 		6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWorkshopViewController.h; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.h; sourceTree = "<group>"; };
 		6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAWorkshopViewController.m; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.m; sourceTree = "<group>"; };
 		6F5006011C74E7EA00F56DBA /* IXDATitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDATitleBarView.h; path = Views/IXDATitleBarView.h; sourceTree = "<group>"; };
@@ -156,6 +173,22 @@
 				FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F3155F61C763A29006A43AF /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				6F3155FF1C763B19006A43AF /* DayChooser.h */,
+				6F3156001C763B19006A43AF /* DayChooser.m */,
+				6F3156051C763FFC006A43AF /* FestFavoritesManager.h */,
+				6F3156021C763CB2006A43AF /* FestFavoritesManager.m */,
+				6F3156031C763CB2006A43AF /* FestScheduleViewController.h */,
+				6F3155F81C763A72006A43AF /* FestScheduleViewController.m */,
+				6F3155F91C763A72006A43AF /* FestScheduleViewController.xib */,
+				6F3155FC1C763ACB006A43AF /* TimelineView.h */,
+				6F3155FD1C763ACB006A43AF /* TimelineView.m */,
+			);
+			name = Schedule;
 			sourceTree = "<group>";
 		};
 		6F5005FD1C74E4B100F56DBA /* Workshops */ = {
@@ -273,6 +306,8 @@
 		6F668D9F1C6F339F00475BCA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				6F3156061C76420E006A43AF /* NSDate+Additions.h */,
+				6F3156071C76420E006A43AF /* NSDate+Additions.m */,
 				6F5019471C7079D900CB7937 /* IXDASessionManager.h */,
 				6F5019481C7079D900CB7937 /* IXDASessionManager.m */,
 				6F668DAC1C6F409500475BCA /* UIButton+IXDA.h */,
@@ -290,6 +325,7 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6F3155F61C763A29006A43AF /* Schedule */,
 				6F5006051C74F7DE00F56DBA /* Info */,
 				6F668DCD1C6F632C00475BCA /* Map */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
@@ -465,6 +501,7 @@
 				6F87D42A1C6F25430039A29B /* LaunchScreen.storyboard in Resources */,
 				6F5019311C6FA05F00CB7937 /* sessions.json in Resources */,
 				6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */,
+				6F3155FB1C763A72006A43AF /* FestScheduleViewController.xib in Resources */,
 				6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */,
 				6F6308F41C724DBD00558AA8 /* speakers.json in Resources */,
 			);
@@ -526,6 +563,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				644FBCE21C7B13A8001161C6 /* IXDAStarredSessionStore.m in Sources */,
+				6F3155FA1C763A72006A43AF /* FestScheduleViewController.m in Sources */,
+				6F3155FE1C763ACB006A43AF /* TimelineView.m in Sources */,
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
 				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,
@@ -550,12 +589,15 @@
 				644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */,
 				6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */,
 				6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */,
+				6F3156011C763B19006A43AF /* DayChooser.m in Sources */,
 				6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */,
 				6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */,
 				6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */,
 				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
+				6F3156041C763CB2006A43AF /* FestFavoritesManager.m in Sources */,
 				6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */,
 				6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */,
+				6F3156081C76420E006A43AF /* NSDate+Additions.m in Sources */,
 				6F668DD61C6F638B00475BCA /* IXDAMapViewController.m in Sources */,
 				645EB52D1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m in Sources */,
 				645EB52A1C7B3F12008C801F /* IXDASocialEventDetailBar.m in Sources */,

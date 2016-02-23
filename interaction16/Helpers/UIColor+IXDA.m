@@ -38,4 +38,8 @@
     return [UIColor colorWithRed:0 green:0.41 blue:0.94 alpha:1];
 }
 
++ (UIColor *)ixda_timelineBackgroundColor {
+    return [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1.0];
+}
+
 @end

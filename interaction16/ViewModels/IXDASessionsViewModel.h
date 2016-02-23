@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, IXDASessionDay) {
+    IXDASessionDayTuesday = 1,
+    IXDASessionDayWednesday = 2,
+    IXDASessionDayThursday = 3,
+    IXDASessionDayFriday = 4
+};
+
 @class IXDASessionDetailsViewModel;
 
 @interface IXDASessionsViewModel : NSObject
@@ -23,6 +30,7 @@
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
 
+- (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
 
 
