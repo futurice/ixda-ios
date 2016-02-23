@@ -61,6 +61,8 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableView.backgroundColor = [UIColor ixda_baseBackgroundColorB];
+    self.tableView.backgroundView = nil;
     [self.tableView registerClass:IXDATalksTableViewCell.class forCellReuseIdentifier:IDXA_MYSCHEDULETABLEVIEWCELL];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
