@@ -11,6 +11,7 @@
 #import "IXDATitleBarView.h"
 #import "IXDASpeakerViewModel.h"
 #import "Speaker.h"
+#import "IXDASpeakerDetailViewController.h"
 
 #import "UIColor+IXDA.h"
 
@@ -119,6 +120,13 @@ static NSString *IXDA_SPEAKERSTABLEVIEWCELL = @"IDXA_SPEAKERSTABLEVIEWCELL";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  240;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    IXDASpeakerDetailViewModel *detailViewModel = [self.viewModel speakerDetailViewModelOfArray:self.viewModel.speakerArray forIndex:indexPath.row];
+    IXDASpeakerDetailViewController *vc = [[IXDASpeakerDetailViewController alloc] initWithViewModel:detailViewModel];
+    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Helpers

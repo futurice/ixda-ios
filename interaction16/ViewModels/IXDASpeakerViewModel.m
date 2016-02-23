@@ -9,6 +9,7 @@
 #import "IXDASpeakerViewModel.h"
 
 #import "IXDASpeakerStore.h"
+#import "IXDASpeakerDetailViewModel.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -39,6 +40,15 @@
     [[[IXDASpeakerStore sharedStore] speakers] subscribeNext:^(NSArray *speakersArray) {
         self.speakerArray = speakersArray;
     }];
+}
+
+- (IXDASpeakerDetailViewModel *)speakerDetailViewModelOfArray:(NSArray *)selectedSpeakers forIndex:(NSUInteger)index {
+    IXDASpeakerDetailViewModel *viewModel = nil;
+    if ([selectedSpeakers objectAtIndex:index]) {
+        Speaker *speaker = selectedSpeakers[index];
+        viewModel = [[IXDASpeakerDetailViewModel alloc] initWithSpeaker:speaker];
+    }
+    return viewModel;
 }
 
 @end
