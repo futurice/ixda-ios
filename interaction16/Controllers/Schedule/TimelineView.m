@@ -277,7 +277,6 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
     }
 
     NSDate *fretDate = [NSDate dateWithTimeInterval:interval sinceDate:self.begin];
-    UIImage *fretImage = [UIImage imageNamed:@"schedule-hoursep.png"];
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 //    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Berlin"]];
@@ -286,9 +285,8 @@ static CGFloat timeWidthFrom(NSDate *from, NSDate *to)
     while ([fretDate compare:self.end] == NSOrderedAscending) {
         // fret
         CGRect frame = CGRectMake(timeWidthFrom(self.begin, fretDate) - 2, -4, 1, 365);
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-        imageView.image = fretImage;
-
+        UIView *imageView = [[UIView alloc] initWithFrame:frame];
+        imageView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
         [self.innerView addSubview:imageView];
 
         // time label
