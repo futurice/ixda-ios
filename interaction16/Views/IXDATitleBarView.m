@@ -38,12 +38,13 @@
     }];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"arrowBlue"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"arrowBlue"] forState:UIControlStateNormal];
+    backButton.imageEdgeInsets = UIEdgeInsetsMake(11, 11, 11, 11);
     [self addSubview:backButton];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(titleLabel);
-        make.width.height.equalTo(@20);
-        make.left.equalTo(self).offset(15);
+        make.width.height.equalTo(@44);
+        make.left.equalTo(self);
     }];
     self.backButtonSignal = [backButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
