@@ -63,7 +63,6 @@
     
     CGFloat topPadding = 10;
     CGFloat buttonSpace = 5;
-    CGFloat buttonSectionSpace = 15;
     CGFloat leftPadding = 42;
     
     UIImage *backgroundImage = [UIImage imageNamed:@"backgroundSlice"];
@@ -89,6 +88,7 @@
     [speakersButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(programButton.mas_bottom).offset(buttonSpace);
         make.left.equalTo(programButton);
+        make.height.equalTo(programButton.mas_height);
     }];
     self.speakersButtonSignal = [speakersButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
@@ -97,6 +97,7 @@
     [workshopsButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(speakersButton.mas_bottom).offset(buttonSpace);
         make.left.equalTo(speakersButton);
+        make.height.equalTo(programButton.mas_height);
     }];
     self.workshopsButtonSignal = [workshopsButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
@@ -105,14 +106,16 @@
     [scheduleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(workshopsButton.mas_bottom).offset(buttonSpace);
         make.left.equalTo(workshopsButton);
+        make.height.equalTo(programButton.mas_height);
     }];
     self.scheduleButtonSignal = [scheduleButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
     UIButton *myScheduleButton = [UIButton ixda_menuButtonWithTitle:@"My Schedule"];
     [backgroundImageView addSubview:myScheduleButton];
     [myScheduleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(scheduleButton.mas_bottom).offset(buttonSpace + buttonSectionSpace);
+        make.top.equalTo(scheduleButton.mas_bottom).offset(buttonSpace);
         make.left.equalTo(scheduleButton);
+        make.height.equalTo(programButton.mas_height);
     }];
     self.myScheduleButtonSignal = [myScheduleButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
@@ -121,6 +124,7 @@
     [venueAndMapButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(myScheduleButton.mas_bottom).offset(buttonSpace);
         make.left.equalTo(myScheduleButton);
+        make.height.equalTo(programButton.mas_height);
     }];
     self.venueAndMapButtonSignal = [venueAndMapButton rac_signalForControlEvents:UIControlEventTouchUpInside];
 
@@ -129,6 +133,7 @@
     [infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(venueAndMapButton.mas_bottom).offset(buttonSpace);
         make.left.equalTo(venueAndMapButton);
+        make.height.equalTo(programButton.mas_height);
     }];
     self.infoButtonSignal = [infoButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
@@ -138,6 +143,7 @@
     [whatElseIsOnButton setBackgroundImage:swipeDownImage forState:UIControlStateNormal];
     [backgroundImageView addSubview:whatElseIsOnButton];
     [whatElseIsOnButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.greaterThanOrEqualTo(infoButton.mas_bottom).offset(10);
         make.bottom.equalTo(backgroundImageView).offset(-20);
         make.left.equalTo(venueAndMapButton);
         make.size.equalTo(@50);
