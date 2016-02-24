@@ -61,8 +61,6 @@
     buttonContainer.backgroundColor = [UIColor whiteColor];
     [self addSubview:buttonContainer];
 
-    CGFloat fontPointSize = 14;
-
     // TODO: use autolayouting engine
 
     CGFloat totalWidth = 0;
@@ -84,14 +82,10 @@
         [buttons addObject:button];
         [buttonContainer addSubview:button];
     }
-
-    NSLog(@"button container width: %@", NSStringFromCGRect(self.frame));
     
     CGFloat width = (self.frame.size.width)/dayCount;
-    CGFloat left = 0;
     for (NSUInteger i = 0; i < dayCount; i++) {
         UIButton *button = buttons[i];
-        CGSize size = [button intrinsicContentSize];
         button.frame = CGRectMake(i * width, 0, width, kDayChooserHeight);
 
     }
