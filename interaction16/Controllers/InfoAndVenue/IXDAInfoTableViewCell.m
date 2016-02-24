@@ -139,7 +139,7 @@
 
     UILabel *firstDescription = [UILabel ixda_infoDescriptionLabel];
     firstDescription.textColor = [UIColor blackColor];
-    firstDescription.text = @"#Interaction16 #Int16";
+    firstDescription.text = @"#ixd16";
     [view addSubview:firstDescription];
     [firstDescription mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
