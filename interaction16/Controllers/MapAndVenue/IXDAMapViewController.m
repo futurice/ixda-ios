@@ -15,6 +15,8 @@
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+#import "UIFont+IXDA.h"
+
 @interface IXDAMapViewController ()  <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
@@ -33,6 +35,7 @@
     
     CGFloat statusBarHeight = 20.0;
     CGFloat titleBarHeight = 50.0;
+    CGFloat mapSwitcherHeight = 50.0;
     
     IXDATitleBarView *navigationView = [[IXDATitleBarView alloc] initWithTitle:@"Map"];
     [self.view addSubview:navigationView];
@@ -42,6 +45,45 @@
         make.height.equalTo(@(titleBarHeight));
     }];
     
+    UIView *buttonView = [[UIView alloc] init];
+    buttonView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:buttonView];
+    
+    [buttonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(navigationView.mas_bottom);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.height.mas_equalTo(mapSwitcherHeight);
+    }];
+    
+    UIButton *firstFloorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    firstFloorButton.titleLabel.font = [UIFont ixda_infoCellDescriptionFont];
+    [firstFloorButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [firstFloorButton setTitleColor:[UIColor ixda_baseBackgroundColorA] forState:UIControlStateSelected];
+    [firstFloorButton setTitleColor:[UIColor ixda_baseBackgroundColorA] forState:UIControlStateHighlighted];
+    [firstFloorButton setTitle:@"Floor 1" forState:UIControlStateNormal];
+    [buttonView addSubview:firstFloorButton];
+    [firstFloorButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(buttonView);
+        make.bottom.equalTo(buttonView);
+        make.width.equalTo(buttonView).dividedBy(2);
+    }];
+    
+    firstFloorButton.selected = YES;
+    
+    UIButton *secondFlootButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    secondFlootButton.titleLabel.font = [UIFont ixda_infoCellDescriptionFont];
+    [secondFlootButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [secondFlootButton setTitleColor:[UIColor ixda_baseBackgroundColorA] forState:UIControlStateHighlighted];
+    [secondFlootButton setTitleColor:[UIColor ixda_baseBackgroundColorA] forState:UIControlStateSelected];
+    [secondFlootButton setTitle:@"Floor 2" forState:UIControlStateNormal];
+    [buttonView addSubview:secondFlootButton];
+    [secondFlootButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.equalTo(buttonView);
+        make.bottom.equalTo(buttonView);
+        make.width.equalTo(buttonView).dividedBy(2);
+    }];
+    
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.bounces = NO;
     [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:NO];
@@ -49,19 +91,32 @@
     self.scrollView.scrollEnabled = YES;
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(navigationView.mas_bottom);
+        make.top.equalTo(buttonView.mas_bottom);
         make.left.bottom.right.equalTo(self.view);
     }];
     
-    self.mapView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map"]];
+    self.mapView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"map1"]];
     [self.scrollView addSubview:self.mapView];
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.scrollView);
     }];
     
+    @weakify(self);
+    [[firstFloorButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        secondFlootButton.selected = NO;
+        button.selected = YES;
+        @strongify(self)
+        [self.mapView setImage:[UIImage imageNamed:@"map1"]];
+    }];
+
+    [[secondFlootButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        firstFloorButton.selected = NO;
+        button.selected = YES;
+        @strongify(self)
+        [self.mapView setImage:[UIImage imageNamed:@"map2"]];
+    }];
     
-    
-    CGFloat minimumZoomScale = (self.view.frame.size.height - (statusBarHeight + titleBarHeight)) / self.mapView.image.size.height;
+    CGFloat minimumZoomScale = (self.view.frame.size.height - (statusBarHeight + titleBarHeight + mapSwitcherHeight)) / self.mapView.image.size.height;
     CGFloat maxZoomScale = 2.0f;
     self.scrollView.minimumZoomScale = minimumZoomScale;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
@@ -76,7 +131,6 @@
         }
     }];
     
-    @weakify(self)
     [navigationView.backButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         [self.navigationController popViewControllerAnimated:YES];
