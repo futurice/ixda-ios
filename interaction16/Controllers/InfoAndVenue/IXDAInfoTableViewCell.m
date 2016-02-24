@@ -189,11 +189,9 @@
     
     UILabel *description = [UILabel ixda_infoDescriptionLabel];
     description.text = [self venueText];
-    description.textAlignment = NSTextAlignmentLeft;
     [view addSubview:description];
     [description mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
-        make.width.equalTo(@320);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
         make.top.equalTo(title.mas_bottom).offset(50);
     }];
     
@@ -207,10 +205,9 @@
     
     UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
     secondDescription.text = @"Mannerheimintie 13e, 00100 Helsinki";
-    secondDescription.textAlignment = NSTextAlignmentLeft;
     [view addSubview:secondDescription];
     [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
         make.top.equalTo(secondTitle.mas_bottom).offset(20);
     }];
     
@@ -278,11 +275,9 @@
     UILabel *description = [UILabel ixda_infoDescriptionLabel];
     description.numberOfLines = 0;
     description.textColor = [UIColor blackColor];
-    description.textAlignment = NSTextAlignmentLeft;
-    description.text = @"Taxi Helsinki: +358 100 0700\nEmergency number: 112";
+    description.text = [self importantNumbersText];
     [view addSubview:description];
     [description mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
         make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
         make.top.equalTo(title.mas_bottom).offset(10);
     }];
@@ -299,11 +294,9 @@
     UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
     secondDescription.numberOfLines = 0;
     secondDescription.textColor = [UIColor blackColor];
-    secondDescription.textAlignment = NSTextAlignmentLeft;
-    secondDescription.text = @"You also have a Helsinki Region Mass Transit card at your disposal, courtesy of HSL. Find your way around using the Helsinki Regional Transport (HSL) journey planner http://www.reittiopas.fi/en/ or the mobile version http://m.reittiopas.fi/en/";
+    secondDescription.text = [self gettingAroundText];
     [view addSubview:secondDescription];
     [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
         make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
         make.top.equalTo(secondTitle.mas_bottom).offset(10);
     }];
@@ -313,9 +306,9 @@
     logoView.contentMode = UIViewContentModeScaleAspectFit;
     [view addSubview:logoView];
     [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(secondDescription.mas_bottom).offset(30);
+        make.top.equalTo(secondDescription.mas_bottom).offset(20);
         make.centerX.equalTo(view);
-        make.height.equalTo(@60);
+        make.height.equalTo(@50);
     }];
     
     UILabel *thirdTitle = [UILabel ixda_infoSubTitleLabel];
@@ -330,11 +323,9 @@
     UILabel *thirdDescription = [UILabel ixda_infoDescriptionLabel];
     thirdDescription.numberOfLines = 0;
     thirdDescription.textColor = [UIColor blackColor];
-    thirdDescription.textAlignment = NSTextAlignmentLeft;
-    thirdDescription.text = @"In the registration you have received a 4G Prepaid Starter Kit by Saunalahti, courtesy of Elisa. The kit includes a SIM card with a EUR 6 initial balance, which will last for 6 days (EUR 0.99/day) for 3G/4G data.\n\nThe SIM balance can be recharged at the nearest R-kioski shop or online at lataa.saunalahti.fi. Please see more details in the Starter Kit.\n\nWe hope you enjoy it! You can find us at Twitter, Instagram and Snapchat @ElisaOyj";
+    thirdDescription.text = [self connectivityText];
     [view addSubview:thirdDescription];
     [thirdDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
         make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
         make.top.equalTo(thirdTitle.mas_bottom).offset(10);
     }];
@@ -344,9 +335,40 @@
     secondLogoView.contentMode = UIViewContentModeScaleAspectFit;
     [view addSubview:secondLogoView];
     [secondLogoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(thirdDescription.mas_bottom).offset(30);
+        make.top.equalTo(thirdDescription.mas_bottom).offset(20);
         make.centerX.equalTo(view);
-        make.height.equalTo(@60);
+        make.height.equalTo(@50);
+    }];
+    
+    UILabel *fourthTitle = [UILabel ixda_infoSubTitleLabel];
+    fourthTitle.textColor = [UIColor ixda_infoSubtitleColor];
+    fourthTitle.text = @"FAQ";
+    [view addSubview:fourthTitle];
+    [fourthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view);
+        make.top.equalTo(secondLogoView.mas_bottom).offset(30);
+    }];
+    
+    // TODO: This should be a UILabel, not a UIButton.
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:[self faqText] forState:UIControlStateNormal];
+    button.tintColor = [UIColor blackColor];
+    button.titleLabel.font = [UIFont ixda_infoCellDescriptionFont];
+    button.titleLabel.lineBreakMode = NSLineBreakByCharWrapping; // TODO: Not beautiful, should wrap by words.
+    button.titleLabel.textAlignment = NSTextAlignmentLeft;
+    button.titleEdgeInsets = UIEdgeInsetsZero;
+    button.contentEdgeInsets = UIEdgeInsetsZero;
+    [view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
+        make.top.equalTo(fourthTitle.mas_bottom).offset(10);
+    }];
+    [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        NSString *urlString = @"http://interaction16.ixda.org/FAQ/";
+        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        if([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        };
     }];
     
     return view;
@@ -368,8 +390,7 @@
     UILabel *description = [UILabel ixda_infoDescriptionLabel];
     description.numberOfLines = 0;
     description.textColor = [UIColor whiteColor];
-    description.textAlignment = NSTextAlignmentLeft;
-    description.text = @"The IxDA seeks to advance the discipline of interaction design by fostering a community of passionate individuals dedicated to moving our mission forward.";
+    description.text = [self codeOfConductText];
     [view addSubview:description];
     [description mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
@@ -401,6 +422,26 @@
 
 - (NSString *)venueText {
     return @"Interaction 16 will be held at Finlandia Hall, a masterpiece by the world-renowned Finnish architect Alvar Aalto. The venue is located at scenic Töölönlahti bay right next to Helsinki railway station, and within walking distance of a wide selection of hotels.";
+}
+
+- (NSString *)importantNumbersText {
+    return @"Taxi Helsinki: +358 100 0700\nEmergency number: 112";
+}
+
+- (NSString *)gettingAroundText {
+    return @"You also have a Helsinki Region Mass Transit card at your disposal, courtesy of HSL. Find your way around using the Helsinki Regional Transport (HSL) journey planner http://www.reittiopas.fi/en/ or the mobile version http://m.reittiopas.fi/en/";
+}
+
+- (NSString *)connectivityText {
+    return @"In the registration you have received a 4G Prepaid Starter Kit by Saunalahti, courtesy of Elisa. The kit includes a SIM card with a EUR 6 initial balance, which will last for 6 days (EUR 0.99/day) for 3G/4G data.\n\nThe SIM balance can be recharged at the nearest R-kioski shop or online at lataa.saunalahti.fi. Please see more details in the Starter Kit.\n\nWe hope you enjoy it! You can find us at Twitter, Instagram and Snapchat @ElisaOyj";
+}
+
+- (NSString *)faqText {
+    return @"More can be read from our Frequently Asked Questions\ninteraction16.ixda.org/FAQ";
+}
+
+- (NSString *)codeOfConductText {
+    return @"The IxDA seeks to advance the discipline of interaction design by fostering a community of passionate individuals dedicated to moving our mission forward.";
 }
 
 @end
