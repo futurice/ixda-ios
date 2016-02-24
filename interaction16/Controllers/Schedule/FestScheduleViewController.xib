@@ -72,7 +72,7 @@
                                 <outlet property="delegate" destination="-1" id="QV6-ob-fCF"/>
                             </connections>
                         </scrollView>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-iG-BsG" userLabel="Room Table View Container">
+                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-iG-BsG" userLabel="Room Table View Container">
                             <rect key="frame" x="0.0" y="0.0" width="75" height="491"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VoV-a7-GsE">
