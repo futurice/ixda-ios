@@ -32,7 +32,7 @@
 
 + (UILabel *)ixda_infoDescriptionLabel {
     UILabel *label = [[UILabel alloc] init];
-    label.textAlignment = NSTextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor whiteColor];
     label.numberOfLines = 0;
     label.font = [UIFont ixda_infoCellDescriptionFont];

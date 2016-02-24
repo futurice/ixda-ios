@@ -50,7 +50,7 @@
             return 440;
             break;
         case IXDAInfoCellTypeInfrastructure:
-            return 920;
+            return 980;
             break;
         case IXDAInfoCellTypeCodeOfConduct:
             return 240;
