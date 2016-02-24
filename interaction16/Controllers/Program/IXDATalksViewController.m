@@ -116,6 +116,7 @@ static NSString *IXDA_SOCIALTABLEVIEWCELL = @"IXDA_SOCIALTABLEVIEWCELL";
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
+    [self.tableView reloadData];
 }
 
 -(void)viewDidLayoutSubviews{

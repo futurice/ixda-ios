@@ -51,6 +51,7 @@
     descriptionLabel.font = [UIFont ixda_sessionDetailsDescription];
     descriptionLabel.textColor = [UIColor blackColor];
     descriptionLabel.text = description;
+    descriptionLabel.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     [self addSubview:descriptionLabel];
     [descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self);
