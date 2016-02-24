@@ -80,15 +80,14 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
 
-    // back button
-    self.navigationItem.title = @"";
+//    // back button
+//    self.navigationItem.title = @"";
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    [[self navigationController] setNavigationBarHidden:NO animated:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
