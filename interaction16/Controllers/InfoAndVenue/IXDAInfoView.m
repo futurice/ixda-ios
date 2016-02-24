@@ -44,7 +44,7 @@
             return 200;
             break;
         case IXDAInfoCellTypeSocial:
-            return 140;
+            return 220;
             break;
         case IXDAInfoCellTypeVenue:
             return 440;
