@@ -56,8 +56,6 @@ NSString * const IXDAStarredEventsUserDefaultKey = @"IXDAStarredEventsUserDefaul
         [self.mutableStarredEventsKeys removeObject:eventKey];
     }
     
-    NSLog(@"set: %@", self.mutableStarredEventsKeys);
-    
     [self saveStarredEventsKeysToDefaults];
 }
 
