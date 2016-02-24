@@ -97,46 +97,46 @@
     // This is to prevent the autoscrolling from happening when coming back from viewing the details of an event
     BOOL didJustGetPushed = self.isMovingToParentViewController;
     if (didJustGetPushed) {
-        [self autoScrollToNow];
+//        [self autoScrollToNow];
     }
 }
 
-- (void)autoScrollToNow
-{
-    // Some test code for the autoscroll
-    /*
-    NSString *str =@"14/9/2014 13:00";
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Berlin"]];
-    NSDate *now = [formatter dateFromString:str];
-    */
-
-    NSDate *now = [NSDate date];
-    
-    // Handle automatic day switching
-    if ([self isDate:now sameDayAsDate:self.timeLineView.currentDate]) {
-        // now is same day, don't switch
-    } else if ([now compare:self.timeLineView.currentDate] == NSOrderedAscending) {
-        // now is before currentDate, switch back if schedule is on Saturday
-        if (self.dayChooser.selectedDayIndex == 1) {
-            self.dayChooser.selectedDayIndex = 0;
-        }
-    } else if ([now compare:self.timeLineView.currentDate] == NSOrderedDescending) {
-        // now is after currentDate, switch forward if schedule is on Firday
-        if (self.dayChooser.selectedDayIndex == 0) {
-            self.dayChooser.selectedDayIndex = 1;
-        }
-    }
-
-    // Scroll content view to display now at the center of the view, while clamping offset to outer edges
-    CGFloat viewWidth = self.scrollView.frame.size.width;
-    CGFloat contentWidth = self.timeLineView.intrinsicContentSize.width;
-    CGFloat offset = [self.timeLineView offsetForTime:now] - (viewWidth / 2);
-    offset = MAX(offset, 0);
-    offset = MIN(offset, contentWidth - viewWidth);
-    [self.scrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
-}
+//- (void)autoScrollToNow
+//{
+//    // Some test code for the autoscroll
+//    /*
+//    NSString *str =@"14/9/2014 13:00";
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
+//    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Berlin"]];
+//    NSDate *now = [formatter dateFromString:str];
+//    */
+//
+//    NSDate *now = [NSDate date];
+//    
+//    // Handle automatic day switching
+//    if ([self isDate:now sameDayAsDate:self.timeLineView.currentDate]) {
+//        // now is same day, don't switch
+//    } else if ([now compare:self.timeLineView.currentDate] == NSOrderedAscending) {
+//        // now is before currentDate, switch back if schedule is on Saturday
+//        if (self.dayChooser.selectedDayIndex == 1) {
+//            self.dayChooser.selectedDayIndex = 0;
+//        }
+//    } else if ([now compare:self.timeLineView.currentDate] == NSOrderedDescending) {
+//        // now is after currentDate, switch forward if schedule is on Firday
+//        if (self.dayChooser.selectedDayIndex == 0) {
+//            self.dayChooser.selectedDayIndex = 1;
+//        }
+//    }
+//
+//    // Scroll content view to display now at the center of the view, while clamping offset to outer edges
+//    CGFloat viewWidth = self.scrollView.frame.size.width;
+//    CGFloat contentWidth = self.timeLineView.intrinsicContentSize.width;
+//    CGFloat offset = [self.timeLineView offsetForTime:now] - (viewWidth / 2);
+//    offset = MAX(offset, 0);
+//    offset = MIN(offset, contentWidth - viewWidth);
+//    [self.scrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
+//}
 
 #pragma mark DayChooserDelegate
 
