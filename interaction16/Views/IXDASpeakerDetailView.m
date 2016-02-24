@@ -22,6 +22,7 @@
     self.backgroundColor = [UIColor whiteColor];
     
     UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.numberOfLines = 0;
     nameLabel.textColor = [UIColor ixda_baseBackgroundColorA];
     nameLabel.font = [UIFont ixda_speakersCellTitle];
     nameLabel.text = name;
@@ -48,7 +49,7 @@
     positionLabel.text = positionAndCompany;
     [self addSubview:positionLabel];
     [positionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(nameLabel.mas_bottom).offset(50);
+        make.top.equalTo(nameLabel.mas_bottom).offset(15);
         make.leading.trailing.equalTo(self).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
     }];
     
