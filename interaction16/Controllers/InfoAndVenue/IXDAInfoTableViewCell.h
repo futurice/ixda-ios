@@ -12,6 +12,8 @@ typedef NS_ENUM(NSUInteger, IXDAInfoCellType) {
     IXDAInfoCellTypeHeader = 0,
     IXDAInfoCellTypeSocial,
     IXDAInfoCellTypeVenue,
+    IXDAInfoCellTypeInfrastructure,
+    IXDAInfoCellTypeCodeOfConduct,
     IXDAInfoCellTypeSponsors,
     IXDAInfoCellTypesCounter
 };

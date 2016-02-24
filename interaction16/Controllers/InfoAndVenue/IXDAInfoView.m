@@ -49,6 +49,12 @@
         case IXDAInfoCellTypeVenue:
             return 440;
             break;
+        case IXDAInfoCellTypeInfrastructure:
+            return 920;
+            break;
+        case IXDAInfoCellTypeCodeOfConduct:
+            return 240;
+            break;
         case IXDAInfoCellTypeSponsors:
             return 580;
             break;
