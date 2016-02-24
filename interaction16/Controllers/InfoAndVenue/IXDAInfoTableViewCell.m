@@ -68,13 +68,59 @@
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = [UIColor whiteColor];
     
-    UIImage *image = [UIImage imageNamed:@"socialMediaBar"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.clipsToBounds = YES;
-    [view addSubview:imageView];
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
+//    UIView *buttonContainer = [[UIView alloc] init];
+//    [view addSubview:buttonContainer];
+//    [buttonContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(view);
+//        make.top.equalTo(view).offset(20);
+//        make.width.mas_equalTo(128);
+//    }];
+    UIButton *twitterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [twitterButton setImage:[UIImage imageNamed:@"twitterIcon"] forState:UIControlStateNormal];
+    [view addSubview:twitterButton];
+    [twitterButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(view).offset(20);
+        make.centerX.equalTo(view);
+    }];
+    
+    UIButton *instagramButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [instagramButton setImage:[UIImage imageNamed:@"instagramIcon"] forState:UIControlStateNormal];
+    [view addSubview:instagramButton];
+    [instagramButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(twitterButton);
+        make.right.equalTo(twitterButton.mas_left).offset(-10);
+    }];
+    
+    UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [facebookButton setImage:[UIImage imageNamed:@"facebookIcon"] forState:UIControlStateNormal];
+    [view addSubview:facebookButton];
+    [facebookButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(twitterButton);
+        make.left.equalTo(twitterButton.mas_right).offset(10);
+    }];
+    
+    [[instagramButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        NSString *urlString = @"https://www.instagram.com/ixdconf/";
+        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        if([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        };
+    }];
+    
+    [[twitterButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        NSString *urlString = @"https://twitter.com/ixdconf";
+        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        if([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        };
+    }];
+    
+    [[facebookButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        NSString *urlString = @"https://www.facebook.com/events/359590367565887/";
+        NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        if([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+        };
     }];
     
     UILabel *firstSubTitle = [UILabel ixda_infoSubTitleLabel];
@@ -82,7 +128,7 @@
     [view addSubview:firstSubTitle];
     [firstSubTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(imageView.mas_bottom).offset(10);
+        make.top.equalTo(instagramButton.mas_bottom).offset(10);
     }];
 
     UILabel *firstDescription = [UILabel ixda_infoDescriptionLabel];
