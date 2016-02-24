@@ -58,6 +58,7 @@
     [self.starButton setImage:[UIImage imageNamed:@"starSelected" ] forState:UIControlStateFocused];
     [self.contentView addSubview:self.starButton];
     [self.starButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.equalTo(@44);
         make.bottom.equalTo(self.contentView).with.offset(-21);
         make.right.equalTo(self.contentView).with.offset(-16);
     }];
