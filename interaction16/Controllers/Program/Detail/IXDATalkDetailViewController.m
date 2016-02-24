@@ -13,6 +13,7 @@
 #import "IXDASessionDetailsViewModel.h"
 
 #import "UIColor+IXDA.h"
+#import "UIFont+IXDA.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -72,6 +73,37 @@
             make.left.right.bottom.equalTo(self.view);
         }];
     }
+    
+    UIButton *favoritesButton = [[UIButton alloc] init];
+    favoritesButton.backgroundColor = [UIColor blackColor];
+    [favoritesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];;
+    favoritesButton.titleLabel.font = [UIFont ixda_sessionDetailsSubTitle];
+    [favoritesButton setTitle:@"Add to my schedule" forState:UIControlStateNormal];
+    [self.view addSubview:favoritesButton];
+    
+    if (viewModel.starred) {
+        [favoritesButton setTitle:@"Remove from my schedule" forState:UIControlStateNormal];
+    } else {
+        [favoritesButton setTitle:@"Add to my schedule" forState:UIControlStateNormal];
+    }
+    
+    [favoritesButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(44);
+        make.width.mas_equalTo(230);
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-30);
+    }];
+    
+    [[favoritesButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        if (viewModel.starred) {
+            [viewModel setStarred:NO];
+            [favoritesButton setTitle:@"Add to my schedule" forState:UIControlStateNormal];
+        } else {
+            [viewModel setStarred:YES];
+            [favoritesButton setTitle:@"Remove from my schedule" forState:UIControlStateNormal];
+        }
+        
+    }];
 
     
     return self;

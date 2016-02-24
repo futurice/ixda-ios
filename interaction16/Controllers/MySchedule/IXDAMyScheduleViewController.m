@@ -104,6 +104,9 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
+    //TODO: starredTalks of viewModel should be a signal so we can refresh nicley
+    self.starredTalksArray = [self.viewModel starredTalks];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
