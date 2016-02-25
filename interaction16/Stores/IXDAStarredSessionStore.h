@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class RACSubject;
+
 @interface IXDAStarredSessionStore : NSObject
 
 + (instancetype)sharedStore;
 
-@property (nonatomic, strong, readonly) NSSet *starredEventsKeys;
+- (RACSubject *)starredEventsKeys;
 
 - (BOOL)starredForEventKey:(NSString *)eventKey;
 - (void)setStarred:(BOOL)starred forEventKey:(NSString *)eventKey;
