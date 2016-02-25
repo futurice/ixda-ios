@@ -23,13 +23,15 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 @property (nonatomic, strong) NSDictionary *speakers;
 
 - (void)loadSessionsFromBackend;
+
+// The following are all sorted by start date.
 - (NSArray *)keynotes;
 - (NSArray *)longTalks;
 - (NSArray *)mediumTalks;
 - (NSArray *)lightningTalks;
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
-- (RACSignal *)starredTalks;
+- (RACSignal *)starredTalks; // A stream of the currently starred talks.
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
