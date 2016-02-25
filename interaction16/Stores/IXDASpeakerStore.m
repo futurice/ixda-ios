@@ -48,8 +48,8 @@
 - (RACSignal *)speakersFromFile {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"speakers" ofType:@"json"];
-        NSData* data = [NSData dataWithContentsOfFile:filePath];
-        __autoreleasing NSError* error = nil;
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        __autoreleasing NSError *error = nil;
         id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if (!error) {
             NSArray *array = [self speakersArrayFromJSONArray:result];
