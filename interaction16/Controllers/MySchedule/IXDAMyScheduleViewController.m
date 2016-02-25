@@ -56,8 +56,8 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
-    [RACObserve(self.viewModel, sessions) subscribeNext:^(NSNumber *talkType) {
-        self.starredTalksArray = [self.viewModel starredTalks];
+    [self.viewModel.starredTalks subscribeNext:^(NSArray *starredSessions) {
+        self.starredTalksArray = starredSessions;
     }];
     
     // Set up table view.
@@ -104,9 +104,6 @@ static NSString *IDXA_MYSCHEDULETABLEVIEWCELL = @"IDXA_MYSCHEDULETABLEVIEWCELL";
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-    //TODO: starredTalks of viewModel should be a signal so we can refresh nicley
-    self.starredTalksArray = [self.viewModel starredTalks];
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
