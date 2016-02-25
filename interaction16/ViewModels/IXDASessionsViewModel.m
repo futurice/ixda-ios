@@ -66,27 +66,27 @@
 }
 
 - (NSArray *)keynotes {
-    return [self sessionsOfType:@"Keynote"];
+    return [self sessionsOfTypeSortedByStartDate:@"Keynote"];
 }
 
 - (NSArray *)longTalks {
-    return [self sessionsOfType:@"Long Talk"];
+    return [self sessionsOfTypeSortedByStartDate:@"Long Talk"];
 }
 
 - (NSArray *)mediumTalks {
-    return [self sessionsOfType:@"Medium Talk"];
+    return [self sessionsOfTypeSortedByStartDate:@"Medium Talk"];
 }
 
 - (NSArray *)lightningTalks {
-    return [self sessionsOfType:@"Lightning Talk"];
+    return [self sessionsOfTypeSortedByStartDate:@"Lightning Talk"];
 }
 
 - (NSArray *)workshops {
-    return [self sessionsOfType:@"Workshop"];
+    return [self sessionsOfTypeSortedByStartDate:@"Workshop"];
 }
 
 - (NSArray *)socialEvents {
-    return [self sessionsOfType:@"Social Event"];
+    return [self sessionsOfTypeSortedByStartDate:@"Social Event"];
 }
 
 - (RACSignal *)starredTalks {
@@ -96,9 +96,11 @@
                 NSArray *sessions = tuple.first;
                 NSSet *starredEventsKeys = tuple.second;
                 
-                return [[[sessions rac_sequence] filter:^BOOL(Session *session) {
+                return [[[[sessions rac_sequence] filter:^BOOL(Session *session) {
                     return [starredEventsKeys containsObject:session.event_key];
-                }] array];
+                }] array] sortedArrayUsingComparator:^NSComparisonResult(Session *a, Session *b) {
+                    return [a.event_start compare:b.event_start];
+                }];
     }];
 }
 
@@ -118,6 +120,14 @@
     return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
         return [session.event_type isEqualToString:sessionType];
     }] array];
+}
+
+- (NSArray *)sessionsOfTypeSortedByStartDate:(NSString *)sessionType {
+    return [[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        return [session.event_type isEqualToString:sessionType];
+    }] array] sortedArrayUsingComparator:^NSComparisonResult(Session *a, Session *b) {
+        return [a.event_start compare:b.event_start];
+    }];
 }
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)sessionType {
