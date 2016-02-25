@@ -6,6 +6,7 @@
 #import "DayChooser.h"
 #import "UIFont+IXDA.h"
 #import "UIColor+IXDA.h"
+#import <Masonry/Masonry.h>
 
 @interface DayChooser () {
 
@@ -27,8 +28,6 @@
 
 - (id)init
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 320, kDayChooserHeight)];
-
     if (self) {
         [self awakeFromNib];
     }
@@ -39,7 +38,6 @@
 {
     self.backgroundColor = [UIColor clearColor];
 
-//    self.selectedImage = [UIImage imageNamed:@"daychooser-selected"];
     self.selectedImage = [[UIImage imageNamed:@"daychooser-selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)  resizingMode:UIImageResizingModeStretch];
     self.unselectedImage = [[UIImage imageNamed:@"daychooser"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)  resizingMode:UIImageResizingModeStretch];
 
@@ -57,13 +55,15 @@
     // create buttons
     buttons = [NSMutableArray arrayWithCapacity:dayCount];
 
-    buttonContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kDayChooserHeight)];
-    buttonContainer.backgroundColor = [UIColor whiteColor];
+    buttonContainer = [[UIView alloc] init];
     [self addSubview:buttonContainer];
+    [buttonContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self);
+        make.height.mas_equalTo(kDayChooserHeight);
+    }];
+    buttonContainer.backgroundColor = [UIColor whiteColor];
 
-    // TODO: use autolayouting engine
-
-    CGFloat totalWidth = 0;
+    UIButton *previousButton;
 
     for (NSUInteger i = 0; i < dayCount; i++) {
         NSString *dayName = dayNames[i];
@@ -75,19 +75,18 @@
         [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchDown];
 
-
-        CGSize size = [button intrinsicContentSize];
-        totalWidth += size.width;
-
         [buttons addObject:button];
         [buttonContainer addSubview:button];
-    }
-    
-    CGFloat width = (self.frame.size.width)/dayCount;
-    for (NSUInteger i = 0; i < dayCount; i++) {
-        UIButton *button = buttons[i];
-        button.frame = CGRectMake(i * width, 0, width, kDayChooserHeight);
-
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(buttonContainer).dividedBy(dayCount);
+            make.top.bottom.equalTo(buttonContainer);
+            if (previousButton) {
+                make.left.equalTo(previousButton.mas_right);
+            } else {
+                make.left.equalTo(buttonContainer);
+            }
+        }];
+        previousButton = button;
     }
 
     if (self.selectedDayIndex == NSNotFound) {
