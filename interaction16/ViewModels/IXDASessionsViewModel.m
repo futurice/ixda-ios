@@ -89,9 +89,16 @@
     return [self sessionsOfType:@"Social Event"];
 }
 
-- (NSArray *)starredTalks {
-    return [self sessionsWithBlock:^BOOL(Session *session) {
-        return [[IXDAStarredSessionStore sharedStore] starredForEventKey:session.event_key];
+- (RACSignal *)starredTalks {
+    // Observe changes to sessions and starred events set, and then return the sessions that have been starred.
+    return [[RACObserve(self, sessions) combineLatestWith:[[IXDAStarredSessionStore sharedStore] starredEventsKeys]]
+            map:^id(RACTuple *tuple) {
+                NSArray *sessions = tuple.first;
+                NSSet *starredEventsKeys = tuple.second;
+                
+                return [[[sessions rac_sequence] filter:^BOOL(Session *session) {
+                    return [starredEventsKeys containsObject:session.event_key];
+                }] array];
     }];
 }
 
@@ -117,12 +124,6 @@
     return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
         NSInteger day = [[[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:session.event_start] day];
         return day == sessionType;
-    }] array];
-}
-
-- (NSArray *)sessionsWithBlock:(BOOL (^)(Session *session))filter {
-    return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
-        return filter(session);
     }] array];
 }
 

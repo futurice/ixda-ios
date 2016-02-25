@@ -8,16 +8,22 @@
 
 #import "IXDAStarredSessionStore.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 NSString * const IXDAStarredEventsUserDefaultKey = @"IXDAStarredEventsUserDefaultKey";
 
 @interface IXDAStarredSessionStore ()
 
-@property (nonatomic, strong) NSMutableSet *mutableStarredEventsKeys;
+@property (nonatomic, strong) NSSet *starredEventsKeysSet;
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
+@property (nonatomic, strong) RACSubject *starredEventsKeys;
 
 @end
 
 @implementation IXDAStarredSessionStore
+
+
+#pragma mark - Singleton
 
 + (instancetype)sharedStore
 {
@@ -36,41 +42,47 @@ NSString * const IXDAStarredEventsUserDefaultKey = @"IXDAStarredEventsUserDefaul
     
     self.userDefaults = userDefaults;
     NSData *savedKeysData = [userDefaults objectForKey:IXDAStarredEventsUserDefaultKey];
-    self.mutableStarredEventsKeys = [NSMutableSet setWithSet:[NSKeyedUnarchiver unarchiveObjectWithData:savedKeysData]];
-    if (!self.starredEventsKeys) {
-        self.mutableStarredEventsKeys = [NSMutableSet set];
+    self.starredEventsKeysSet = [NSSet setWithSet:[NSKeyedUnarchiver unarchiveObjectWithData:savedKeysData]];
+    if (!self.starredEventsKeysSet) {
+        self.starredEventsKeysSet = [NSSet set];
         [self saveStarredEventsKeysToDefaults];
     }
+    
+    self.starredEventsKeys = [RACBehaviorSubject behaviorSubjectWithDefaultValue:self.starredEventsKeysSet];
     
     return self;
 }
 
+#pragma mark - Public Methods
+
 - (BOOL)starredForEventKey:(NSString *)eventKey {
-    return [self.starredEventsKeys containsObject:eventKey];
+    return [self.starredEventsKeysSet containsObject:eventKey];
 }
 
 - (void)setStarred:(BOOL)starred forEventKey:(NSString *)eventKey {
-    if (starred) {
-        [self.mutableStarredEventsKeys addObject:eventKey];
-    } else {
-        [self.mutableStarredEventsKeys removeObject:eventKey];
+    NSMutableSet *mutableStarredEventsKeys = [NSMutableSet setWithSet:self.starredEventsKeysSet];
+    
+    if (starred && ![self.starredEventsKeysSet containsObject:eventKey]) {
+        // Event should be starred and it isn't already starred.
+        [mutableStarredEventsKeys addObject:eventKey];
+    } else if (!starred && [self.starredEventsKeysSet containsObject:eventKey]) {
+        // Event is starred and should be unstarred.
+        [mutableStarredEventsKeys removeObject:eventKey];
     }
     
+    self.starredEventsKeysSet = [NSSet setWithSet:mutableStarredEventsKeys];
+    
     [self saveStarredEventsKeysToDefaults];
-}
-
-#pragma mark - Getter
-
-- (NSSet *)starredEventsKeys {
-    return [NSSet setWithSet:self.mutableStarredEventsKeys];
 }
 
 #pragma mark - Helper
 
 - (void)saveStarredEventsKeysToDefaults {
-    NSData *keysDataToSave = [NSKeyedArchiver archivedDataWithRootObject:[self starredEventsKeys]];
+    NSData *keysDataToSave = [NSKeyedArchiver archivedDataWithRootObject:[self starredEventsKeysSet]];
     [self.userDefaults setObject:keysDataToSave forKey:IXDAStarredEventsUserDefaultKey];
     [self.userDefaults synchronize];
+    
+    [self.starredEventsKeys sendNext:self.starredEventsKeysSet];
 }
 
 @end
