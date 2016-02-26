@@ -15,6 +15,10 @@
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+static CGFloat const padding = 10.0f;
+static CGFloat const largePadding = 30.0f;
+static CGFloat const inset = 20.0f;
+
 @implementation IXDAInfoTableViewCell
 
 - (instancetype)initWitInfoCellType:(IXDAInfoCellType)cellType {
@@ -65,6 +69,7 @@
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.centerY.equalTo(view);
         make.width.equalTo(@320);
+        make.height.equalTo(@200);
     }];
     
     return view;
@@ -85,7 +90,7 @@
     [twitterButton setImage:[UIImage imageNamed:@"twitterIcon"] forState:UIControlStateNormal];
     [view addSubview:twitterButton];
     [twitterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view).offset(20);
+        make.top.equalTo(view).offset(largePadding);
         make.centerX.equalTo(view);
     }];
     
@@ -94,7 +99,7 @@
     [view addSubview:instagramButton];
     [instagramButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(twitterButton);
-        make.right.equalTo(twitterButton.mas_left).offset(-10);
+        make.right.equalTo(twitterButton.mas_left).offset(-padding);
     }];
     
     UIButton *facebookButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -102,7 +107,7 @@
     [view addSubview:facebookButton];
     [facebookButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(twitterButton);
-        make.left.equalTo(twitterButton.mas_right).offset(10);
+        make.left.equalTo(twitterButton.mas_right).offset(padding);
     }];
     
     [[instagramButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
@@ -134,7 +139,7 @@
     [view addSubview:firstSubTitle];
     [firstSubTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(instagramButton.mas_bottom).offset(20);
+        make.top.equalTo(instagramButton.mas_bottom).offset(padding);
     }];
 
     UILabel *firstDescription = [UILabel ixda_infoDescriptionLabel];
@@ -143,7 +148,7 @@
     [view addSubview:firstDescription];
     [firstDescription mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(firstSubTitle.mas_bottom).offset(10);
+        make.top.equalTo(firstSubTitle.mas_bottom).offset(padding);
     }];
     
     UILabel *secondSubTitle = [UILabel ixda_infoSubTitleLabel];
@@ -151,7 +156,7 @@
     [view addSubview:secondSubTitle];
     [secondSubTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(firstDescription.mas_bottom).offset(10);
+        make.top.equalTo(firstDescription.mas_bottom).offset(padding);
     }];
     
     UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
@@ -160,7 +165,8 @@
     [view addSubview:secondDescription];
     [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(secondSubTitle.mas_bottom).offset(10);
+        make.top.equalTo(secondSubTitle.mas_bottom).offset(padding);
+        make.bottom.equalTo(view).offset(-largePadding);
     }];
     
     return view;
@@ -184,15 +190,15 @@
     [view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(view).offset(10);
+        make.top.equalTo(view).offset(largePadding);
     }];
     
     UILabel *description = [UILabel ixda_infoDescriptionLabel];
     description.text = [self venueText];
     [view addSubview:description];
     [description mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(title.mas_bottom).offset(50);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(title.mas_bottom).offset(padding);
     }];
     
     UILabel *secondTitle = [UILabel ixda_infoTitleLabel];
@@ -200,15 +206,15 @@
     [view addSubview:secondTitle];
     [secondTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(description.mas_bottom).offset(20);
+        make.top.equalTo(description.mas_bottom).offset(largePadding);
     }];
     
     UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
     secondDescription.text = @"Mannerheimintie 13e, 00100 Helsinki";
     [view addSubview:secondDescription];
     [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(secondTitle.mas_bottom).offset(20);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(secondTitle.mas_bottom).offset(padding);
     }];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -219,7 +225,7 @@
     [view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(secondDescription.mas_bottom).offset(20);
+        make.top.equalTo(secondDescription.mas_bottom).offset(largePadding);
         make.width.equalTo(@140);
     }];
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -228,32 +234,6 @@
         if([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url];
         };
-    }];
-    
-    return view;
-}
-
-- (UIView *)sponsorsView {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *title = [UILabel ixda_infoTitleLabel];
-    title.textColor = [UIColor ixda_infoSubtitleColor];
-    title.text = @"Sponsors";
-    [view addSubview:title];
-    [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
-        make.top.equalTo(view).offset(10);
-    }];
-    
-    UIImage *image = [UIImage imageNamed:@"logos"];
-    UIImageView *logosView = [[UIImageView alloc] initWithImage:image];
-    logosView.contentMode = UIViewContentModeScaleAspectFit;
-    [view addSubview:logosView];
-    [logosView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(title.mas_bottom).offset(10);
-        make.centerX.equalTo(view);
-        make.width.equalTo(view);
     }];
     
     return view;
@@ -269,7 +249,7 @@
     [view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(view).offset(30);
+        make.top.equalTo(view).offset(largePadding);
     }];
     
     UILabel *description = [UILabel ixda_infoDescriptionLabel];
@@ -278,8 +258,8 @@
     description.text = [self importantNumbersText];
     [view addSubview:description];
     [description mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(title.mas_bottom).offset(10);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(title.mas_bottom).offset(padding);
     }];
     
     UILabel *secondTitle = [UILabel ixda_infoSubTitleLabel];
@@ -288,7 +268,7 @@
     [view addSubview:secondTitle];
     [secondTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(description.mas_bottom).offset(30);
+        make.top.equalTo(description.mas_bottom).offset(largePadding);
     }];
     
     UILabel *secondDescription = [UILabel ixda_infoDescriptionLabel];
@@ -297,8 +277,8 @@
     secondDescription.text = [self gettingAroundText];
     [view addSubview:secondDescription];
     [secondDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(secondTitle.mas_bottom).offset(10);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(secondTitle.mas_bottom).offset(padding);
     }];
     
     UIImage *image = [UIImage imageNamed:@"logo-hsl"];
@@ -317,7 +297,7 @@
     [view addSubview:thirdTitle];
     [thirdTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(logoView.mas_bottom).offset(30);
+        make.top.equalTo(logoView.mas_bottom).offset(largePadding);
     }];
     
     UILabel *thirdDescription = [UILabel ixda_infoDescriptionLabel];
@@ -326,8 +306,8 @@
     thirdDescription.text = [self connectivityText];
     [view addSubview:thirdDescription];
     [thirdDescription mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(thirdTitle.mas_bottom).offset(10);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(thirdTitle.mas_bottom).offset(padding);
     }];
     
     UIImage *secondImage = [UIImage imageNamed:@"logo-elisa"];
@@ -346,7 +326,7 @@
     [view addSubview:fourthTitle];
     [fourthTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(secondLogoView.mas_bottom).offset(30);
+        make.top.equalTo(secondLogoView.mas_bottom).offset(largePadding);
     }];
     
     // TODO: This should be a UILabel, not a UIButton.
@@ -360,8 +340,9 @@
     button.contentEdgeInsets = UIEdgeInsetsZero;
     [view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(fourthTitle.mas_bottom).offset(10);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(fourthTitle.mas_bottom).offset(padding);
+        make.bottom.equalTo(view).offset(-largePadding);
     }];
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         NSString *urlString = @"http://interaction16.ixda.org/FAQ/";
@@ -384,7 +365,7 @@
     [view addSubview:title];
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(view).offset(20);
+        make.top.equalTo(view).offset(largePadding);
     }];
     
     UILabel *description = [UILabel ixda_infoDescriptionLabel];
@@ -393,9 +374,8 @@
     description.text = [self codeOfConductText];
     [view addSubview:description];
     [description mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(view);
-        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, 15, 0, 15));
-        make.top.equalTo(title.mas_bottom).offset(20);
+        make.leading.trailing.equalTo(view).with.insets(UIEdgeInsetsMake(0, inset, 0, inset));
+        make.top.equalTo(title.mas_bottom).offset(padding);
     }];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -406,8 +386,9 @@
     [view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.top.equalTo(description.mas_bottom).offset(20);
+        make.top.equalTo(description.mas_bottom).offset(largePadding);
         make.width.equalTo(@140);
+        make.bottom.equalTo(view).offset(-largePadding);
     }];
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         NSString *urlString = @"http://interaction16.ixda.org/code-of-conduct/";
@@ -415,6 +396,33 @@
         if([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url];
         };
+    }];
+    
+    return view;
+}
+
+- (UIView *)sponsorsView {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *title = [UILabel ixda_infoTitleLabel];
+    title.textColor = [UIColor ixda_infoSubtitleColor];
+    title.text = @"Sponsors";
+    [view addSubview:title];
+    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view);
+        make.top.equalTo(view).offset(largePadding);
+    }];
+    
+    UIImage *image = [UIImage imageNamed:@"logos"];
+    UIImageView *logosView = [[UIImageView alloc] initWithImage:image];
+    logosView.contentMode = UIViewContentModeScaleAspectFit;
+    [view addSubview:logosView];
+    [logosView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(title.mas_bottom).offset(10);
+        make.centerX.equalTo(view);
+        make.width.equalTo(view);
+        make.bottom.equalTo(view).offset(-largePadding);
     }];
     
     return view;

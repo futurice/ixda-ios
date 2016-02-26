@@ -66,32 +66,41 @@
 }
 
 - (NSArray *)keynotes {
-    return [self sessionsOfType:@"Keynote"];
+    return [self sessionsOfTypeSortedByStartDate:@"Keynote"];
 }
 
 - (NSArray *)longTalks {
-    return [self sessionsOfType:@"Long Talk"];
+    return [self sessionsOfTypeSortedByStartDate:@"Long Talk"];
 }
 
 - (NSArray *)mediumTalks {
-    return [self sessionsOfType:@"Medium Talk"];
+    return [self sessionsOfTypeSortedByStartDate:@"Medium Talk"];
 }
 
 - (NSArray *)lightningTalks {
-    return [self sessionsOfType:@"Lightning Talk"];
+    return [self sessionsOfTypeSortedByStartDate:@"Lightning Talk"];
 }
 
 - (NSArray *)workshops {
-    return [self sessionsOfType:@"Workshop"];
+    return [self sessionsOfTypeSortedByStartDate:@"Workshop"];
 }
 
 - (NSArray *)socialEvents {
-    return [self sessionsOfType:@"Social Event"];
+    return [self sessionsOfTypeSortedByStartDate:@"Social Event"];
 }
 
-- (NSArray *)starredTalks {
-    return [self sessionsWithBlock:^BOOL(Session *session) {
-        return [[IXDAStarredSessionStore sharedStore] starredForEventKey:session.event_key];
+- (RACSignal *)starredTalks {
+    // Observe changes to sessions and starred events set, and then return the sessions that have been starred.
+    return [[RACObserve(self, sessions) combineLatestWith:[[IXDAStarredSessionStore sharedStore] starredEventsKeys]]
+            map:^id(RACTuple *tuple) {
+                NSArray *sessions = tuple.first;
+                NSSet *starredEventsKeys = tuple.second;
+                
+                return [[[[sessions rac_sequence] filter:^BOOL(Session *session) {
+                    return [starredEventsKeys containsObject:session.event_key];
+                }] array] sortedArrayUsingComparator:^NSComparisonResult(Session *a, Session *b) {
+                    return [a.event_start compare:b.event_start];
+                }];
     }];
 }
 
@@ -113,16 +122,18 @@
     }] array];
 }
 
+- (NSArray *)sessionsOfTypeSortedByStartDate:(NSString *)sessionType {
+    return [[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        return [session.event_type isEqualToString:sessionType];
+    }] array] sortedArrayUsingComparator:^NSComparisonResult(Session *a, Session *b) {
+        return [a.event_start compare:b.event_start];
+    }];
+}
+
 - (NSArray *)sessionsOfDay:(IXDASessionDay)sessionType {
     return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
         NSInteger day = [[[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:session.event_start] day];
         return day == sessionType;
-    }] array];
-}
-
-- (NSArray *)sessionsWithBlock:(BOOL (^)(Session *session))filter {
-    return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
-        return filter(session);
     }] array];
 }
 
