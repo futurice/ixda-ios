@@ -35,6 +35,7 @@
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor whiteColor];
     label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
     label.font = [UIFont ixda_infoCellDescriptionFont];
     return label;
 }
