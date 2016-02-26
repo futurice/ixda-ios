@@ -18,4 +18,64 @@
     return [UIFont fontWithName:@"CircularStd-Bold" size:16.0];
 }
 
++ (UIFont *)ixda_programCellTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:25.0];
+}
+
++ (UIFont *)ixda_programCellSubTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:20.0];
+}
+
++ (UIFont *)ixda_programNavigationItem {
+    return [UIFont fontWithName:@"CircularStd-Book" size:15.0];
+}
+
++ (UIFont *)ixda_programNavigationItemSelected {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:20.0];
+}
+
++ (UIFont *)ixda_speakersCellTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:26.0];
+}
+
++ (UIFont *)ixda_speakersCellSubTitle {
+    return [UIFont fontWithName:@"CircularStd-Book" size:20.0];
+}
+
++ (UIFont *)ixda_infoCellTitleFont {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:24.0];
+}
+
++ (UIFont *)ixda_infoCellDescriptionFont {
+    return [UIFont fontWithName:@"CircularStd-Book" size:17.0];
+}
+
++ (UIFont *)ixda_infoCellSubTitleFont {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:18.0];
+}
+
++ (UIFont *)ixda_socialCellDateFont {
+    return [UIFont fontWithName:@"CircularStd-Medium" size:16.0];
+}
+
++ (UIFont *)ixda_sessionDetailsTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:23.0];
+}
+
++ (UIFont *)ixda_sessionDetailsSubTitle {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:14.0];
+}
+
++ (UIFont *)ixda_sessionDetailsDescription {
+    return [UIFont fontWithName:@"CircularStd-Book" size:16.0];
+}
+
++ (UIFont *)ixda_scheduleRoomName {
+    return [UIFont fontWithName:@"CircularStd-Book" size:9.0];
+}
+
++ (UIFont *)ixda_scheduleSessionName {
+    return [UIFont fontWithName:@"CircularStd-Bold" size:11.0];
+}
+
 @end

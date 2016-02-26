@@ -14,10 +14,12 @@
 
 @property (nonatomic, strong) RACSignal *programButtonSignal;
 @property (nonatomic, strong) RACSignal *speakersButtonSignal;
-@property (nonatomic, strong) RACSignal *scheduleButtonSignal;
 @property (nonatomic, strong) RACSignal *workshopsButtonSignal;
+@property (nonatomic, strong) RACSignal *scheduleButtonSignal;
+@property (nonatomic, strong) RACSignal *myScheduleButtonSignal;
 @property (nonatomic, strong) RACSignal *venueAndMapButtonSignal;
 @property (nonatomic, strong) RACSignal *infoButtonSignal;
 @property (nonatomic, strong) RACSignal *whatElseIsOnButtonSignal;
+@property (nonatomic, strong) RACSignal *sponsoringImageViewSignal;
 
 @end

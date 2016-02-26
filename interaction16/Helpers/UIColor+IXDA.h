@@ -11,7 +11,16 @@
 @interface UIColor (IXDA)
 
 + (UIColor *)ixda_baseBackgroundColorA;
++ (UIColor *)ixda_baseBackgroundColorB;
 
 + (UIColor *)ixda_statusBarBackgroundColorA;
++ (UIColor *)ixda_statusBarBackgroundColorB;
 
++ (UIColor *)ixda_mapScrollViewBackgroundColor;
+
++ (UIColor *)ixda_speakersTableViewCellBlurColor;
+
++ (UIColor *)ixda_infoSubtitleColor;
+
++ (UIColor *)ixda_timelineBackgroundColor;
 @end
