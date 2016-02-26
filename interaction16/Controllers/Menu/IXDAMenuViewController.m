@@ -9,13 +9,33 @@
 #import "IXDAMenuViewController.h"
 #import "IXDAMenuView.h"
 
-#import "IXDAWhatElseIsOnViewController.h"
+#import "IXDASessionsViewModel.h"
+#import "IXDASpeakerViewModel.h"
+
+#import "IXDATalksViewController.h"
+#import "IXDASpeakersViewController.h"
+#import "IXDAWorkshopViewController.h"
+#import "FestScheduleViewController.h"
+#import "IXDAMyScheduleViewController.h"
 #import "IXDAMapViewController.h"
+#import "IXDAInfoViewController.h"
+#import "IXDAWhatElseIsOnView.h"
 
 #import "UIColor+IXDA.h"
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
+@interface IXDAMenuViewController () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) IXDAMenuView *menuView;
+@property (nonatomic, strong) IXDAWhatElseIsOnView *whatElseIsOnView;
+
+@property (nonatomic, strong) IXDASessionsViewModel *sessionsViewModel;
+@property (nonatomic, strong) IXDASpeakerViewModel *speakersViewModel;
+
+@end
 
 @implementation IXDAMenuViewController
 
@@ -25,73 +45,25 @@
     self = [super init];
     if (!self) return nil;
     
-    self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorA];;
+    // Otherwise ScrollView has an initial offset on top
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    UIView *logoView = [[UIView alloc] init];
-    logoView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
-    [self.view addSubview:logoView];
-    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(20);
-        make.left.right.equalTo(self.view);
-        make.height.equalTo(@145);
+    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.delegate = self;
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.bounces = YES;
+    [self.view addSubview:self.scrollView];
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
+
+    self.sessionsViewModel = [[IXDASessionsViewModel alloc] init];
+    self.speakersViewModel = [[IXDASpeakerViewModel alloc] init];
     
-    UIImage *logoImage = [UIImage imageNamed:@"logo"];
-    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logoImage];
-    [logoView addSubview:logoImageView];
-    [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(logoView).offset(42);
-    }];
-    
-    
-    
-    UIView *sponsoringView = [[UIView alloc] init];
-    sponsoringView.backgroundColor = [UIColor ixda_baseBackgroundColorA];
-    [self.view addSubview:sponsoringView];
-    [sponsoringView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
-        make.height.equalTo(@75);
-    }];
-    
-    UIImage *sponsoringImage = [UIImage imageNamed:@"sponsoring"];
-    UIImageView *sponsoringImageView = [[UIImageView alloc] initWithImage:sponsoringImage];
-    [sponsoringView addSubview:sponsoringImageView];
-    [sponsoringImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(sponsoringView).offset(62);
-        make.bottom.equalTo(sponsoringView).offset(-35);
-    }];
-    
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundSlice"];
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
-    backgroundImageView.userInteractionEnabled = YES;
-    [self.view addSubview:backgroundImageView];
-    [backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(logoView.mas_bottom);
-        make.bottom.equalTo(sponsoringView.mas_top);
-        make.left.right.equalTo(self.view);
-    }];
-    
-    IXDAMenuView *menuView = [[IXDAMenuView alloc] init];
-    [backgroundImageView addSubview:menuView];
-    [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(backgroundImageView);
-    }];
-    
-    @weakify(self)
-    [menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }];
-    
-    [menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
-        @strongify(self)
-        IXDAWhatElseIsOnViewController *vc = [[IXDAWhatElseIsOnViewController alloc] init];
-        [self presentViewController:vc animated:YES completion:nil];
-    }];
-    
+    [self setupMenuView];
+    [self setupWhatElseIsOnView];
+
     return self;
 }
 
@@ -99,6 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.scrollView.contentOffset = CGPointMake(0.0, 0.0);
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
@@ -111,6 +84,101 @@
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - Private Helpers
+
+- (void)setupMenuView {
+    self.menuView = [[IXDAMenuView alloc] init];
+    [self.scrollView addSubview:self.menuView];
+    [self.menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(self.view);
+        make.top.equalTo(self.scrollView.mas_top);
+    }];
+    
+    @weakify(self)
+    [self.menuView.programButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDATalksViewController *vc = [[IXDATalksViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.speakersButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDASpeakersViewController *vc = [[IXDASpeakersViewController alloc] initWithSpeakersViewModel:self.speakersViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.workshopsButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAWorkshopViewController *vc = [[IXDAWorkshopViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.scheduleButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        FestScheduleViewController *vc = [[FestScheduleViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.myScheduleButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAMyScheduleViewController *vc = [[IXDAMyScheduleViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.venueAndMapButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAMapViewController *vc = [[IXDAMapViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.infoButtonSignal subscribeNext:^(id x) {
+        @strongify(self)
+        IXDAInfoViewController *vc = [[IXDAInfoViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [self.menuView.whatElseIsOnButtonSignal subscribeNext:^(id x) {
+        @strongify(self);
+        [self.scrollView setContentOffset:CGPointMake(0.0f, self.scrollView.frame.size.height) animated:YES];
+    }];
+    
+    [self.menuView.sponsoringImageViewSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
+    }];
+}
+
+- (void)setupWhatElseIsOnView {
+    self.whatElseIsOnView = [[IXDAWhatElseIsOnView alloc] init];
+    [self.scrollView addSubview:self.whatElseIsOnView];
+    [self.whatElseIsOnView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.menuView.mas_bottom);
+        make.left.right.height.equalTo(self.menuView);
+        make.bottom.equalTo(self.scrollView.mas_bottom);
+    }];
+    
+    @weakify(self)
+    [self.whatElseIsOnView.backToMenuButtonSignal subscribeNext:^(id x) {
+        @strongify(self);
+        [self.scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+    }];
+    
+    [self.whatElseIsOnView.educationButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://edusummit.ixda.org"]];
+    }];
+    
+    [self.whatElseIsOnView.awardsButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
+    [self.whatElseIsOnView.challengeButtonSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://sdc.ixda.org"]];
+    }];
+    
+    [self.whatElseIsOnView.sponsoringImageViewSignal subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://futurice.com"]];
+    }];
 }
 
 @end

@@ -16,5 +16,6 @@
 @property (nonatomic, strong) RACSignal *educationButtonSignal;
 @property (nonatomic, strong) RACSignal *awardsButtonSignal;
 @property (nonatomic, strong) RACSignal *challengeButtonSignal;
+@property (nonatomic, strong) RACSignal *sponsoringImageViewSignal;
 
 @end

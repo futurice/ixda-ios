@@ -13,4 +13,26 @@
 + (UIFont *)ixda_menuItemFontStandard;
 + (UIFont *)ixda_menuItemFontSmall;
 
++ (UIFont *)ixda_programCellTitle;
++ (UIFont *)ixda_programCellSubTitle;
++ (UIFont *)ixda_programNavigationItem;
++ (UIFont *)ixda_programNavigationItemSelected;
+
++ (UIFont *)ixda_speakersCellTitle;
++ (UIFont *)ixda_speakersCellSubTitle;
+
+
++ (UIFont *)ixda_infoCellTitleFont;
++ (UIFont *)ixda_infoCellDescriptionFont;
++ (UIFont *)ixda_infoCellSubTitleFont;
+
++ (UIFont *)ixda_socialCellDateFont;
+
++ (UIFont *)ixda_sessionDetailsTitle;
++ (UIFont *)ixda_sessionDetailsSubTitle;
++ (UIFont *)ixda_sessionDetailsDescription;
+
++ (UIFont *)ixda_scheduleRoomName;
++ (UIFont *)ixda_scheduleSessionName;
+
 @end
