@@ -43,7 +43,9 @@
 }
 
 + (NSString *)apiKey {
-    return @"ENTER API KEY HERE";
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"IXDACredentials" ofType:@"plist"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+    return dictionary[@"apiKey"];
 }
 
 @end
