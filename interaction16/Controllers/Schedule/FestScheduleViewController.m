@@ -174,6 +174,7 @@
     IXDASessionsViewModel *viewModel = [[IXDASessionsViewModel alloc] init];
     
     self.timeLineView.sessions = [viewModel sessionsOfDay:weekday];
+    [self.roomTableView reloadData];
 }
 
 #pragma mark TimelineViewDelegate
