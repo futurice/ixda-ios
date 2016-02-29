@@ -17,3 +17,6 @@ xcuserdata
 *.xccheckout
 *.moved-aside
 *.xcuserstate
+
+## Sensitive data
+interaction16/IXDACredentials.plist
