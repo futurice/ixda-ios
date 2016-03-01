@@ -55,8 +55,9 @@
         return [_dateFormatter dateFromString:dateString];
     }] array];
     
-    CGFloat titleBarBaseHeight = 70.0;
+    CGFloat titleBarBaseHeight = 60.0;
     CGFloat titleBarRowHeight = 44.0;
+    CGFloat titleBarBottomPadding = 20.0;
     
     self.navigationView = [[IXDAScheduleNavigationView alloc] initWithDays:days baseHeight:titleBarBaseHeight rowHeight:titleBarRowHeight];
     [self.view addSubview:self.navigationView];
@@ -76,7 +77,7 @@
         // Animate the changes.
         [UIView animateWithDuration:0.2 animations:^{
             NSUInteger visibleRows = [expanded boolValue] ? self.navigationView.days.count : 1;
-            CGFloat height = titleBarBaseHeight + visibleRows * titleBarRowHeight;
+            CGFloat height = titleBarBaseHeight + visibleRows * titleBarRowHeight + titleBarBottomPadding;
             [self.navigationView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.equalTo(@(height));
             }];
