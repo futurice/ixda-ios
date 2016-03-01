@@ -15,7 +15,7 @@
 #import "IXDATalksViewController.h"
 #import "IXDASpeakersViewController.h"
 #import "IXDAWorkshopViewController.h"
-#import "FestScheduleViewController.h"
+#import "IXDAScheduleViewController.h"
 #import "IXDAMyScheduleViewController.h"
 #import "IXDAMapViewController.h"
 #import "IXDAInfoViewController.h"
@@ -117,7 +117,7 @@
     
     [self.menuView.scheduleButtonSignal subscribeNext:^(id x) {
         @strongify(self)
-        FestScheduleViewController *vc = [[FestScheduleViewController alloc] init];
+        IXDAScheduleViewController *vc = [[IXDAScheduleViewController alloc] initWithSessionsViewModel:self.sessionsViewModel];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     

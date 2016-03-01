@@ -104,6 +104,31 @@
     }];
 }
 
+- (NSArray *)talkDays {
+    // Look through all talks and add the dates for which there are sessions.
+    return [[[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        return ([session.event_type isEqualToString:@"Keynote"]
+                || [session.event_type isEqualToString:@"Long Talk"]
+                || [session.event_type isEqualToString:@"Medium Talk"]
+                || [session.event_type isEqualToString:@"Lightning Talk"]
+                || [session.event_type isEqualToString:@"Workshop"]);
+    }] foldLeftWithStart:@[] reduce:^id(NSArray *acc, Session *session) {
+        NSMutableArray *newArr = [NSMutableArray arrayWithArray:acc];
+        RACTuple *days = [self sessionDays:session];
+        
+        if (![newArr containsObject:days.first]) {
+            [newArr addObject:days.first];
+        }
+        if (![newArr containsObject:days.second]) {
+            [newArr addObject:days.second];
+        }
+        
+        return newArr;
+    }] array] sortedArrayUsingComparator:^NSComparisonResult(NSDate *one, NSDate *two) {
+        return [one compare:two];
+    }];
+}
+
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
     IXDASessionDetailsViewModel *viewModel = nil;
     if ([selectedSessions objectAtIndex:index]) {
@@ -113,6 +138,7 @@
     }
     return viewModel;
 }
+
 
 #pragma mark - Private Helpers
 
@@ -138,11 +164,11 @@
 }
 
 - (NSDictionary *)mapSpeakersArrayToDict:(NSArray *)speakersArray {
-    NSMutableDictionary *mutableDiict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] init];
     for (Speaker *speaker in speakersArray) {
-        [mutableDiict addEntriesFromDictionary:@{ speaker.name : speaker }];
+        [mutableDict addEntriesFromDictionary:@{ speaker.name : speaker }];
     }
-    return [mutableDiict copy];
+    return [mutableDict copy];
 }
 
 - (NSArray *)speakersOfSession:(NSString *)speakersString {
@@ -153,6 +179,20 @@
 
 - (Speaker *)speakerBy:(NSString *)name {
     return self.speakers[name];
+}
+
+// Returns the start day and end day (without time components) of a given session.
+- (RACTuple *)sessionDays:(Session *)session {
+    unsigned int flags = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:flags fromDate:session.event_start];
+    NSDateComponents *endComponents = [[NSCalendar currentCalendar] components:flags fromDate:session.event_end];
+    [startComponents setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [endComponents setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    
+    NSDate *startDay = [[NSCalendar currentCalendar] dateFromComponents:startComponents];
+    NSDate *endDay = [[NSCalendar currentCalendar] dateFromComponents:endComponents];
+    
+    return RACTuplePack(startDay, endDay);
 }
 
 @end

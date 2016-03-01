@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
 - (RACSignal *)starredTalks; // A stream of the currently starred talks.
+- (NSArray *)talkDays; // An array of days (without time components) on which there are talks or workshops.
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
