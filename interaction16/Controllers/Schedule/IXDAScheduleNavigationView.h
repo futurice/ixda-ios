@@ -13,8 +13,10 @@
 @interface IXDAScheduleNavigationView : UIView
 
 @property (nonatomic, strong) RACSignal *backButtonSignal;
+@property (nonatomic, strong) NSNumber *expanded;
+@property (nonatomic, strong) NSArray *days;
+@property (nonatomic, strong) NSDate *selectedDay;
 
-- (instancetype)initWithDays:(NSArray *)days;
-@property (nonatomic, strong) NSString *selectedDay;
+- (instancetype)initWithDays:(NSArray *)days baseHeight:(CGFloat)baseHeight rowHeight:(CGFloat)rowHeight;
 
 @end

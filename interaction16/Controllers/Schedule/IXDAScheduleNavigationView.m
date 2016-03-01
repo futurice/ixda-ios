@@ -16,17 +16,20 @@
 
 @interface IXDAScheduleNavigationView()
 
-@property (nonatomic, strong) NSArray *days;
+@property (nonatomic, assign) CGFloat baseHeight;
+@property (nonatomic, assign) CGFloat rowHeight;
 
 @end
 
 @implementation IXDAScheduleNavigationView
 
-- (instancetype)initWithDays:(NSArray *)days {
+- (instancetype)initWithDays:(NSArray *)days baseHeight:(CGFloat)baseHeight rowHeight:(CGFloat)rowHeight {
     self = [super init];
     if (!self) return nil;
     
     self.days = days;
+    self.baseHeight = baseHeight;
+    self.rowHeight = rowHeight;
     
     self.backgroundColor = [UIColor whiteColor];
     
@@ -49,6 +52,45 @@
         make.left.equalTo(self);
     }];
     self.backButtonSignal = [backButton rac_signalForControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *expandButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    expandButton.tag = 0;
+    [expandButton setImage:[UIImage imageNamed:@"arrowBlueDown"] forState:UIControlStateNormal];
+    expandButton.imageEdgeInsets = UIEdgeInsetsMake(11, 11, 11, 11);
+    [self addSubview:expandButton];
+    [expandButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset((self.baseHeight + self.rowHeight - 44) / 2.0);
+        make.width.height.equalTo(@44);
+        make.right.equalTo(self);
+    }];
+    
+    UIButton *contractButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    contractButton.tag = 1;
+    contractButton.alpha = 0.0;
+    [contractButton setImage:[UIImage imageNamed:@"arrowBlueUp"] forState:UIControlStateNormal];
+    contractButton.imageEdgeInsets = UIEdgeInsetsMake(11, 11, 11, 11);
+    [self addSubview:contractButton];
+    [contractButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.centerX.width.height.equalTo(expandButton);
+    }];
+    
+    [[expandButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        self.expanded = [NSNumber numberWithBool:YES];
+    }];
+    [[contractButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        self.expanded = [NSNumber numberWithBool:NO];
+    }];
+    
+    // Update the view when it is expanded or contracted.
+    [[RACObserve(self, expanded) deliverOnMainThread] subscribeNext:^(NSNumber *exp) {
+        BOOL expanded = [exp boolValue];
+        
+        // Animate the changes.
+        [UIView animateWithDuration:0.2 animations:^{
+            expandButton.alpha = !expanded;
+            contractButton.alpha = expanded;
+        }];
+    }];
     
     return self;
 }

@@ -19,6 +19,7 @@
 @interface IXDAScheduleViewController ()
 
 @property (nonatomic, strong) IXDASessionsViewModel *viewModel;
+@property (nonatomic, strong) IXDAScheduleNavigationView *navigationView;
 
 @end
 
@@ -33,8 +34,6 @@
     self.viewModel = sessionsViewModel;
     
     self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorB];
-    
-    CGFloat titleBarHeight = 130.0;
     
     // Normally you would get dates on which there are talks directly from the
     // view model, like so:
@@ -56,17 +55,33 @@
         return [_dateFormatter dateFromString:dateString];
     }] array];
     
-    IXDAScheduleNavigationView *navigationView = [[IXDAScheduleNavigationView alloc] initWithDays:days];
-    [self.view addSubview:navigationView];
-    [navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
+    CGFloat titleBarBaseHeight = 70.0;
+    CGFloat titleBarRowHeight = 44.0;
+    
+    self.navigationView = [[IXDAScheduleNavigationView alloc] initWithDays:days baseHeight:titleBarBaseHeight rowHeight:titleBarRowHeight];
+    [self.view addSubview:self.navigationView];
+    [self.navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.height.equalTo(@(titleBarHeight));
+        make.height.equalTo(@(titleBarBaseHeight + titleBarRowHeight)); // Only 1 row is visible.
     }];
     
     @weakify(self)
-    [navigationView.backButtonSignal subscribeNext:^(id x) {
+    [self.navigationView.backButtonSignal subscribeNext:^(id x) {
         @strongify(self)
         [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [[RACObserve(self.navigationView, expanded) deliverOnMainThread] subscribeNext:^(NSNumber *expanded) {
+        @strongify(self)
+        // Animate the changes.
+        [UIView animateWithDuration:0.2 animations:^{
+            NSUInteger visibleRows = [expanded boolValue] ? self.navigationView.days.count : 1;
+            CGFloat height = titleBarBaseHeight + visibleRows * titleBarRowHeight;
+            [self.navigationView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.equalTo(@(height));
+            }];
+            [self.view layoutIfNeeded];
+        }];
     }];
     
     return self;
