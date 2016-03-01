@@ -519,6 +519,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F87D42E1C6F25430039A29B /* Build configuration list for PBXNativeTarget "interaction16" */;
 			buildPhases = (
+				8A785A2D1C85959C00149E8D /* Run Script */,
 				58CAAF5E20D8759CCF2B12E7 /* Check Pods Manifest.lock */,
 				6F87D4131C6F25430039A29B /* Sources */,
 				6F87D4141C6F25430039A29B /* Frameworks */,
@@ -573,7 +574,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A785A1F1C84A64800149E8D /* IXDACredentials.plist in Resources */,
+				8A785A361C859DC200149E8D /* IXDACredentials.plist in Resources */,
 				6F668DC11C6F423E00475BCA /* CircularStd-Book.otf in Resources */,
 				8A785A1E1C84A64800149E8D /* IXDACredentials.example.plist in Resources */,
 				6F668DBF1C6F423E00475BCA /* CircularStd-Black.otf in Resources */,
@@ -634,6 +635,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		8A785A2D1C85959C00149E8D /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "EXAMPLE_PLIST_PATH=\"${SRCROOT}/interaction16/IXDACredentials.example.plist\"\nPLIST_PATH=\"${SRCROOT}/interaction16/IXDACredentials.plist\"\ntest -r \"${EXAMPLE_PLIST_PATH}\" && cp -n \"${EXAMPLE_PLIST_PATH}\" \"${PLIST_PATH}\" || echo \"Could not find IXDACredentials.example.plist\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
