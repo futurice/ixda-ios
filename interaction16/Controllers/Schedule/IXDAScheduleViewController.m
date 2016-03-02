@@ -8,6 +8,7 @@
 
 #import "IXDAScheduleViewController.h"
 #import "IXDAScheduleNavigationView.h"
+#import "IXDAScheduleTimelineView.h"
 
 #import "IXDASessionsViewModel.h"
 #import "UIColor+IXDA.h"
@@ -62,7 +63,8 @@
     self.navigationView = [[IXDAScheduleNavigationView alloc] initWithDayStrings:dayStrings baseHeight:titleBarBaseHeight rowHeight:titleBarRowHeight];
     [self.view addSubview:self.navigationView];
     [self.navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).offset(20);
+        make.left.right.equalTo(self.view);
         make.height.equalTo(@(titleBarBaseHeight + titleBarRowHeight)); // Only 1 row is visible.
     }];
     
@@ -74,7 +76,7 @@
     
     [[RACObserve(self.navigationView, expanded) deliverOnMainThread] subscribeNext:^(NSNumber *expanded) {
         @strongify(self)
-        // Animate the changes.
+        // Update the navigation view's height, animating the changes.
         [UIView animateWithDuration:0.2 animations:^{
             NSUInteger visibleRows = [expanded boolValue] ? self.days.count : 1;
             CGFloat height = titleBarBaseHeight + visibleRows * titleBarRowHeight + titleBarBottomPadding;
@@ -83,6 +85,14 @@
             }];
             [self.view layoutIfNeeded];
         }];
+    }];
+    
+    IXDAScheduleViewModel *scheduleViewModel = [self.viewModel scheduleViewModelWithDays:self.days];
+    IXDAScheduleTimelineView *timelineView = [[IXDAScheduleTimelineView alloc] initWithScheduleViewModel:scheduleViewModel];
+    [self.view addSubview:timelineView];
+    [timelineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding);
+        make.left.right.bottom.equalTo(self.view);
     }];
     
     return self;

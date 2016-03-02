@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
     IXDASessionDayFriday = 4
 };
 
-@class IXDASessionDetailsViewModel, RACSignal;
+@class IXDASessionDetailsViewModel, IXDAScheduleViewModel, RACSignal;
 
 @interface IXDASessionsViewModel : NSObject
 
@@ -45,6 +45,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+- (IXDAScheduleViewModel *)scheduleViewModelWithDays:(NSArray *)days;
 
 
 @end

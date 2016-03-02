@@ -8,6 +8,7 @@
 
 #import "IXDASessionsViewModel.h"
 #import "IXDASessionDetailsViewModel.h"
+#import "IXDAScheduleViewModel.h"
 
 #import "Session.h"
 #import "Speaker.h"
@@ -180,6 +181,13 @@
         viewModel = [[IXDASessionDetailsViewModel alloc] initWithSession:session speakers:speakers];
     }
     return viewModel;
+}
+
+- (IXDAScheduleViewModel *)scheduleViewModelWithDays:(NSArray *)days {
+    // Select all the sessions that are on any of the given days.
+    
+    
+    return [[IXDAScheduleViewModel alloc] init];
 }
 
 
