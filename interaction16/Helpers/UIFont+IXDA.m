@@ -70,6 +70,10 @@
     return [UIFont fontWithName:@"CircularStd-Book" size:16.0];
 }
 
++ (UIFont *)ixda_scheduleTimeLabel {
+    return [UIFont fontWithName:@"CircularStd-Book" size:14.0];
+}
+
 + (UIFont *)ixda_scheduleRoomName {
     return [UIFont fontWithName:@"CircularStd-Book" size:9.0];
 }
