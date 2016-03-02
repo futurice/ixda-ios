@@ -104,6 +104,7 @@
     }];
 }
 
+// Returns an array of days (without time components) on which there are talks or workshops.
 - (NSArray *)talkDays {
     // Look through all talks and add the dates for which there are sessions.
     return [[[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
@@ -127,6 +128,48 @@
     }] array] sortedArrayUsingComparator:^NSComparisonResult(NSDate *one, NSDate *two) {
         return [one compare:two];
     }];
+}
+
+// Takes an array of NSString objects representing dates (e.g. "2016-03-02") and returns an array of
+// NSDate objects representing days (i.e. without time components).
+- (NSArray *)daysWithStrings:(NSArray *)dayStrings {
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    });
+    
+    return [[[dayStrings rac_sequence] map:^id(NSString *dateString) {
+        return [_dateFormatter dateFromString:dateString];
+    }] array];
+}
+
+// Takes an array of NSDate objects and returns an array of attributed string (e.g. "Tuesday, March 1").
+- (NSArray *)attributedDayStringsWithDates:(NSArray *)dates dayAttributes:(NSDictionary *)dayAttributes dateAttributes:(NSDictionary *)dateAttributes {
+    // Initialise date formatters once.
+    static NSDateFormatter *_dayFormatter = nil;
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dayFormatter = [[NSDateFormatter alloc] init];
+        [_dayFormatter setDateFormat:@"EEEE"];
+        
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"MMMM d"];
+        [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    });
+    
+    return [[[dates rac_sequence] map:^id(NSDate *day) {
+        NSString *weekday = [_dayFormatter stringFromDate:day];
+        NSString *date = [_dateFormatter stringFromDate:day];
+        NSString *titleString = [NSString stringWithFormat:@"%@, %@", weekday, date];
+        NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:titleString attributes:dayAttributes];
+        [attributedTitle setAttributes:dateAttributes range:NSMakeRange(weekday.length + 1, titleString.length - weekday.length - 1)];
+        return attributedTitle;
+    }] array];
+    
 }
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {

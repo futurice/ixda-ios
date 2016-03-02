@@ -32,7 +32,16 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 - (NSArray *)workshops;
 - (NSArray *)socialEvents;
 - (RACSignal *)starredTalks; // A stream of the currently starred talks.
-- (NSArray *)talkDays; // An array of days (without time components) on which there are talks or workshops.
+
+// An array of days (without time components) on which there are talks or workshops.
+- (NSArray *)talkDays;
+
+// Takes an array of NSString objects representing dates (e.g. "2016-03-02") and returns an array of
+// NSDate objects representing days (i.e. without time components).
+- (NSArray *)daysWithStrings:(NSArray *)dates;
+
+// Takes an array of NSDate objects and returns an array of attributed string (e.g. "Tuesday, March 1").
+- (NSArray *)attributedDayStringsWithDates:(NSArray *)dates dayAttributes:(NSDictionary *)dayAttributes dateAttributes:(NSDictionary *)dateAttributes;
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;

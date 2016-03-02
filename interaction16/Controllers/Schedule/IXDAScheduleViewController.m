@@ -21,6 +21,9 @@
 @property (nonatomic, strong) IXDASessionsViewModel *viewModel;
 @property (nonatomic, strong) IXDAScheduleNavigationView *navigationView;
 
+// An array of NSDate objects representing the days shown in the schedule.
+@property (nonatomic, strong) NSArray *days;
+
 @end
 
 @implementation IXDAScheduleViewController
@@ -38,28 +41,25 @@
     // Normally you would get dates on which there are talks directly from the
     // view model, like so:
     //
-    // NSArray *days = [self.viewModel talkDays];
+    // self.days = [self.viewModel talkDays];
     //
-    // However, since we wish only wish to include 03-01 to 03-04 (even though
+    // However, since we only wish to include 03-01 through 03-04 (even though
     // there are talks on other dates, too), we hardcode the days here.
     
-    static NSDateFormatter *_dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    });
+    self.days = [self.viewModel daysWithStrings:@[@"2016-03-01", @"2016-03-02", @"2016-03-03", @"2016-03-04"]];
     
-    NSArray *days = [[[@[@"2016-03-01", @"2016-03-02", @"2016-03-03", @"2016-03-04"] rac_sequence] map:^id(NSString *dateString) {
-        return [_dateFormatter dateFromString:dateString];
-    }] array];
+    // Format day strings for showing in the navigation view's day-selecting menu.
+    NSDictionary *dayAttrs = @{NSFontAttributeName:[UIFont ixda_infoCellSubTitleFont],
+                               NSForegroundColorAttributeName:[UIColor ixda_infoSubtitleColor]};
+    NSDictionary *dateAttrs = @{NSFontAttributeName:[UIFont ixda_socialCellDateFont],
+                                NSForegroundColorAttributeName:[UIColor ixda_infoSubtitleColor]};
+    NSArray *dayStrings = [self.viewModel attributedDayStringsWithDates:self.days dayAttributes:dayAttrs dateAttributes:dateAttrs];
     
     CGFloat titleBarBaseHeight = 60.0;
     CGFloat titleBarRowHeight = 44.0;
     CGFloat titleBarBottomPadding = 20.0;
     
-    self.navigationView = [[IXDAScheduleNavigationView alloc] initWithDays:days baseHeight:titleBarBaseHeight rowHeight:titleBarRowHeight];
+    self.navigationView = [[IXDAScheduleNavigationView alloc] initWithDayStrings:dayStrings baseHeight:titleBarBaseHeight rowHeight:titleBarRowHeight];
     [self.view addSubview:self.navigationView];
     [self.navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
@@ -76,7 +76,7 @@
         @strongify(self)
         // Animate the changes.
         [UIView animateWithDuration:0.2 animations:^{
-            NSUInteger visibleRows = [expanded boolValue] ? self.navigationView.days.count : 1;
+            NSUInteger visibleRows = [expanded boolValue] ? self.days.count : 1;
             CGFloat height = titleBarBaseHeight + visibleRows * titleBarRowHeight + titleBarBottomPadding;
             [self.navigationView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.equalTo(@(height));

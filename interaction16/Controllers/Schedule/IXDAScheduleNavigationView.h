@@ -16,8 +16,7 @@
 @property (nonatomic, strong) NSNumber *expanded;
 @property (nonatomic, strong) NSNumber *selectedDay;
 
-@property (nonatomic, strong) NSArray *days;
-
-- (instancetype)initWithDays:(NSArray *)days baseHeight:(CGFloat)baseHeight rowHeight:(CGFloat)rowHeight;
+// Takes an array of strings or attributed strings, a base height and a row height.
+- (instancetype)initWithDayStrings:(NSArray *)dayStrings baseHeight:(CGFloat)baseHeight rowHeight:(CGFloat)rowHeight;
 
 @end

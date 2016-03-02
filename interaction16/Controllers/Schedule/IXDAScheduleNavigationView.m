@@ -16,19 +16,21 @@
 
 @interface IXDAScheduleNavigationView()
 
-@property (nonatomic, strong) NSMutableArray *dayButtons;
+@property (nonatomic, strong) NSArray *days;
 @property (nonatomic, assign) CGFloat baseHeight;
 @property (nonatomic, assign) CGFloat rowHeight;
+
+@property (nonatomic, strong) NSMutableArray *dayButtons;
 
 @end
 
 @implementation IXDAScheduleNavigationView
 
-- (instancetype)initWithDays:(NSArray *)days baseHeight:(CGFloat)baseHeight rowHeight:(CGFloat)rowHeight {
+- (instancetype)initWithDayStrings:(NSArray *)dayStrings baseHeight:(CGFloat)baseHeight rowHeight:(CGFloat)rowHeight {
     self = [super init];
     if (!self) return nil;
     
-    self.days = days;
+    self.days = dayStrings;
     self.dayButtons = [NSMutableArray array];
     self.baseHeight = baseHeight;
     self.rowHeight = rowHeight;
@@ -80,36 +82,19 @@
         self.expanded = @NO;
     }];
     
-    NSDictionary *dayAttrs = @{NSFontAttributeName:[UIFont ixda_infoCellSubTitleFont],
-                            NSForegroundColorAttributeName:[UIColor ixda_infoSubtitleColor]};
-    NSDictionary *dateAttrs = @{NSFontAttributeName:[UIFont ixda_socialCellDateFont],
-                            NSForegroundColorAttributeName:[UIColor ixda_infoSubtitleColor]};
-    
-    static NSDateFormatter *_dayFormatter = nil;
-    static NSDateFormatter *_dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _dayFormatter = [[NSDateFormatter alloc] init];
-        [_dayFormatter setDateFormat:@"EEEE"];
-        
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"MMMM d"];
-        [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    });
-    
     // Create a button for each day.
-    [self.days enumerateObjectsUsingBlock:^(NSDate *day, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.days enumerateObjectsUsingBlock:^(id day, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *dayButton = [UIButton buttonWithType:UIButtonTypeSystem];
         dayButton.tag = idx;
         dayButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [self.dayButtons addObject:dayButton];
         
-        NSString *weekday = [_dayFormatter stringFromDate:day];
-        NSString *date = [_dateFormatter stringFromDate:day];
-        NSString *titleString = [NSString stringWithFormat:@"%@, %@", weekday, date];
-        NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:titleString attributes:dayAttrs];
-        [attributedTitle setAttributes:dateAttrs range:NSMakeRange(weekday.length + 1, titleString.length - weekday.length - 1)];
-        [dayButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+        // Set button title (day strings may be either normal or attributed).
+        if ([day isKindOfClass:[NSAttributedString class]]) {
+            [dayButton setAttributedTitle:day forState:UIControlStateNormal];
+        } else if ([day isKindOfClass:[NSString class]]) {
+            [dayButton setTitle:day forState:UIControlStateNormal];
+        }
         
         [self addSubview:dayButton];
         
@@ -117,8 +102,8 @@
             make.left.equalTo(self).offset(20);
             make.height.equalTo(@(rowHeight));
             
-            // If it's the first button, constrain it to top.
             if (idx == 0) {
+                // If it's the first button, constrain it to top.
                 make.top.equalTo(self).offset(self.baseHeight);
             } else {
                 // Otherwise, constrain it to the previous button.
@@ -129,8 +114,11 @@
         
         [[dayButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             if ([self.expanded isEqual:@NO]) {
+                // If the view is not expanded, pressing the button should expand the view.
                 self.expanded = @YES;
             } else {
+                // If the view is expanded, pressing the button should contract the view and
+                // mark the corresponding day as selected.
                 self.selectedDay = @(dayButton.tag);
                 self.expanded = @NO;
             }
