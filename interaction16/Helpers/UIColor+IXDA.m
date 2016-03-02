@@ -42,4 +42,8 @@
     return [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1.0];
 }
 
++ (UIColor *)ixda_timelineTimeLabelColor {
+    return [UIColor colorWithRed:0 green:0 blue:0 alpha:0.49];
+}
+
 @end
