@@ -56,17 +56,18 @@
                                 NSForegroundColorAttributeName:[UIColor ixda_infoSubtitleColor]};
     NSArray *dayStrings = [self.viewModel attributedDayStringsWithDates:self.days dayAttributes:dayAttrs dateAttributes:dateAttrs];
     
-    CGFloat titlBarTopMargin = 20.0;
+    CGFloat titleBarTopMargin = 20.0;
     CGFloat titleBarBaseHeight = 60.0;
     CGFloat titleBarRowHeight = 44.0;
     CGFloat titleBarBottomPadding = 10.0;
     
+    // Navigation view.
     self.navigationView = [[IXDAScheduleNavigationView alloc] initWithDayStrings:dayStrings baseHeight:titleBarBaseHeight rowHeight:titleBarRowHeight];
     [self.view addSubview:self.navigationView];
     [self.navigationView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(titlBarTopMargin);
+        make.top.equalTo(self.view).offset(titleBarTopMargin);
         make.left.right.equalTo(self.view);
-        make.height.equalTo(@(titleBarBaseHeight + titleBarRowHeight)); // Only 1 row is visible.
+        make.height.equalTo(@(titleBarTopMargin + titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding)); // Only 1 row is visible.
     }];
     
     @weakify(self)
@@ -88,11 +89,12 @@
         }];
     }];
     
+    // Timeline view.
     IXDAScheduleViewModel *scheduleViewModel = [self.viewModel scheduleViewModelWithDays:self.days];
     IXDAScheduleTimelineView *timelineView = [[IXDAScheduleTimelineView alloc] initWithScheduleViewModel:scheduleViewModel];
     [self.view addSubview:timelineView];
     [timelineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(titlBarTopMargin + titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding);
+        make.top.equalTo(self.view).offset(titleBarTopMargin + titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding);
         make.left.right.bottom.equalTo(self.view);
     }];
     

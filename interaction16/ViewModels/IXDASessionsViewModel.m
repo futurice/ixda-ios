@@ -15,6 +15,7 @@
 #import "IXDASessionStore.h"
 #import "IXDASpeakerStore.h"
 #import "IXDAStarredSessionStore.h"
+#import "NSDate+Additions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -105,7 +106,7 @@
     }];
 }
 
-// Returns an array of days (without time components) on which there are talks or workshops.
+// Returns an array of days (dates at midnight) on which there are talks or workshops.
 - (NSArray *)talkDays {
     // Look through all talks and add the dates for which there are sessions.
     return [[[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
@@ -132,7 +133,7 @@
 }
 
 // Takes an array of NSString objects representing dates (e.g. "2016-03-02") and returns an array of
-// NSDate objects representing days (i.e. without time components).
+// NSDate objects representing days (i.e. dates at midnight).
 - (NSArray *)daysWithStrings:(NSArray *)dayStrings {
     static NSDateFormatter *_dateFormatter = nil;
     static dispatch_once_t onceToken;
@@ -186,8 +187,7 @@
 - (IXDAScheduleViewModel *)scheduleViewModelWithDays:(NSArray *)days {
     // Select all the sessions that are on any of the given days.
     
-    
-    return [[IXDAScheduleViewModel alloc] init];
+    return [[IXDAScheduleViewModel alloc] initWithSessions:self.sessions speakers:self.speakers days:days];
 }
 
 
@@ -232,17 +232,10 @@
     return self.speakers[name];
 }
 
-// Returns the start day and end day (without time components) of a given session.
+// Returns the start day and end day (at midnight) of a given session.
 - (RACTuple *)sessionDays:(Session *)session {
-    unsigned int flags = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
-    NSDateComponents *startComponents = [[NSCalendar currentCalendar] components:flags fromDate:session.event_start];
-    NSDateComponents *endComponents = [[NSCalendar currentCalendar] components:flags fromDate:session.event_end];
-    [startComponents setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    [endComponents setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    
-    NSDate *startDay = [[NSCalendar currentCalendar] dateFromComponents:startComponents];
-    NSDate *endDay = [[NSCalendar currentCalendar] dateFromComponents:endComponents];
-    
+    NSDate *startDay = [session.event_start sameDateWithMidnightTimestamp];
+    NSDate *endDay = [session.event_end sameDateWithMidnightTimestamp];
     return RACTuplePack(startDay, endDay);
 }
 
