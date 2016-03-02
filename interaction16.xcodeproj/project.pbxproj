@@ -67,6 +67,7 @@
 		8A785A3D1C85C80900149E8D /* IXDAScheduleNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A3C1C85C80900149E8D /* IXDAScheduleNavigationView.m */; };
 		8A785A401C86F62900149E8D /* IXDAScheduleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A3F1C86F62900149E8D /* IXDAScheduleViewModel.m */; };
 		8A785A431C86F73C00149E8D /* IXDAScheduleTimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */; };
+		8A785A461C8726D800149E8D /* IXDAScheduleSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */; };
 		8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */; };
 		8AC3C66B1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
@@ -187,6 +188,8 @@
 		8A785A3F1C86F62900149E8D /* IXDAScheduleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleViewModel.m; path = ViewModels/IXDAScheduleViewModel.m; sourceTree = "<group>"; };
 		8A785A411C86F73C00149E8D /* IXDAScheduleTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleTimelineView.h; path = Views/IXDAScheduleTimelineView.h; sourceTree = "<group>"; };
 		8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleTimelineView.m; path = Views/IXDAScheduleTimelineView.m; sourceTree = "<group>"; };
+		8A785A441C8726D800149E8D /* IXDAScheduleSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleSessionView.h; path = Views/IXDAScheduleSessionView.h; sourceTree = "<group>"; };
+		8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleSessionView.m; path = Views/IXDAScheduleSessionView.m; sourceTree = "<group>"; };
 		8AC3C6661C7C946200AC54BE /* IXDAMyScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleViewController.h; path = Controllers/MySchedule/IXDAMyScheduleViewController.h; sourceTree = "<group>"; };
 		8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleViewController.m; path = Controllers/MySchedule/IXDAMyScheduleViewController.m; sourceTree = "<group>"; };
 		8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleEmptyStateView.h; path = Views/IXDAMyScheduleEmptyStateView.h; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 			children = (
 				8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */,
 				8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */,
+				8A785A441C8726D800149E8D /* IXDAScheduleSessionView.h */,
+				8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */,
 				8A785A411C86F73C00149E8D /* IXDAScheduleTimelineView.h */,
 				8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */,
 				6FE307C41C78911200B0A356 /* IXDASessionDetailBar.h */,
@@ -689,6 +694,7 @@
 				6F3155FA1C763A72006A43AF /* FestScheduleViewController.m in Sources */,
 				8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */,
 				6F3155FE1C763ACB006A43AF /* TimelineView.m in Sources */,
+				8A785A461C8726D800149E8D /* IXDAScheduleSessionView.m in Sources */,
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
 				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,

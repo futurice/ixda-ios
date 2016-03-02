@@ -7,8 +7,8 @@
 //
 
 #import "IXDAScheduleTimelineView.h"
-
 #import "IXDAScheduleViewModel.h"
+#import "IXDAScheduleSessionView.h"
 
 #import "UIFont+IXDA.h"
 #import "UIColor+IXDA.h"
@@ -19,9 +19,10 @@
 @interface IXDAScheduleTimelineView () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IXDAScheduleViewModel *viewModel;
+@property (nonatomic, strong) NSArray *sessionsByDayAndVenue;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *timeLabels;
+@property (nonatomic, strong) NSMutableArray *timeLabelsByDay;
 
 @end
 
@@ -30,14 +31,15 @@
 - (id)initWithScheduleViewModel:(IXDAScheduleViewModel *)viewModel {
     self = [super init];
     if (!self) return nil;
-    
     self.viewModel = viewModel;
+    self.sessionsByDayAndVenue = [self.viewModel sessionsByDayAndVenue];
     
     self.backgroundColor = [UIColor ixda_timelineBackgroundColor];
     
     // Set up scroll view.
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.delegate = self;
+    self.scrollView.directionalLockEnabled = YES;
     [self addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -50,17 +52,20 @@
     
     CGFloat timeLabelWidth = 60.0;
     CGFloat columnWidth = 180.0;
+    CGFloat columnMargin = 10.0;
     
-    NSUInteger numberOfColumns = [self.viewModel maxNumberOfRoomsPerDay];
+    NSUInteger numberOfColumns = [self.viewModel maxNumberOfVenuesPerDay];
     CGFloat dividerWidth = timeLabelWidth + columnWidth * numberOfColumns;
     
-    self.timeLabels = [NSMutableArray array];
+    self.timeLabelsByDay = [NSMutableArray array];
     
     // Enumerate through days, drawing the appropriate views for each one.
-    [self.viewModel.days enumerateObjectsUsingBlock:^(NSDate *day, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.viewModel.sessionsByDayAndVenue enumerateObjectsUsingBlock:^(NSArray *arrayOfVenues, NSUInteger dayIdx, BOOL * _Nonnull stop) {
+        
+        [self.timeLabelsByDay addObject:[NSMutableArray array]];
         
         // Draw time labels for the current day.
-        [[self.viewModel timeLabelStringsForDay:idx] enumerateObjectsUsingBlock:^(NSString *timeString, NSUInteger timeIdx, BOOL * _Nonnull stop) {
+        [[self.viewModel timeIntervalStringsForDayIndex:dayIdx] enumerateObjectsUsingBlock:^(NSString *timeString, NSUInteger timeIdx, BOOL * _Nonnull stop) {
             UILabel *timeLabel = [[UILabel alloc] init];
             timeLabel.text = timeString;
             timeLabel.font = [UIFont ixda_scheduleTimeLabel];
@@ -73,17 +78,18 @@
                 make.height.equalTo(@(rowHeight));
                 make.width.equalTo(@(timeLabelWidth));
                 
-                UILabel *prev = [self.timeLabels lastObject];
-                if (idx == 0 && timeIdx == 0) { // The very first time label.
+                if (dayIdx == 0 && timeIdx == 0) { // The very first time label.
                     make.top.equalTo(self.scrollView).offset(insets.top);
                 } else if (timeIdx == 0) { // The first time label for a certain day
+                    UILabel *prev = [self.timeLabelsByDay[dayIdx-1] lastObject];
                     make.top.equalTo(prev.mas_bottom).offset(dayMargin);
                 } else {
+                    UILabel *prev = [self.timeLabelsByDay[dayIdx] lastObject];
                     make.top.equalTo(prev.mas_bottom);
                 }
             }];
             
-            [self.timeLabels addObject:timeLabel];
+            [self.timeLabelsByDay[dayIdx] addObject:timeLabel];
             
             // Add horizontal divider at the top of each time label (except the first one of each day).
             if (timeIdx != 0) {
@@ -92,7 +98,7 @@
                 horizontalDivider.alpha = 0.49;
                 [self.scrollView addSubview:horizontalDivider];
                 [horizontalDivider mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo([self.timeLabels lastObject]);
+                    make.top.equalTo([self.timeLabelsByDay[dayIdx] lastObject]);
                     make.left.equalTo(self.scrollView).offset(insets.left);
                     make.right.equalTo(self.scrollView).offset(-insets.right);
                     make.height.equalTo(@1);
@@ -100,10 +106,37 @@
                 }];
             }
         }];
+        
+        NSArray *timeLabelsForDay = self.timeLabelsByDay[dayIdx];
+        
+        // Enumerate through venues/columns.
+        [arrayOfVenues enumerateObjectsUsingBlock:^(NSArray *arrayOfSessions, NSUInteger venueIdx, BOOL * _Nonnull stop) {
+            
+            // Enumerate through sessions on the given day and in the given venue.
+            [arrayOfSessions enumerateObjectsUsingBlock:^(id session, NSUInteger sessionIdx, BOOL * _Nonnull stop) {
+                NSString *title = [self.viewModel typeForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
+                NSString *subtitle = [self.viewModel titleForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
+                NSArray *names = [self.viewModel speakerNamesForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
+                NSArray *companies = [self.viewModel companiesForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
+                
+                IXDAScheduleSessionView *sessionView = [[IXDAScheduleSessionView alloc] initWithTitle:title subtitle:subtitle names:names companies:companies];
+                [self.scrollView addSubview:sessionView];
+                
+                RACTuple *timeIndices = [self.viewModel timeIntervalIndicesForSessionOfArray:arrayOfSessions index:sessionIdx day:dayIdx];
+                UILabel *startTimeLabel = timeLabelsForDay[[timeIndices.first unsignedIntegerValue]];
+                CGFloat height = ([timeIndices.second unsignedIntegerValue] - [timeIndices.first unsignedIntegerValue]) * rowHeight;
+                [sessionView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(startTimeLabel.mas_centerY);
+                    make.left.equalTo(self.scrollView).offset(insets.left + timeLabelWidth + columnWidth * venueIdx);
+                    make.width.equalTo(@(columnWidth - columnMargin));
+                    make.height.equalTo(@(height));
+                }];
+            }];
+        }];
     }];
     
     // Constrain last time label to scroll view.
-    UILabel *lastTimeLabel = [self.timeLabels lastObject];
+    UILabel *lastTimeLabel = [[self.timeLabelsByDay lastObject] lastObject];
     [lastTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.scrollView).offset(-insets.bottom);
     }];

@@ -8,19 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-@class IXDASessionDetailsViewModel;
+@class IXDASessionDetailsViewModel, RACTuple;
 
 @interface IXDAScheduleViewModel : NSObject
 
-@property (nonatomic, strong) NSArray *days;
-
-- (NSUInteger)maxNumberOfRoomsPerDay;
-- (NSArray *)roomsForDayIndex:(NSUInteger)day;
-- (NSArray *)roomsForDay:(NSDate *)day;
-- (NSString *)roomWithIndexPath:(NSIndexPath *)indexPath; // Where section is day and row is room.
-- (NSArray *)timeLabelStringsForDay:(NSUInteger)day;
+@property (nonatomic, assign) NSUInteger maxNumberOfVenuesPerDay;
 
 - (instancetype)initWithSessions:(NSArray *)sessions speakers:(NSDictionary *)speakers days:(NSArray *)days;
+
+// Returns an array of days, each of which holds an array of venues, each
+// of which holds an array of sessions on that day and in that venue.
+- (NSArray *)sessionsByDayAndVenue;
+
+// E.g. ["08:45", "09:00", "09:15", "09:30" ...]
+- (NSArray *)timeIntervalStringsForDayIndex:(NSUInteger)day;
+
+// Returns a tuple containing the indices of the intervals corresponding to
+// a given session's start and end times.
+- (RACTuple *)timeIntervalIndicesForSessionOfArray:(NSArray *)selectedSessions index:(NSUInteger)sessionIndex day:(NSUInteger)dayIndex;
+
+- (NSString *)typeForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+- (NSString *)titleForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+- (NSArray *)speakerNamesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+- (NSArray *)companiesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
 

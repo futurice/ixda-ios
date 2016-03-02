@@ -16,8 +16,10 @@
 
 @interface IXDAScheduleViewModel ()
 
+@property (nonatomic, strong) NSArray *days;
 @property (nonatomic, strong) NSArray *sessions;
 @property (nonatomic, strong) NSDictionary *speakers;
+@property (nonatomic, strong) NSArray *timeIntervalsByDay;
 
 @end
 
@@ -31,7 +33,83 @@
     self.speakers = speakers;
     self.days = days;
     
+    // The maximum number of different venues that are being occupied on any given day.
+    self.maxNumberOfVenuesPerDay = [[[[self.days rac_sequence] map:^id(NSDate *day) {
+        return @([self venuesForDay:day].count);
+    }] foldLeftWithStart:@0 reduce:^id(NSNumber *max, NSNumber *numberOfVenues) {
+        return @(MAX([max integerValue], [numberOfVenues integerValue]));
+    }] unsignedIntegerValue];;
+    
+    self.timeIntervalsByDay = [[[self.days rac_sequence] map:^id(NSDate *day) {
+        return [self timeIntervalsForDay:day];
+    }] array];
+    
     return self;
+}
+
+// Returns an array of days, each of which holds an array of venues, each
+// of which holds an array of sessions on that day and in that venue.
+- (NSArray *)sessionsByDayAndVenue {
+    return [[[self.days rac_sequence] map:^id(NSDate *day) {
+        return [[[[self venuesForDay:day] rac_sequence] map:^id(NSString *venue) {
+            // Filter out sessions that aren't on the day and venue in question.
+            return [[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+                return ([session.venue_id isEqual:venue] && [self session:session isOnDay:day]);
+            }] array] sortedArrayUsingComparator:^NSComparisonResult(Session *first, Session *second) {
+                return [first.event_start compare:second.event_start];
+            }];
+        }] array];
+    }] array];
+}
+
+// E.g. ["08:45", "09:00", "09:15", "09:30" ...]
+- (NSArray *)timeIntervalStringsForDayIndex:(NSUInteger)day {
+    return [[[self.timeIntervalsByDay[day] rac_sequence] map:^id(NSNumber *timeInterval) {
+        return [[NSDate dateWithTimeIntervalSince1970:[timeInterval doubleValue]] hourAndMinuteString];
+    }] array];
+}
+
+- (RACTuple *)timeIntervalIndicesForSessionOfArray:(NSArray *)selectedSessions index:(NSUInteger)sessionIndex day:(NSUInteger)dayIndex {
+    Session *session = selectedSessions[sessionIndex];
+    NSTimeInterval sessionStart = [session.event_start timeIntervalSince1970];
+    NSTimeInterval sessionEnd = [session.event_end timeIntervalSince1970];
+    NSUInteger startIndex = 0;
+    NSUInteger endIndex = 0;
+    
+    for (NSNumber *timeInterval in self.timeIntervalsByDay[dayIndex]) {
+        if ([timeInterval doubleValue] < sessionStart) startIndex++;
+        if ([timeInterval doubleValue] < sessionEnd) endIndex++;
+    }
+    
+    return RACTuplePack(@(startIndex), @(endIndex));
+}
+
+- (NSString *)typeForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    NSString *title = @"";
+    if ([selectedSessions objectAtIndex:index]) {
+        Session *session = selectedSessions[index];
+        title = session.event_type;
+    }
+    return title;
+}
+
+- (NSString *)titleForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    NSString *title = @"";
+    if ([selectedSessions objectAtIndex:index]) {
+        Session *session = selectedSessions[index];
+        title = session.name;
+    }
+    return title;
+}
+
+// TODO: Implement this.
+- (NSArray *)speakerNamesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    return @[];
+}
+
+// TODO: Implement this.
+- (NSArray *)companiesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    return @[];
 }
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
@@ -44,69 +122,49 @@
     return viewModel;
 }
 
-- (NSUInteger)maxNumberOfRoomsPerDay {
-    return [[[[self.days rac_sequence] map:^id(NSDate *day) {
-        return @([self roomsForDay:day].count);
-    }] foldLeftWithStart:@0 reduce:^id(NSNumber *max, NSNumber *numberOfRooms) {
-        return @(MAX([max integerValue], [numberOfRooms integerValue]));
-    }] unsignedIntegerValue];
-}
-
-- (NSArray *)roomsForDay:(NSDate *)day {
-    return [[[[self sessionsOfDay:day] rac_sequence] map:^id(Session *session) {
-        return session.venue;
-    }] foldLeftWithStart:@[] reduce:^id(NSArray *acc, NSString *venue) {
-        NSMutableArray *rooms = [NSMutableArray arrayWithArray:acc];
-        if (![rooms containsObject:venue]) {
-            [rooms addObject:venue];
-        }
-        return rooms;
-    }];
-}
-
-- (NSArray *)roomsForDayIndex:(NSUInteger)day {
-    return [self roomsForDay:self.days[day]];
-}
-
-- (NSString *)roomWithIndexPath:(NSIndexPath *)indexPath {
-    NSArray *rooms = [self roomsForDayIndex:indexPath.section];
-    return rooms[indexPath.row];
-}
-
-// TODO: Implement this.
-- (NSArray *)timeLabelStringsForDay:(NSUInteger)day {
-    NSDate *dayStart = [self firstSessionOfDay:self.days[day]].event_start;
-    NSDate *dayEnd = [self lastSessionOfDay:self.days[day]].event_end;
-    
-    NSInteger interval = 15; // Minutes.
-    NSInteger currentHour = [dayStart hour];
-    NSInteger currentMinute = 0;
-    NSMutableArray *timeStrings = [NSMutableArray array];
-    
-    while (currentHour <= [dayEnd hour]) {
-        NSDate *time = [[NSCalendar currentCalendar] dateBySettingHour:currentHour minute:currentMinute second:0 ofDate:[NSDate date] options:0];
-        [timeStrings addObject:[time hourAndMinuteString]];
-        
-        // Increment times.
-        if (currentMinute + interval >= 60) {
-            currentHour++;
-            currentMinute = 0;
-        } else {
-            currentMinute += interval;
-        }
-    }
-    
-    return timeStrings;
-}
-
 
 #pragma mark - Private Helpers
+
+// E.g. [92_347_832, 92_348_732, 92_349_632 ...]
+- (NSArray *)timeIntervalsForDay:(NSDate *)day {
+    NSDate *dayStart = [self firstSessionOfDay:day].event_start;
+    NSDate *dayEnd = [self lastSessionOfDay:day].event_end;
+    
+    NSUInteger interval = 15 * 60; // 15 minutes.
+    NSTimeInterval currentTime = [dayStart timeIntervalSince1970] - fmod([dayStart timeIntervalSince1970], interval);
+    NSTimeInterval lastTime = [dayEnd timeIntervalSince1970];
+    NSMutableArray *timeIntervals = [NSMutableArray array];
+    
+    while (currentTime <= lastTime) {
+        [timeIntervals addObject:@(currentTime)];
+        currentTime += interval;
+    }
+    
+    
+    return timeIntervals;
+}
+
+- (NSArray *)venuesForDay:(NSDate *)day {
+    return [[[[self sessionsOfDay:day] rac_sequence] map:^id(Session *session) {
+        return session.venue_id;
+    }] foldLeftWithStart:@[] reduce:^id(NSArray *acc, NSString *venue) {
+        NSMutableArray *venues = [NSMutableArray arrayWithArray:acc];
+        if (![venues containsObject:venue]) {
+            [venues addObject:venue];
+        }
+        return venues;
+    }];
+}
 
 // Where day is an NSDate at midnight (i.e. without time components).
 - (NSArray *)sessionsOfDay:(NSDate *)day {
     return [[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
-        return [day isEqual:[session.event_start sameDateWithMidnightTimestamp]];
+        return [self session:session isOnDay:day];
     }] array];
+}
+
+- (BOOL)session:(Session *)session isOnDay:(NSDate *)day {
+    return [day isEqual:[session.event_start sameDateWithMidnightTimestamp]];
 }
 
 - (Session *)firstSessionOfDay:(NSDate *)day {
