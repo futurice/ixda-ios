@@ -125,6 +125,7 @@
                 RACTuple *timeIndices = [self.viewModel timeIntervalIndicesForSessionOfArray:arrayOfSessions index:sessionIdx day:dayIdx];
                 UILabel *startTimeLabel = timeLabelsForDay[[timeIndices.first unsignedIntegerValue]];
                 CGFloat height = ([timeIndices.second unsignedIntegerValue] - [timeIndices.first unsignedIntegerValue]) * rowHeight;
+                height = fmaxf(0.0, height - 2);
                 [sessionView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(startTimeLabel.mas_centerY);
                     make.left.equalTo(self.scrollView).offset(insets.left + timeLabelWidth + columnWidth * venueIdx);
