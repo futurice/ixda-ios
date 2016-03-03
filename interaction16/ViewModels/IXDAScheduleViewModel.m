@@ -102,14 +102,27 @@
     return title;
 }
 
-// TODO: Implement this.
 - (NSArray *)speakerNamesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
-    return @[];
+    NSArray *speakerNames = @[];
+    if ([selectedSessions objectAtIndex:index]) {
+        Session *session = selectedSessions[index];
+        speakerNames = [[[[self speakersOfSession:session.speakers] rac_sequence] map:^id(Speaker *speaker) {
+            return speaker.name;
+        }] array];
+    }
+    return speakerNames;
 }
 
 // TODO: Implement this.
 - (NSArray *)companiesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
-    return @[];
+    NSArray *companies = @[];
+    if ([selectedSessions objectAtIndex:index]) {
+        Session *session = selectedSessions[index];
+        companies = [[[[self speakersOfSession:session.speakers] rac_sequence] map:^id(Speaker *speaker) {
+            return speaker.company;
+        }] array];
+    }
+    return companies;
 }
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
