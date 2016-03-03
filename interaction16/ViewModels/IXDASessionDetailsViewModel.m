@@ -59,6 +59,13 @@
     return [[IXDAStarredSessionStore sharedStore] starredForEventKey:self.session.event_key];
 }
 
+// Observe changes to starred events set, returning YES if the session is included and NO otherwise.
+- (RACSignal *)starredSignal {
+    return [[[IXDAStarredSessionStore sharedStore] starredEventsKeys] map:^id(NSSet *starredEventsKeys) {
+        return @([starredEventsKeys containsObject:self.session.event_key]);
+    }];
+}
+
 - (void)setStarred:(BOOL)starred {
     [[IXDAStarredSessionStore sharedStore] setStarred:starred forEventKey:self.session.event_key];
 }

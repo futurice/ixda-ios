@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class IXDAScheduleViewModel, RACSignal;
+@class IXDAScheduleViewModel, RACSignal, RACSubject;
 
 @interface IXDAScheduleTimelineView : UIView
 
 @property (nonatomic, strong) RACSignal *scrollSignal;
+
+// For navigationg to session detail views (emits session ids).
+@property (nonatomic, strong) RACSubject *selectSessionSignal;
 
 - (instancetype)initWithScheduleViewModel:(IXDAScheduleViewModel *)viewModel;
 

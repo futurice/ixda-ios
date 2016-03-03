@@ -9,6 +9,7 @@
 #import "IXDAScheduleTimelineView.h"
 #import "IXDAScheduleViewModel.h"
 #import "IXDAScheduleSessionView.h"
+#import "IXDASessionDetailsViewModel.h"
 
 #import "UIFont+IXDA.h"
 #import "UIColor+IXDA.h"
@@ -36,6 +37,7 @@ static const CGFloat dayMargin = 48.0;
     if (!self) return nil;
     self.viewModel = viewModel;
     self.sessionsByDayAndVenue = [self.viewModel sessionsByDayAndVenue];
+    self.selectSessionSignal = [RACSubject subject];
     
     self.backgroundColor = [UIColor ixda_timelineBackgroundColor];
     
@@ -114,12 +116,8 @@ static const CGFloat dayMargin = 48.0;
             
             // Enumerate through sessions on the given day and in the given venue.
             [arrayOfSessions enumerateObjectsUsingBlock:^(id session, NSUInteger sessionIdx, BOOL * _Nonnull stop) {
-                NSString *title = [self.viewModel typeForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
-                NSString *subtitle = [self.viewModel titleForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
-                NSArray *names = [self.viewModel speakerNamesForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
-                NSArray *companies = [self.viewModel companiesForSessionOfArray:arrayOfSessions forIndex:sessionIdx];
-                
-                IXDAScheduleSessionView *sessionView = [[IXDAScheduleSessionView alloc] initWithTitle:title subtitle:subtitle names:names companies:companies];
+                IXDASessionDetailsViewModel *detailsViewModel = [self.viewModel sessionsDetailViewModelOfArray:arrayOfSessions forIndex:sessionIdx];
+                IXDAScheduleSessionView *sessionView = [[IXDAScheduleSessionView alloc] initWithSessionDetailsViewModel:detailsViewModel];
                 [self.scrollView addSubview:sessionView];
                 
                 RACTuple *timeIndices = [self.viewModel timeIntervalIndicesForSessionOfArray:arrayOfSessions index:sessionIdx day:dayIdx];
@@ -131,6 +129,17 @@ static const CGFloat dayMargin = 48.0;
                     make.left.equalTo(self.scrollView).offset(insets.left + timeLabelWidth + columnWidth * venueIdx);
                     make.width.equalTo(@(columnWidth - columnMargin));
                     make.height.equalTo(@(height));
+                }];
+                
+                // When the session view panel is pressed, emit corresponding session key in selectSessionSignal.
+                [sessionView.sessionButtonSignal subscribeNext:^(UIButton *button) {
+                    [self.selectSessionSignal sendNext:[self.viewModel eventKeyForSessionOfArray:arrayOfSessions forIndex:sessionIdx]];
+                }];
+                
+                // When the plus button is pressed, set the session to be starred/unstarred.
+                [sessionView.plusButtonSignal subscribeNext:^(UIButton *button) {
+                    BOOL newStarred = ![detailsViewModel starred];
+                    [detailsViewModel setStarred:newStarred];
                 }];
             }];
         }];

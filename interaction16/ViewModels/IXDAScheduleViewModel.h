@@ -27,10 +27,7 @@
 // a given session's start and end times.
 - (RACTuple *)timeIntervalIndicesForSessionOfArray:(NSArray *)selectedSessions index:(NSUInteger)sessionIndex day:(NSUInteger)dayIndex;
 
-- (NSString *)typeForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
-- (NSString *)titleForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
-- (NSArray *)speakerNamesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
-- (NSArray *)companiesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+- (NSString *)eventKeyForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
 

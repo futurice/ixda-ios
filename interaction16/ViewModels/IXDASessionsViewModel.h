@@ -45,6 +45,7 @@ typedef NS_ENUM(NSUInteger, IXDASessionDay) {
 
 - (NSArray *)sessionsOfDay:(IXDASessionDay)day;
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index;
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelWithEventKey:(NSString *)eventKey;
 - (IXDAScheduleViewModel *)scheduleViewModelWithDays:(NSArray *)days;
 
 

@@ -14,6 +14,8 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+static const NSTimeInterval tickInterval = 15 * 60; // 15 minutes.
+
 @interface IXDAScheduleViewModel ()
 
 @property (nonatomic, strong) NSArray *days;
@@ -84,44 +86,13 @@
     return RACTuplePack(@(startIndex), @(endIndex));
 }
 
-- (NSString *)typeForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
-    NSString *title = @"";
+- (NSString *)eventKeyForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
+    NSString *eventKey = @"";
     if ([selectedSessions objectAtIndex:index]) {
         Session *session = selectedSessions[index];
-        title = session.event_type;
+        eventKey = session.event_key;
     }
-    return title;
-}
-
-- (NSString *)titleForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
-    NSString *title = @"";
-    if ([selectedSessions objectAtIndex:index]) {
-        Session *session = selectedSessions[index];
-        title = session.name;
-    }
-    return title;
-}
-
-- (NSArray *)speakerNamesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
-    NSArray *speakerNames = @[];
-    if ([selectedSessions objectAtIndex:index]) {
-        Session *session = selectedSessions[index];
-        speakerNames = [[[[self speakersOfSession:session.speakers] rac_sequence] map:^id(Speaker *speaker) {
-            return speaker.name;
-        }] array];
-    }
-    return speakerNames;
-}
-
-- (NSArray *)companiesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
-    NSArray *companies = @[];
-    if ([selectedSessions objectAtIndex:index]) {
-        Session *session = selectedSessions[index];
-        companies = [[[[self speakersOfSession:session.speakers] rac_sequence] map:^id(Speaker *speaker) {
-            return speaker.company;
-        }] array];
-    }
-    return companies;
+    return eventKey;
 }
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
@@ -142,14 +113,13 @@
     NSDate *dayStart = [self firstSessionOfDay:day].event_start;
     NSDate *dayEnd = [self lastSessionOfDay:day].event_end;
     
-    NSUInteger interval = 15 * 60; // 15 minutes.
-    NSTimeInterval currentTime = [dayStart timeIntervalSince1970] - fmod([dayStart timeIntervalSince1970], interval);
+    NSTimeInterval currentTime = [dayStart timeIntervalSince1970] - fmod([dayStart timeIntervalSince1970], tickInterval);
     NSTimeInterval lastTime = [dayEnd timeIntervalSince1970];
     NSMutableArray *timeIntervals = [NSMutableArray array];
     
     while (currentTime <= lastTime) {
         [timeIntervals addObject:@(currentTime)];
-        currentTime += interval;
+        currentTime += tickInterval;
     }
     
     

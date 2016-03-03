@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Session, Speaker;
+@class Session, Speaker, RACSignal;
 
 @interface IXDASessionDetailsViewModel : NSObject
 
@@ -26,6 +26,7 @@
 - (NSString *)dayAndTime;
 
 - (BOOL)starred;
+- (RACSignal *)starredSignal;
 - (void)setStarred:(BOOL)starred;
 
 - (NSArray *)speakerNames;

@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class RACSignal;
+@class RACSignal, IXDASessionDetailsViewModel;
 
 @interface IXDAScheduleSessionView : UIView
 
 @property (nonatomic, strong) RACSignal *sessionButtonSignal;
 @property (nonatomic, strong) RACSignal *plusButtonSignal;
 
-- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle names:(NSArray *)names companies:(NSArray *)companies;
+- (instancetype)initWithSessionDetailsViewModel:(IXDASessionDetailsViewModel *)viewModel;
 
 @end

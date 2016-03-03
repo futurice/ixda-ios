@@ -7,17 +7,27 @@
 //
 
 #import "IXDAScheduleSessionView.h"
+#import "IXDASessionDetailsViewModel.h"
 
 #import "UIFont+IXDA.h"
+#import "UIColor+IXDA.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 
+@interface IXDAScheduleSessionView ()
+
+@property (nonatomic, strong) IXDASessionDetailsViewModel *viewModel;
+
+@end
+
 @implementation IXDAScheduleSessionView
 
-- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle names:(NSArray *)names companies:(NSArray *)companies {
+- (instancetype)initWithSessionDetailsViewModel:(IXDASessionDetailsViewModel *)viewModel {
     self = [super init];
     if (!self) return nil;
+    
+    self.viewModel = viewModel;
     
     self.backgroundColor = [UIColor blackColor];
     self.clipsToBounds = YES;
@@ -25,7 +35,7 @@
     UIEdgeInsets insets = UIEdgeInsetsMake(10, 10, 10, 10);
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.text = title;
+    titleLabel.text = viewModel.sessionType;
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.font = [UIFont ixda_scheduleSessionTitle];
     [self addSubview:titleLabel];
@@ -35,7 +45,7 @@
     
     UILabel *subtitleLabel = [[UILabel alloc] init];
     subtitleLabel.numberOfLines = 0;
-    subtitleLabel.text = subtitle;
+    subtitleLabel.text = viewModel.sessionName;
     subtitleLabel.textColor = [UIColor whiteColor];
     subtitleLabel.font = [UIFont ixda_scheduleSessionSubtitle];
     [self addSubview:subtitleLabel];
@@ -45,7 +55,7 @@
     }];
     
     UIView *speakersContainer = [[UIView alloc] init];
-    speakersContainer.backgroundColor = [UIColor blackColor];
+    speakersContainer.backgroundColor = [UIColor clearColor];
     [self addSubview:speakersContainer];
     [speakersContainer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.greaterThanOrEqualTo(subtitleLabel.mas_bottom);
@@ -55,7 +65,7 @@
     
     // Enumerate through names and create appropriate UILabel views.
     NSMutableArray *speakerViews = [NSMutableArray array];
-    [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
+    [viewModel.speakerNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *speakerView = [[UIView alloc] init];
         [speakersContainer addSubview:speakerView];
         
@@ -71,7 +81,7 @@
         }];
         
         UILabel *companyLabel = [[UILabel alloc] init];
-        companyLabel.text = idx < companies.count ? companies[idx] : @"";
+        companyLabel.text = idx < viewModel.speakerCompanies.count ? viewModel.speakerCompanies[idx] : @"";
         companyLabel.textColor = [UIColor whiteColor];
         companyLabel.font = [UIFont ixda_scheduleSessionSubtitle];
         [speakerView addSubview:companyLabel];
@@ -101,14 +111,6 @@
         
     }
     
-//    [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        // Create view for corresponding company name if there is one.
-//        if ([companies objectAtIndex:idx]) {
-//            
-//        }
-//    }];
-    
     UIButton *sessionButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:sessionButton];
     [sessionButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,16 +129,22 @@
     }];
     self.plusButtonSignal = [plusButton rac_signalForControlEvents:UIControlEventTouchUpInside];
     
+    
     // Control state of view as depending on whether or not it has been selected/starred.
-    [self.plusButtonSignal subscribeNext:^(UIButton *button) {
-        button.selected = !button.selected;
+    @weakify(self)
+    [[self.viewModel.starredSignal deliverOnMainThread]subscribeNext:^(NSNumber *starred) {
+        @strongify(self)
         
+        // Set background to be blue if button is selected.
+        self.backgroundColor = [starred boolValue] ? [UIColor ixda_baseBackgroundColorA] : [UIColor blackColor];
+        
+        // Animate the button to rotate π/4 radians.
         [UIView beginAnimations:@"rotation" context:nil];
         [UIView setAnimationDuration:0.2];
-        if (button.selected) {
-            button.imageView.transform = CGAffineTransformMakeRotation(M_PI_4);
+        if ([starred boolValue]) {
+            plusButton.transform = CGAffineTransformMakeRotation(M_PI_4);
         } else {
-            button.imageView.transform = CGAffineTransformIdentity;
+            plusButton.transform = CGAffineTransformIdentity;
         }
         [UIView commitAnimations];
     }];

@@ -184,6 +184,23 @@
     return viewModel;
 }
 
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelWithEventKey:(NSString *)eventKey {
+    __block Session *session = nil;
+    [self.sessions enumerateObjectsUsingBlock:^(Session *sess, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([sess.event_key isEqual:eventKey]) {
+            session = sess;
+            *stop = YES;
+        }
+    }];
+    
+    IXDASessionDetailsViewModel *viewModel = nil;
+    if (session) {
+        NSArray *speakers = [self speakersOfSession:session.speakers];
+        viewModel = [[IXDASessionDetailsViewModel alloc] initWithSession:session speakers:speakers];
+    }
+    return viewModel;
+}
+
 - (IXDAScheduleViewModel *)scheduleViewModelWithDays:(NSArray *)days {
     // Select all the sessions that are on any of the given days.
     

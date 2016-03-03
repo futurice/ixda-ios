@@ -9,6 +9,8 @@
 #import "IXDAScheduleViewController.h"
 #import "IXDAScheduleNavigationView.h"
 #import "IXDAScheduleTimelineView.h"
+#import "IXDASessionDetailsViewModel.h"
+#import "IXDATalkDetailViewController.h"
 
 #import "IXDASessionsViewModel.h"
 #import "UIColor+IXDA.h"
@@ -115,6 +117,13 @@
     [[self.timelineView.scrollSignal deliverOnMainThread] subscribeNext:^(NSNumber *visibleDay) {
         @strongify(self)
         [self.navigationView setSelectedDayIndex:[visibleDay unsignedIntegerValue]];
+    }];
+    
+    [self.timelineView.selectSessionSignal subscribeNext:^(NSString *sessionKey) {
+        @strongify(self)
+        IXDASessionDetailsViewModel *sessionDetailsViewModel = [self.viewModel sessionsDetailViewModelWithEventKey:sessionKey];
+        IXDATalkDetailViewController *vc = [[IXDATalkDetailViewController alloc] initWithViewModel:sessionDetailsViewModel];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     return self;
