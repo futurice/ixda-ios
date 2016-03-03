@@ -113,7 +113,6 @@
     return speakerNames;
 }
 
-// TODO: Implement this.
 - (NSArray *)companiesForSessionOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
     NSArray *companies = @[];
     if ([selectedSessions objectAtIndex:index]) {
