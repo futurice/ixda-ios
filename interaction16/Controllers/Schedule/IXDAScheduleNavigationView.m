@@ -16,6 +16,8 @@
 
 @interface IXDAScheduleNavigationView()
 
+@property (nonatomic, strong) NSNumber *selectedDay;
+
 @property (nonatomic, strong) NSArray *days;
 @property (nonatomic, assign) CGFloat baseHeight;
 @property (nonatomic, assign) CGFloat rowHeight;
@@ -82,6 +84,9 @@
         self.expanded = @NO;
     }];
     
+    // Create a signal that will emit values when a day has been selected from the menu.
+    self.selectedDaySignal = [RACSubject subject];
+    
     // Create a button for each day.
     [self.days enumerateObjectsUsingBlock:^(id day, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *dayButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -112,15 +117,18 @@
             }
         }];
         
-        [[dayButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[dayButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
             if ([self.expanded isEqual:@NO]) {
                 // If the view is not expanded, pressing the button should expand the view.
                 self.expanded = @YES;
             } else {
                 // If the view is expanded, pressing the button should contract the view and
                 // mark the corresponding day as selected.
-                self.selectedDay = @(dayButton.tag);
+                self.selectedDay = @(button.tag);
                 self.expanded = @NO;
+                
+                // Inform observers that a new day has been selected.
+                [self.selectedDaySignal sendNext:self.selectedDay];
             }
         }];
     }];
@@ -153,6 +161,11 @@
     self.selectedDay = @0;
     
     return self;
+}
+
+// Sets the selected day without emitting values to selectedDaySignal.
+- (void)setSelectedDayIndex:(NSUInteger)dayIndex {
+    self.selectedDay = @(dayIndex);
 }
 
 @end

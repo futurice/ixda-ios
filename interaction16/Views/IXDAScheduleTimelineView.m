@@ -16,6 +16,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 
+static const CGFloat rowHeight = 24.0;
+static const CGFloat dayMargin = 48.0;
+
 @interface IXDAScheduleTimelineView () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IXDAScheduleViewModel *viewModel;
@@ -46,9 +49,6 @@
     }];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(5, 20, 5, 20);
-    
-    CGFloat rowHeight = 24.0;
-    CGFloat dayMargin = 48.0;
     
     CGFloat timeLabelWidth = 60.0;
     CGFloat columnWidth = 180.0;
@@ -142,10 +142,47 @@
         make.bottom.equalTo(self.scrollView).offset(-insets.bottom);
     }];
     
+    [self setUpScrollSignal];
+    
     return self;
 }
 
 
-#pragma mark - UIScrollViewDelegate
+#pragma mark - Scroll View
+
+- (void)setUpScrollSignal {
+    // This signal returns an NSNumber with the index of the day that is currently being viewed.
+    self.scrollSignal = [[self rac_signalForSelector:@selector(scrollViewDidScroll:) fromProtocol:@protocol(UIScrollViewDelegate)] map:^id(RACTuple *tuple) {
+        UIScrollView *scrollView = tuple.first;
+        __block NSInteger dayIndex = -1;
+        [self.timeLabelsByDay enumerateObjectsUsingBlock:^(NSArray *timeLabels, NSUInteger idx, BOOL * _Nonnull stop) {
+            UILabel *firstTimeLabelOfDay = [timeLabels firstObject];
+            if (scrollView.contentOffset.y > (firstTimeLabelOfDay.frame.origin.y - dayMargin)) {
+                dayIndex++;
+            } else {
+                *stop = YES;
+            }
+        }];
+        dayIndex = MIN(self.timeLabelsByDay.count, MAX(dayIndex, 0));
+        return @(dayIndex);
+    }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Need to implement this in order to bind the scrolling signal.
+}
+
+// Scrolls to the top of the selected day, unless that day is already being shown.
+- (void)scrollToDayWithIndex:(NSUInteger)dayIndex animated:(BOOL)animated {
+    UILabel *firstTimeLabelOfDay = [self.timeLabelsByDay[dayIndex] firstObject];
+    
+    CGFloat currentY = self.scrollView.contentOffset.y;
+    CGFloat dayY = firstTimeLabelOfDay.frame.origin.y;
+    CGFloat contentHeight = self.bounds.size.height;
+    
+    if (currentY < dayY || currentY > (dayY + contentHeight)) {
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, dayY) animated:animated];
+    }
+}
 
 @end

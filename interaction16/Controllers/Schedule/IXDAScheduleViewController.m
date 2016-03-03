@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) IXDASessionsViewModel *viewModel;
 @property (nonatomic, strong) IXDAScheduleNavigationView *navigationView;
+@property (nonatomic, strong) IXDAScheduleTimelineView *timelineView;
 
 // An array of NSDate objects representing the days shown in the schedule.
 @property (nonatomic, strong) NSArray *days;
@@ -70,6 +71,23 @@
         make.height.equalTo(@(titleBarTopMargin + titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding)); // Only 1 row is visible.
     }];
     
+    // Timeline view.
+    IXDAScheduleViewModel *scheduleViewModel = [self.viewModel scheduleViewModelWithDays:self.days];
+    self.timelineView = [[IXDAScheduleTimelineView alloc] initWithScheduleViewModel:scheduleViewModel];
+    [self.view addSubview:self.timelineView];
+    [self.timelineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(titleBarTopMargin + titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    // Make sure navigation view is on top.
+    [self.view bringSubviewToFront:self.navigationView];
+    
+    
+    /*
+     RAC bindings.
+     */
+    
     @weakify(self)
     [self.navigationView.backButtonSignal subscribeNext:^(id x) {
         @strongify(self)
@@ -89,17 +107,15 @@
         }];
     }];
     
-    // Timeline view.
-    IXDAScheduleViewModel *scheduleViewModel = [self.viewModel scheduleViewModelWithDays:self.days];
-    IXDAScheduleTimelineView *timelineView = [[IXDAScheduleTimelineView alloc] initWithScheduleViewModel:scheduleViewModel];
-    [self.view addSubview:timelineView];
-    [timelineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(titleBarTopMargin + titleBarBaseHeight + titleBarRowHeight + titleBarBottomPadding);
-        make.left.right.bottom.equalTo(self.view);
+    [[self.navigationView.selectedDaySignal deliverOnMainThread] subscribeNext:^(NSNumber *selectedDay) {
+        @strongify(self)
+        [self.timelineView scrollToDayWithIndex:[selectedDay unsignedIntegerValue] animated:YES];
     }];
     
-    // Make sure navigation view is on top.
-    [self.view bringSubviewToFront:self.navigationView];
+    [[self.timelineView.scrollSignal deliverOnMainThread] subscribeNext:^(NSNumber *visibleDay) {
+        @strongify(self)
+        [self.navigationView setSelectedDayIndex:[visibleDay unsignedIntegerValue]];
+    }];
     
     return self;
 }

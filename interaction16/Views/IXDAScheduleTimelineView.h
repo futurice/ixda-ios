@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class IXDAScheduleViewModel;
+@class IXDAScheduleViewModel, RACSignal;
 
 @interface IXDAScheduleTimelineView : UIView
 
-- initWithScheduleViewModel:(IXDAScheduleViewModel *)viewModel;
+@property (nonatomic, strong) RACSignal *scrollSignal;
+
+- (instancetype)initWithScheduleViewModel:(IXDAScheduleViewModel *)viewModel;
+
+- (void)scrollToDayWithIndex:(NSUInteger)dayIndex animated:(BOOL)animated;
 
 @end
