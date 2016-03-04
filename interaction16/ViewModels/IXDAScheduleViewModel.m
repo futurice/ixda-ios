@@ -37,7 +37,7 @@ static const NSTimeInterval tickInterval = 15 * 60; // 15 minutes.
     
     // The maximum number of different venues that are being occupied on any given day.
     self.maxNumberOfVenuesPerDay = [[[[self.days rac_sequence] map:^id(NSDate *day) {
-        return @([self venuesForDay:day].count);
+        return @([self venueIdsForDay:day].count);
     }] foldLeftWithStart:@0 reduce:^id(NSNumber *max, NSNumber *numberOfVenues) {
         return @(MAX([max integerValue], [numberOfVenues integerValue]));
     }] unsignedIntegerValue];;
@@ -53,7 +53,7 @@ static const NSTimeInterval tickInterval = 15 * 60; // 15 minutes.
 // of which holds an array of sessions on that day and in that venue.
 - (NSArray *)sessionsByDayAndVenue {
     return [[[self.days rac_sequence] map:^id(NSDate *day) {
-        return [[[[self venuesForDay:day] rac_sequence] map:^id(NSString *venue) {
+        return [[[[self venueIdsForDay:day] rac_sequence] map:^id(NSString *venue) {
             // Filter out sessions that aren't on the day and venue in question.
             return [[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
                 return ([session.venue_id isEqual:venue] && [self session:session isOnDay:day]);
@@ -62,6 +62,10 @@ static const NSTimeInterval tickInterval = 15 * 60; // 15 minutes.
             }];
         }] array];
     }] array];
+}
+
+- (NSArray *)venuesWithDayIndex:(NSUInteger)dayIndex {
+    return [self venuesForDay:self.days[dayIndex]];
 }
 
 // E.g. ["08:45", "09:00", "09:15", "09:30" ...]
@@ -127,14 +131,28 @@ static const NSTimeInterval tickInterval = 15 * 60; // 15 minutes.
 }
 
 - (NSArray *)venuesForDay:(NSDate *)day {
-    return [[[[self sessionsOfDay:day] rac_sequence] map:^id(Session *session) {
-        return session.venue_id;
+    return [[[[[self sessionsOfDay:day] rac_sequence] map:^id(Session *session) {
+        return session.venue;
+    }] map:^id(NSString *venue) {
+        return [venue capitalizedString];
     }] foldLeftWithStart:@[] reduce:^id(NSArray *acc, NSString *venue) {
         NSMutableArray *venues = [NSMutableArray arrayWithArray:acc];
         if (![venues containsObject:venue]) {
             [venues addObject:venue];
         }
         return venues;
+    }];
+}
+
+- (NSArray *)venueIdsForDay:(NSDate *)day {
+    return [[[[self sessionsOfDay:day] rac_sequence] map:^id(Session *session) {
+        return session.venue_id;
+    }] foldLeftWithStart:@[] reduce:^id(NSArray *acc, NSString *venueId) {
+        NSMutableArray *venueIds = [NSMutableArray arrayWithArray:acc];
+        if (![venueIds containsObject:venueId]) {
+            [venueIds addObject:venueId];
+        }
+        return venueIds;
     }];
 }
 

@@ -10,6 +10,7 @@
 #import "IXDAScheduleViewModel.h"
 #import "IXDAScheduleSessionView.h"
 #import "IXDASessionDetailsViewModel.h"
+#import "IXDAScheduleVenuesView.h"
 
 #import "UIFont+IXDA.h"
 #import "UIColor+IXDA.h"
@@ -27,6 +28,7 @@ static const CGFloat dayMargin = 48.0;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *timeLabelsByDay;
+@property (nonatomic, strong) IXDAScheduleVenuesView *venuesView;
 
 @end
 
@@ -50,7 +52,7 @@ static const CGFloat dayMargin = 48.0;
         make.edges.equalTo(self);
     }];
     
-    UIEdgeInsets insets = UIEdgeInsetsMake(5, 20, 5, 20);
+    UIEdgeInsets insets = UIEdgeInsetsMake(dayMargin, 20, 20, 20);
     
     CGFloat timeLabelWidth = 60.0;
     CGFloat columnWidth = 180.0;
@@ -151,7 +153,22 @@ static const CGFloat dayMargin = 48.0;
         make.bottom.equalTo(self.scrollView).offset(-insets.bottom);
     }];
     
+    // Venues view - horizontal banner at top showing venues.
+    self.venuesView = [[IXDAScheduleVenuesView alloc] initWithNumberOfVenues:numberOfColumns leadSpacing:(insets.left + timeLabelWidth) tailSpacing:insets.right itemSpacing:columnMargin columnWidth:columnWidth];
+    self.venuesView.userInteractionEnabled = NO;
+    [self.venuesView setVenueTexts:[self.viewModel venuesWithDayIndex:0]];
+    [self addSubview:self.venuesView];
+    [self.venuesView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self);
+        make.height.equalTo(@(insets.top));
+    }];
+    
     [self setUpScrollSignal];
+    
+    // Update venue labels whenever the user scrolls to a new day.
+    [[self.scrollSignal deliverOnMainThread] subscribeNext:^(NSNumber *visibleDay) {
+        [self.venuesView setVenueTexts:[self.viewModel venuesWithDayIndex:[visibleDay unsignedIntegerValue]]];
+    }];
     
     return self;
 }
@@ -177,8 +194,10 @@ static const CGFloat dayMargin = 48.0;
     }];
 }
 
+// Need to implement this in order to bind the scrolling signal.
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // Need to implement this in order to bind the scrolling signal.
+    // Update x-position of venues view so that it corresponds to the columns in the scroll view.
+    [self.venuesView setContentOffsetX:scrollView.contentOffset.x];
 }
 
 // Scrolls to the top of the selected day, unless that day is already being shown.
@@ -186,7 +205,7 @@ static const CGFloat dayMargin = 48.0;
     UILabel *firstTimeLabelOfDay = [self.timeLabelsByDay[dayIndex] firstObject];
     
     CGFloat currentY = self.scrollView.contentOffset.y;
-    CGFloat dayY = firstTimeLabelOfDay.frame.origin.y;
+    CGFloat dayY = firstTimeLabelOfDay.frame.origin.y - dayMargin + 1.0;
     CGFloat contentHeight = self.bounds.size.height;
     
     if (currentY < dayY || currentY > (dayY + contentHeight)) {

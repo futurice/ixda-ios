@@ -20,6 +20,8 @@
 // of which holds an array of sessions on that day and in that venue.
 - (NSArray *)sessionsByDayAndVenue;
 
+- (NSArray *)venuesWithDayIndex:(NSUInteger)dayIndex;
+
 // E.g. ["08:45", "09:00", "09:15", "09:30" ...]
 - (NSArray *)timeIntervalStringsForDayIndex:(NSUInteger)day;
 

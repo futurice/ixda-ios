@@ -42,6 +42,9 @@
     
     self.view.backgroundColor = [UIColor ixda_statusBarBackgroundColorB];
     
+    // Make sure not to get extra margin at the top of the timeline's scroll view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     // Normally you would get dates on which there are talks directly from the
     // view model, like so:
     //
