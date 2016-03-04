@@ -70,6 +70,7 @@
 		8A785A461C8726D800149E8D /* IXDAScheduleSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */; };
 		8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */; };
 		8AC3C66B1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */; };
+		8AC787311C89BE9E007A92DA /* IXDAScheduleVenuesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC787301C89BE9E007A92DA /* IXDAScheduleVenuesView.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
 /* End PBXBuildFile section */
 
@@ -194,6 +195,8 @@
 		8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleViewController.m; path = Controllers/MySchedule/IXDAMyScheduleViewController.m; sourceTree = "<group>"; };
 		8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleEmptyStateView.h; path = Views/IXDAMyScheduleEmptyStateView.h; sourceTree = "<group>"; };
 		8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleEmptyStateView.m; path = Views/IXDAMyScheduleEmptyStateView.m; sourceTree = "<group>"; };
+		8AC7872F1C89BE9E007A92DA /* IXDAScheduleVenuesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleVenuesView.h; path = Views/IXDAScheduleVenuesView.h; sourceTree = "<group>"; };
+		8AC787301C89BE9E007A92DA /* IXDAScheduleVenuesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleVenuesView.m; path = Views/IXDAScheduleVenuesView.m; sourceTree = "<group>"; };
 		FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interaction16.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -252,6 +255,8 @@
 				8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */,
 				8A785A411C86F73C00149E8D /* IXDAScheduleTimelineView.h */,
 				8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */,
+				8AC7872F1C89BE9E007A92DA /* IXDAScheduleVenuesView.h */,
+				8AC787301C89BE9E007A92DA /* IXDAScheduleVenuesView.m */,
 				6FE307C41C78911200B0A356 /* IXDASessionDetailBar.h */,
 				6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */,
 				645EB5281C7B3F12008C801F /* IXDASocialEventDetailBar.h */,
@@ -699,6 +704,7 @@
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
 				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,
 				6FA68C651C7737E5003237FB /* UILabel+IXDA.m in Sources */,
+				8AC787311C89BE9E007A92DA /* IXDAScheduleVenuesView.m in Sources */,
 				8A785A431C86F73C00149E8D /* IXDAScheduleTimelineView.m in Sources */,
 				6F6308F71C72709000558AA8 /* IXDATalksNavigationView.m in Sources */,
 				8A785A401C86F62900149E8D /* IXDAScheduleViewModel.m in Sources */,
