@@ -78,10 +78,11 @@
 
 - (NSDate *)sameDateWithMidnightTimestamp
 {
-    NSDateFormatter *dateFormatter = [NSDate dateFormatterWithFormat:@"dd-MM-yyyy"];
-    NSDate *date = [self dateByAddingTimeInterval:(([self hour] < kDayDelimiterHour) ? -24*kOneHour : 0)];
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    return [dateFormatter dateFromString:dateString];
+    unsigned int flags = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:flags fromDate:self];
+    [components setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    
+    return [[NSCalendar currentCalendar] dateFromComponents:components];
 }
 
 + (NSDateFormatter *)dateFormatterWithFormat:(NSString *)format

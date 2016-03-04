@@ -39,7 +39,11 @@
 }
 
 + (UIColor *)ixda_timelineBackgroundColor {
-    return [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1.0];
+    return [UIColor colorWithWhite:0.949 alpha:1.0];
+}
+
++ (UIColor *)ixda_timelineTimeLabelColor {
+    return [UIColor colorWithWhite:0.0 alpha:0.49];
 }
 
 @end

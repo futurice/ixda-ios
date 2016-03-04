@@ -11,11 +11,6 @@
 		644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 644FBCE41C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m */; };
 		645EB52A1C7B3F12008C801F /* IXDASocialEventDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */; };
 		645EB52D1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 645EB52C1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m */; };
-		6F3155FA1C763A72006A43AF /* FestScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3155F81C763A72006A43AF /* FestScheduleViewController.m */; };
-		6F3155FB1C763A72006A43AF /* FestScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F3155F91C763A72006A43AF /* FestScheduleViewController.xib */; };
-		6F3155FE1C763ACB006A43AF /* TimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3155FD1C763ACB006A43AF /* TimelineView.m */; };
-		6F3156011C763B19006A43AF /* DayChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3156001C763B19006A43AF /* DayChooser.m */; };
-		6F3156041C763CB2006A43AF /* FestFavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3156021C763CB2006A43AF /* FestFavoritesManager.m */; };
 		6F3156081C76420E006A43AF /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3156071C76420E006A43AF /* NSDate+Additions.m */; };
 		6F5006001C74E51300F56DBA /* IXDAWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */; };
 		6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5006021C74E7EA00F56DBA /* IXDATitleBarView.m */; };
@@ -63,9 +58,14 @@
 		8A2971B31C7CC05900345BFB /* IXDASpeakerDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971B21C7CC05900345BFB /* IXDASpeakerDetailView.m */; };
 		8A2971B61C7D216700345BFB /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2971B51C7D216700345BFB /* NSString+HTML.m */; };
 		8A785A1E1C84A64800149E8D /* IXDACredentials.example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A785A1C1C84A64800149E8D /* IXDACredentials.example.plist */; };
-		8A785A1F1C84A64800149E8D /* IXDACredentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A785A1D1C84A64800149E8D /* IXDACredentials.plist */; };
+		8A785A3A1C85C7F100149E8D /* IXDAScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A391C85C7F100149E8D /* IXDAScheduleViewController.m */; };
+		8A785A3D1C85C80900149E8D /* IXDAScheduleNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A3C1C85C80900149E8D /* IXDAScheduleNavigationView.m */; };
+		8A785A401C86F62900149E8D /* IXDAScheduleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A3F1C86F62900149E8D /* IXDAScheduleViewModel.m */; };
+		8A785A431C86F73C00149E8D /* IXDAScheduleTimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */; };
+		8A785A461C8726D800149E8D /* IXDAScheduleSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */; };
 		8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */; };
 		8AC3C66B1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */; };
+		8AC787311C89BE9E007A92DA /* IXDAScheduleVenuesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC787301C89BE9E007A92DA /* IXDAScheduleVenuesView.m */; };
 		B60C98D3F83FD8B5EF8FC4FC /* libPods-interaction16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */; };
 /* End PBXBuildFile section */
 
@@ -79,15 +79,6 @@
 		645EB5291C7B3F12008C801F /* IXDASocialEventDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASocialEventDetailBar.m; path = Views/IXDASocialEventDetailBar.m; sourceTree = "<group>"; };
 		645EB52B1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDASpeakerInformationTableViewCell.h; path = Views/IXDASpeakerInformationTableViewCell.h; sourceTree = "<group>"; };
 		645EB52C1C7B56AC008C801F /* IXDASpeakerInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDASpeakerInformationTableViewCell.m; path = Views/IXDASpeakerInformationTableViewCell.m; sourceTree = "<group>"; };
-		6F3155F81C763A72006A43AF /* FestScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestScheduleViewController.m; path = Controllers/Schedule/FestScheduleViewController.m; sourceTree = "<group>"; };
-		6F3155F91C763A72006A43AF /* FestScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FestScheduleViewController.xib; path = Controllers/Schedule/FestScheduleViewController.xib; sourceTree = "<group>"; };
-		6F3155FC1C763ACB006A43AF /* TimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimelineView.h; path = Controllers/Schedule/TimelineView.h; sourceTree = "<group>"; };
-		6F3155FD1C763ACB006A43AF /* TimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineView.m; path = Controllers/Schedule/TimelineView.m; sourceTree = "<group>"; };
-		6F3155FF1C763B19006A43AF /* DayChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayChooser.h; path = Controllers/Schedule/DayChooser.h; sourceTree = "<group>"; };
-		6F3156001C763B19006A43AF /* DayChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayChooser.m; path = Controllers/Schedule/DayChooser.m; sourceTree = "<group>"; };
-		6F3156021C763CB2006A43AF /* FestFavoritesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FestFavoritesManager.m; path = Controllers/Schedule/FestFavoritesManager.m; sourceTree = "<group>"; };
-		6F3156031C763CB2006A43AF /* FestScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FestScheduleViewController.h; path = Controllers/Schedule/FestScheduleViewController.h; sourceTree = "<group>"; };
-		6F3156051C763FFC006A43AF /* FestFavoritesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FestFavoritesManager.h; path = Controllers/Schedule/FestFavoritesManager.h; sourceTree = "<group>"; };
 		6F3156061C76420E006A43AF /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Additions.h"; path = "Helpers/NSDate+Additions.h"; sourceTree = "<group>"; };
 		6F3156071C76420E006A43AF /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Additions.m"; path = "Helpers/NSDate+Additions.m"; sourceTree = "<group>"; };
 		6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAWorkshopViewController.h; path = Controllers/WhatElse/Workshops/IXDAWorkshopViewController.h; sourceTree = "<group>"; };
@@ -176,10 +167,22 @@
 		8A2971B51C7D216700345BFB /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+HTML.m"; path = "Helpers/NSString+HTML.m"; sourceTree = "<group>"; };
 		8A785A1C1C84A64800149E8D /* IXDACredentials.example.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IXDACredentials.example.plist; sourceTree = "<group>"; };
 		8A785A1D1C84A64800149E8D /* IXDACredentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IXDACredentials.plist; sourceTree = "<group>"; };
+		8A785A381C85C7F100149E8D /* IXDAScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleViewController.h; path = Controllers/Schedule/IXDAScheduleViewController.h; sourceTree = "<group>"; };
+		8A785A391C85C7F100149E8D /* IXDAScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleViewController.m; path = Controllers/Schedule/IXDAScheduleViewController.m; sourceTree = "<group>"; };
+		8A785A3B1C85C80900149E8D /* IXDAScheduleNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleNavigationView.h; path = Controllers/Schedule/IXDAScheduleNavigationView.h; sourceTree = "<group>"; };
+		8A785A3C1C85C80900149E8D /* IXDAScheduleNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleNavigationView.m; path = Controllers/Schedule/IXDAScheduleNavigationView.m; sourceTree = "<group>"; };
+		8A785A3E1C86F62900149E8D /* IXDAScheduleViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleViewModel.h; path = ViewModels/IXDAScheduleViewModel.h; sourceTree = "<group>"; };
+		8A785A3F1C86F62900149E8D /* IXDAScheduleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleViewModel.m; path = ViewModels/IXDAScheduleViewModel.m; sourceTree = "<group>"; };
+		8A785A411C86F73C00149E8D /* IXDAScheduleTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleTimelineView.h; path = Views/IXDAScheduleTimelineView.h; sourceTree = "<group>"; };
+		8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleTimelineView.m; path = Views/IXDAScheduleTimelineView.m; sourceTree = "<group>"; };
+		8A785A441C8726D800149E8D /* IXDAScheduleSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleSessionView.h; path = Views/IXDAScheduleSessionView.h; sourceTree = "<group>"; };
+		8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleSessionView.m; path = Views/IXDAScheduleSessionView.m; sourceTree = "<group>"; };
 		8AC3C6661C7C946200AC54BE /* IXDAMyScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleViewController.h; path = Controllers/MySchedule/IXDAMyScheduleViewController.h; sourceTree = "<group>"; };
 		8AC3C6671C7C946200AC54BE /* IXDAMyScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleViewController.m; path = Controllers/MySchedule/IXDAMyScheduleViewController.m; sourceTree = "<group>"; };
 		8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAMyScheduleEmptyStateView.h; path = Views/IXDAMyScheduleEmptyStateView.h; sourceTree = "<group>"; };
 		8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAMyScheduleEmptyStateView.m; path = Views/IXDAMyScheduleEmptyStateView.m; sourceTree = "<group>"; };
+		8AC7872F1C89BE9E007A92DA /* IXDAScheduleVenuesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IXDAScheduleVenuesView.h; path = Views/IXDAScheduleVenuesView.h; sourceTree = "<group>"; };
+		8AC787301C89BE9E007A92DA /* IXDAScheduleVenuesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IXDAScheduleVenuesView.m; path = Views/IXDAScheduleVenuesView.m; sourceTree = "<group>"; };
 		FE9114A62AFDC94CCA7DAFF7 /* libPods-interaction16.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interaction16.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -203,28 +206,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6F3155F61C763A29006A43AF /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				6F3155FF1C763B19006A43AF /* DayChooser.h */,
-				6F3156001C763B19006A43AF /* DayChooser.m */,
-				6F3156051C763FFC006A43AF /* FestFavoritesManager.h */,
-				6F3156021C763CB2006A43AF /* FestFavoritesManager.m */,
-				6F3156031C763CB2006A43AF /* FestScheduleViewController.h */,
-				6F3155F81C763A72006A43AF /* FestScheduleViewController.m */,
-				6F3155F91C763A72006A43AF /* FestScheduleViewController.xib */,
-				6F3155FC1C763ACB006A43AF /* TimelineView.h */,
-				6F3155FD1C763ACB006A43AF /* TimelineView.m */,
-			);
-			name = Schedule;
-			sourceTree = "<group>";
-		};
 		6F5005FD1C74E4B100F56DBA /* Workshops */ = {
 			isa = PBXGroup;
 			children = (
-				8A2971A31C7CB04100345BFB /* Detail */,
 				6F5005FE1C74E51300F56DBA /* IXDAWorkshopViewController.h */,
 				6F5005FF1C74E51300F56DBA /* IXDAWorkshopViewController.m */,
+				8A2971A31C7CB04100345BFB /* Detail */,
 			);
 			name = Workshops;
 			sourceTree = "<group>";
@@ -234,6 +221,12 @@
 			children = (
 				8AC3C6691C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.h */,
 				8AC3C66A1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m */,
+				8A785A441C8726D800149E8D /* IXDAScheduleSessionView.h */,
+				8A785A451C8726D800149E8D /* IXDAScheduleSessionView.m */,
+				8A785A411C86F73C00149E8D /* IXDAScheduleTimelineView.h */,
+				8A785A421C86F73C00149E8D /* IXDAScheduleTimelineView.m */,
+				8AC7872F1C89BE9E007A92DA /* IXDAScheduleVenuesView.h */,
+				8AC787301C89BE9E007A92DA /* IXDAScheduleVenuesView.m */,
 				6FE307C41C78911200B0A356 /* IXDASessionDetailBar.h */,
 				6FE307C51C78911200B0A356 /* IXDASessionDetailBar.m */,
 				645EB5281C7B3F12008C801F /* IXDASocialEventDetailBar.h */,
@@ -318,6 +311,8 @@
 		6F50194A1C709D2600CB7937 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8A785A3E1C86F62900149E8D /* IXDAScheduleViewModel.h */,
+				8A785A3F1C86F62900149E8D /* IXDAScheduleViewModel.m */,
 				6FE307CA1C789BDE00B0A356 /* IXDASessionDetailsViewModel.h */,
 				6FE307CB1C789BDE00B0A356 /* IXDASessionDetailsViewModel.m */,
 				6F50194B1C709D6C00CB7937 /* IXDASessionsViewModel.h */,
@@ -365,12 +360,12 @@
 		6F668DA41C6F3E0D00475BCA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8AC3C6621C7C8A6500AC54BE /* My Schedule */,
 				6F5006051C74F7DE00F56DBA /* Info */,
 				6F668DCD1C6F632C00475BCA /* Map */,
 				6F668DA51C6F3E1700475BCA /* Menu */,
+				8AC3C6621C7C8A6500AC54BE /* My Schedule */,
 				6F5019321C6FA1CF00CB7937 /* Program */,
-				6F3155F61C763A29006A43AF /* Schedule */,
+				8A785A371C85C7C600149E8D /* Schedule */,
 				6F50193B1C6FAB1500CB7937 /* Speakers */,
 				6F5005FD1C74E4B100F56DBA /* Workshops */,
 			);
@@ -494,6 +489,17 @@
 			name = Credentials;
 			sourceTree = "<group>";
 		};
+		8A785A371C85C7C600149E8D /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				8A785A3B1C85C80900149E8D /* IXDAScheduleNavigationView.h */,
+				8A785A3C1C85C80900149E8D /* IXDAScheduleNavigationView.m */,
+				8A785A381C85C7F100149E8D /* IXDAScheduleViewController.h */,
+				8A785A391C85C7F100149E8D /* IXDAScheduleViewController.m */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
 		8AC3C6621C7C8A6500AC54BE /* My Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,7 +580,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A785A361C859DC200149E8D /* IXDACredentials.plist in Resources */,
 				6F668DC11C6F423E00475BCA /* CircularStd-Book.otf in Resources */,
 				8A785A1E1C84A64800149E8D /* IXDACredentials.example.plist in Resources */,
 				6F668DBF1C6F423E00475BCA /* CircularStd-Black.otf in Resources */,
@@ -582,7 +587,6 @@
 				6F87D42A1C6F25430039A29B /* LaunchScreen.storyboard in Resources */,
 				6F5019311C6FA05F00CB7937 /* sessions.json in Resources */,
 				6F87D4271C6F25430039A29B /* Assets.xcassets in Resources */,
-				6F3155FB1C763A72006A43AF /* FestScheduleViewController.xib in Resources */,
 				6F668DC21C6F423E00475BCA /* CircularStd-Medium.otf in Resources */,
 				6F6308F41C724DBD00558AA8 /* speakers.json in Resources */,
 			);
@@ -660,14 +664,16 @@
 				8A2971AD1C7CB97F00345BFB /* IXDASpeakerDetailViewModel.m in Sources */,
 				644FBCE21C7B13A8001161C6 /* IXDAStarredSessionStore.m in Sources */,
 				8A2971A61C7CB08B00345BFB /* IXDAWorkshopDetailViewController.m in Sources */,
-				6F3155FA1C763A72006A43AF /* FestScheduleViewController.m in Sources */,
 				8AC3C6681C7C946200AC54BE /* IXDAMyScheduleViewController.m in Sources */,
-				6F3155FE1C763ACB006A43AF /* TimelineView.m in Sources */,
+				8A785A461C8726D800149E8D /* IXDAScheduleSessionView.m in Sources */,
 				6F87D41F1C6F25430039A29B /* AppDelegate.m in Sources */,
 				6F668DBA1C6F420500475BCA /* UIFont+IXDA.m in Sources */,
 				6F50193A1C6FA7C000CB7937 /* IXDATalksTableViewCell.m in Sources */,
 				6FA68C651C7737E5003237FB /* UILabel+IXDA.m in Sources */,
+				8AC787311C89BE9E007A92DA /* IXDAScheduleVenuesView.m in Sources */,
+				8A785A431C86F73C00149E8D /* IXDAScheduleTimelineView.m in Sources */,
 				6F6308F71C72709000558AA8 /* IXDATalksNavigationView.m in Sources */,
+				8A785A401C86F62900149E8D /* IXDAScheduleViewModel.m in Sources */,
 				6FE307C61C78911200B0A356 /* IXDASessionDetailBar.m in Sources */,
 				6FE307C31C788FB300B0A356 /* IXDATalkDetailViewController.m in Sources */,
 				6F5019511C70A16F00CB7937 /* Session.m in Sources */,
@@ -681,6 +687,8 @@
 				6F5019451C70786B00CB7937 /* IXDASessionStore.m in Sources */,
 				6FA68C5F1C772767003237FB /* IXDAInfoView.m in Sources */,
 				8A2971B01C7CBC7A00345BFB /* IXDASpeakerDetailBar.m in Sources */,
+				8A785A3A1C85C7F100149E8D /* IXDAScheduleViewController.m in Sources */,
+				8A785A3D1C85C80900149E8D /* IXDAScheduleNavigationView.m in Sources */,
 				6F5019411C6FAB7300CB7937 /* IXDASpeakersTableViewCell.m in Sources */,
 				6F87D41C1C6F25430039A29B /* main.m in Sources */,
 				6F5019491C7079D900CB7937 /* IXDASessionManager.m in Sources */,
@@ -689,14 +697,12 @@
 				644FBCE51C7B2B9E001161C6 /* IXDASocialEventTableViewCell.m in Sources */,
 				6F668DA21C6F33CE00475BCA /* UIColor+IXDA.m in Sources */,
 				6F5019541C70C41C00CB7937 /* IXDASpeakerStore.m in Sources */,
-				6F3156011C763B19006A43AF /* DayChooser.m in Sources */,
 				6F5019571C70C4EC00CB7937 /* Speaker.m in Sources */,
 				8A2971B61C7D216700345BFB /* NSString+HTML.m in Sources */,
 				6F5019351C6FA1F100CB7937 /* IXDATalksViewController.m in Sources */,
 				6F5006031C74E7EA00F56DBA /* IXDATitleBarView.m in Sources */,
 				8A2971AA1C7CB57100345BFB /* IXDASpeakerDetailViewController.m in Sources */,
 				6F668DCC1C6F556900475BCA /* IXDAWhatElseIsOnView.m in Sources */,
-				6F3156041C763CB2006A43AF /* FestFavoritesManager.m in Sources */,
 				6F5006081C74F80B00F56DBA /* IXDAInfoViewController.m in Sources */,
 				8AC3C66B1C7C998600AC54BE /* IXDAMyScheduleEmptyStateView.m in Sources */,
 				6F50195A1C70C6A800CB7937 /* IXDASpeakerViewModel.m in Sources */,

@@ -23,4 +23,6 @@
 + (UIColor *)ixda_infoSubtitleColor;
 
 + (UIColor *)ixda_timelineBackgroundColor;
++ (UIColor *)ixda_timelineTimeLabelColor;
+
 @end

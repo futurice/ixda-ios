@@ -8,12 +8,14 @@
 
 #import "IXDASessionsViewModel.h"
 #import "IXDASessionDetailsViewModel.h"
+#import "IXDAScheduleViewModel.h"
 
 #import "Session.h"
 #import "Speaker.h"
 #import "IXDASessionStore.h"
 #import "IXDASpeakerStore.h"
 #import "IXDAStarredSessionStore.h"
+#import "NSDate+Additions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -104,6 +106,74 @@
     }];
 }
 
+// Returns an array of days (dates at midnight) on which there are talks or workshops.
+- (NSArray *)talkDays {
+    // Look through all talks and add the dates for which there are sessions.
+    return [[[[[self.sessions rac_sequence] filter:^BOOL(Session *session) {
+        return ([session.event_type isEqualToString:@"Keynote"]
+                || [session.event_type isEqualToString:@"Long Talk"]
+                || [session.event_type isEqualToString:@"Medium Talk"]
+                || [session.event_type isEqualToString:@"Lightning Talk"]
+                || [session.event_type isEqualToString:@"Workshop"]);
+    }] foldLeftWithStart:@[] reduce:^id(NSArray *acc, Session *session) {
+        NSMutableArray *newArr = [NSMutableArray arrayWithArray:acc];
+        RACTuple *days = [self sessionDays:session];
+        
+        if (![newArr containsObject:days.first]) {
+            [newArr addObject:days.first];
+        }
+        if (![newArr containsObject:days.second]) {
+            [newArr addObject:days.second];
+        }
+        
+        return newArr;
+    }] array] sortedArrayUsingComparator:^NSComparisonResult(NSDate *one, NSDate *two) {
+        return [one compare:two];
+    }];
+}
+
+// Takes an array of NSString objects representing dates (e.g. "2016-03-02") and returns an array of
+// NSDate objects representing days (i.e. dates at midnight).
+- (NSArray *)daysWithStrings:(NSArray *)dayStrings {
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    });
+    
+    return [[[dayStrings rac_sequence] map:^id(NSString *dateString) {
+        return [_dateFormatter dateFromString:dateString];
+    }] array];
+}
+
+// Takes an array of NSDate objects and returns an array of attributed string (e.g. "Tuesday, March 1").
+- (NSArray *)attributedDayStringsWithDates:(NSArray *)dates dayAttributes:(NSDictionary *)dayAttributes dateAttributes:(NSDictionary *)dateAttributes {
+    // Initialise date formatters once.
+    static NSDateFormatter *_dayFormatter = nil;
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dayFormatter = [[NSDateFormatter alloc] init];
+        [_dayFormatter setDateFormat:@"EEEE"];
+        
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"MMMM d"];
+        [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    });
+    
+    return [[[dates rac_sequence] map:^id(NSDate *day) {
+        NSString *weekday = [_dayFormatter stringFromDate:day];
+        NSString *date = [_dateFormatter stringFromDate:day];
+        NSString *titleString = [NSString stringWithFormat:@"%@, %@", weekday, date];
+        NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:titleString attributes:dayAttributes];
+        [attributedTitle setAttributes:dateAttributes range:NSMakeRange(weekday.length + 1, titleString.length - weekday.length - 1)];
+        return attributedTitle;
+    }] array];
+    
+}
+
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelOfArray:(NSArray *)selectedSessions forIndex:(NSUInteger)index {
     IXDASessionDetailsViewModel *viewModel = nil;
     if ([selectedSessions objectAtIndex:index]) {
@@ -113,6 +183,29 @@
     }
     return viewModel;
 }
+
+- (IXDASessionDetailsViewModel *)sessionsDetailViewModelWithEventKey:(NSString *)eventKey {
+    __block Session *session = nil;
+    for (Session *sess in self.sessions) {
+        if ([sess.event_key isEqual:eventKey]) {
+            session = sess;
+        }
+    }
+    
+    IXDASessionDetailsViewModel *viewModel = nil;
+    if (session) {
+        NSArray *speakers = [self speakersOfSession:session.speakers];
+        viewModel = [[IXDASessionDetailsViewModel alloc] initWithSession:session speakers:speakers];
+    }
+    return viewModel;
+}
+
+- (IXDAScheduleViewModel *)scheduleViewModelWithDays:(NSArray *)days {
+    // Select all the sessions that are on any of the given days.
+    
+    return [[IXDAScheduleViewModel alloc] initWithSessions:self.sessions speakers:self.speakers days:days];
+}
+
 
 #pragma mark - Private Helpers
 
@@ -138,11 +231,11 @@
 }
 
 - (NSDictionary *)mapSpeakersArrayToDict:(NSArray *)speakersArray {
-    NSMutableDictionary *mutableDiict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] init];
     for (Speaker *speaker in speakersArray) {
-        [mutableDiict addEntriesFromDictionary:@{ speaker.name : speaker }];
+        [mutableDict addEntriesFromDictionary:@{ speaker.name : speaker }];
     }
-    return [mutableDiict copy];
+    return [mutableDict copy];
 }
 
 - (NSArray *)speakersOfSession:(NSString *)speakersString {
@@ -153,6 +246,13 @@
 
 - (Speaker *)speakerBy:(NSString *)name {
     return self.speakers[name];
+}
+
+// Returns the start day and end day (at midnight) of a given session.
+- (RACTuple *)sessionDays:(Session *)session {
+    NSDate *startDay = [session.event_start sameDateWithMidnightTimestamp];
+    NSDate *endDay = [session.event_end sameDateWithMidnightTimestamp];
+    return RACTuplePack(startDay, endDay);
 }
 
 @end
