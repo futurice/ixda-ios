@@ -99,6 +99,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
+    // The navigation view expands or contracts.
     [[RACObserve(self.navigationView, expanded) deliverOnMainThread] subscribeNext:^(NSNumber *expanded) {
         @strongify(self)
         // Update the navigation view's height, animating the changes.
@@ -112,16 +113,19 @@
         }];
     }];
     
+    // A new day is selected in the navigation view menu.
     [[self.navigationView.selectedDaySignal deliverOnMainThread] subscribeNext:^(NSNumber *selectedDay) {
         @strongify(self)
         [self.timelineView scrollToDayWithIndex:[selectedDay unsignedIntegerValue] animated:YES];
     }];
     
+    // A new day becomes visible in the timeline view.
     [[self.timelineView.scrollSignal deliverOnMainThread] subscribeNext:^(NSNumber *visibleDay) {
         @strongify(self)
         [self.navigationView setSelectedDayIndex:[visibleDay unsignedIntegerValue]];
     }];
     
+    // A session has been selected in the timeline view.
     [self.timelineView.selectSessionSignal subscribeNext:^(NSString *sessionKey) {
         @strongify(self)
         IXDASessionDetailsViewModel *sessionDetailsViewModel = [self.viewModel sessionsDetailViewModelWithEventKey:sessionKey];
