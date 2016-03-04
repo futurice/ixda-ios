@@ -64,7 +64,7 @@
     }];
     
     
-    if (self.viewModel.speakers > 0) {
+    if (self.viewModel.speakers.count > 0) {
         NSString *description = [self.viewModel descriptionNameFromIndex:0];
         IXDASpeakerInformationDetailView *speakersInformationView = [[IXDASpeakerInformationDetailView alloc] initWithNames:self.viewModel.speakerNames companies:self.viewModel.speakerCompanies description:description];
         [self.view addSubview:speakersInformationView];
