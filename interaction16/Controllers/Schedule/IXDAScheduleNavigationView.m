@@ -89,48 +89,7 @@
     
     // Create a button for each day.
     [self.days enumerateObjectsUsingBlock:^(id day, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *dayButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        dayButton.tag = idx;
-        dayButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [self.dayButtons addObject:dayButton];
-        
-        // Set button title (day strings may be either normal or attributed).
-        if ([day isKindOfClass:[NSAttributedString class]]) {
-            [dayButton setAttributedTitle:day forState:UIControlStateNormal];
-        } else if ([day isKindOfClass:[NSString class]]) {
-            [dayButton setTitle:day forState:UIControlStateNormal];
-        }
-        
-        [self addSubview:dayButton];
-        
-        [dayButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(20);
-            make.height.equalTo(@(rowHeight));
-            
-            if (idx == 0) {
-                // If it's the first button, constrain it to top.
-                make.top.equalTo(self).offset(self.baseHeight);
-            } else {
-                // Otherwise, constrain it to the previous button.
-                UIButton *prev = self.dayButtons[idx - 1];
-                make.top.equalTo(prev.mas_bottom);
-            }
-        }];
-        
-        [[dayButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
-            if ([self.expanded isEqual:@NO]) {
-                // If the view is not expanded, pressing the button should expand the view.
-                self.expanded = @YES;
-            } else {
-                // If the view is expanded, pressing the button should contract the view and
-                // mark the corresponding day as selected.
-                self.selectedDay = @(button.tag);
-                self.expanded = @NO;
-                
-                // Inform observers that a new day has been selected.
-                [self.selectedDaySignal sendNext:self.selectedDay];
-            }
-        }];
+        [self createDayButtonWithDay:day withIndex:idx height:rowHeight];
     }];
     
     // Update the view when it is expanded or contracted, or when a new day has been selected.
@@ -161,6 +120,53 @@
     self.selectedDay = @0;
     
     return self;
+}
+
+// Creates a button given a string (NSString or NSAttributedString), index and height.
+- (void)createDayButtonWithDay:(id)day withIndex:(NSUInteger)idx height:(CGFloat)height  {
+    UIButton *dayButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    dayButton.tag = idx;
+    dayButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.dayButtons addObject:dayButton];
+    
+    // Set button title (day strings may be either normal or attributed).
+    if ([day isKindOfClass:[NSAttributedString class]]) {
+        [dayButton setAttributedTitle:day forState:UIControlStateNormal];
+    } else if ([day isKindOfClass:[NSString class]]) {
+        [dayButton setTitle:day forState:UIControlStateNormal];
+    }
+    
+    [self addSubview:dayButton];
+    
+    [dayButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(20);
+        make.height.equalTo(@(height));
+        
+        if (idx == 0) {
+            // If it's the first button, constrain it to top.
+            make.top.equalTo(self).offset(self.baseHeight);
+        } else {
+            // Otherwise, constrain it to the previous button.
+            UIButton *prev = self.dayButtons[idx - 1];
+            make.top.equalTo(prev.mas_bottom);
+        }
+    }];
+    
+    // Handle button presses.
+    [[dayButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *button) {
+        if ([self.expanded isEqual:@NO]) {
+            // If the view is not expanded, pressing the button should expand the view.
+            self.expanded = @YES;
+        } else {
+            // If the view is expanded, pressing the button should contract the view and
+            // mark the corresponding day as selected.
+            self.selectedDay = @(button.tag);
+            self.expanded = @NO;
+            
+            // Inform observers that a new day has been selected.
+            [self.selectedDaySignal sendNext:self.selectedDay];
+        }
+    }];
 }
 
 // Sets the selected day without emitting values to selectedDaySignal.
