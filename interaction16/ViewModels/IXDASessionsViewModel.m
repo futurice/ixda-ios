@@ -186,12 +186,11 @@
 
 - (IXDASessionDetailsViewModel *)sessionsDetailViewModelWithEventKey:(NSString *)eventKey {
     __block Session *session = nil;
-    [self.sessions enumerateObjectsUsingBlock:^(Session *sess, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (Session *sess in self.sessions) {
         if ([sess.event_key isEqual:eventKey]) {
             session = sess;
-            *stop = YES;
         }
-    }];
+    }
     
     IXDASessionDetailsViewModel *viewModel = nil;
     if (session) {
