@@ -20,6 +20,9 @@
 
 static const CGFloat rowHeight = 24.0;
 static const CGFloat dayMargin = 48.0;
+static const CGFloat timeLabelWidth = 60.0;
+static const CGFloat columnWidth = 180.0;
+static const CGFloat columnMargin = 10.0;
 
 @interface IXDAScheduleTimelineView () <UIScrollViewDelegate>
 
@@ -53,10 +56,6 @@ static const CGFloat dayMargin = 48.0;
     }];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(dayMargin, 20, 20, 20);
-    
-    CGFloat timeLabelWidth = 60.0;
-    CGFloat columnWidth = 180.0;
-    CGFloat columnMargin = 10.0;
     
     NSUInteger numberOfColumns = [self.viewModel maxNumberOfVenuesPerDay];
     CGFloat dividerWidth = timeLabelWidth + columnWidth * numberOfColumns;
@@ -110,7 +109,54 @@ static const CGFloat dayMargin = 48.0;
                 }];
             }
         }];
+    }];
+    
+    // Constrain last time label to scroll view.
+    UILabel *lastTimeLabel = [[self.timeLabelsByDay lastObject] lastObject];
+    [lastTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.scrollView).offset(-insets.bottom);
+    }];
+    
+    // Venues view - horizontal banner at top showing venues.
+    self.venuesView = [[IXDAScheduleVenuesView alloc] initWithNumberOfVenues:numberOfColumns leadSpacing:(insets.left + timeLabelWidth) tailSpacing:insets.right itemSpacing:columnMargin columnWidth:columnWidth];
+    self.venuesView.userInteractionEnabled = NO;
+    [self.venuesView setVenueTexts:[self.viewModel venuesWithDayIndex:0]];
+    [self addSubview:self.venuesView];
+    [self.venuesView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self);
+        make.height.equalTo(@(insets.top));
+    }];
+    
+    [self setUpScrollSignal];
+    
+    // Update venue labels whenever the user scrolls to a new day.
+    @weakify(self)
+    [[self.scrollSignal deliverOnMainThread] subscribeNext:^(NSNumber *visibleDay) {
+        @strongify(self)
+        [self.venuesView setVenueTexts:[self.viewModel venuesWithDayIndex:[visibleDay unsignedIntegerValue]]];
+    }];
+    
+    // Draw the session views asynchronously, since it takes some time.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *sessionViews = [self setUpSessionViewsWithInsets:insets];
         
+        // Fade in all of the session views.
+        [UIView animateWithDuration:0.2 animations:^{
+            [sessionViews enumerateObjectsUsingBlock:^(IXDAScheduleSessionView *sessionView, NSUInteger idx, BOOL * _Nonnull stop) {
+                sessionView.alpha = 1.0;
+            }];
+        }];
+    });
+    
+    return self;
+}
+
+- (NSArray *)setUpSessionViewsWithInsets:(UIEdgeInsets)insets {
+    NSMutableArray *sessionViews = [NSMutableArray array];
+    
+    // Enumerate through days, drawing the appropriate views for each one.
+    [self.viewModel.sessionsByDayAndVenue enumerateObjectsUsingBlock:^(NSArray *arrayOfVenues, NSUInteger dayIdx, BOOL * _Nonnull stop) {
+    
         NSArray *timeLabelsForDay = self.timeLabelsByDay[dayIdx];
         
         // Enumerate through venues/columns.
@@ -143,34 +189,15 @@ static const CGFloat dayMargin = 48.0;
                     BOOL newStarred = ![detailsViewModel starred];
                     [detailsViewModel setStarred:newStarred];
                 }];
+                
+                // Hide session views and add them to an array to be shown later.
+                sessionView.alpha = 0.0;
+                [sessionViews addObject:sessionView];
             }];
         }];
     }];
     
-    // Constrain last time label to scroll view.
-    UILabel *lastTimeLabel = [[self.timeLabelsByDay lastObject] lastObject];
-    [lastTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.scrollView).offset(-insets.bottom);
-    }];
-    
-    // Venues view - horizontal banner at top showing venues.
-    self.venuesView = [[IXDAScheduleVenuesView alloc] initWithNumberOfVenues:numberOfColumns leadSpacing:(insets.left + timeLabelWidth) tailSpacing:insets.right itemSpacing:columnMargin columnWidth:columnWidth];
-    self.venuesView.userInteractionEnabled = NO;
-    [self.venuesView setVenueTexts:[self.viewModel venuesWithDayIndex:0]];
-    [self addSubview:self.venuesView];
-    [self.venuesView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self);
-        make.height.equalTo(@(insets.top));
-    }];
-    
-    [self setUpScrollSignal];
-    
-    // Update venue labels whenever the user scrolls to a new day.
-    [[self.scrollSignal deliverOnMainThread] subscribeNext:^(NSNumber *visibleDay) {
-        [self.venuesView setVenueTexts:[self.viewModel venuesWithDayIndex:[visibleDay unsignedIntegerValue]]];
-    }];
-    
-    return self;
+    return sessionViews;
 }
 
 
