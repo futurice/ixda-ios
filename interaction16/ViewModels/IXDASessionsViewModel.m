@@ -189,6 +189,7 @@
     for (Session *sess in self.sessions) {
         if ([sess.event_key isEqual:eventKey]) {
             session = sess;
+            break;
         }
     }
     
